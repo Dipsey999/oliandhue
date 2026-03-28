@@ -1,0 +1,2090 @@
+<!DOCTYPE html><!-- Last Published: Wed Feb 18 2026 02:23:46 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="www.oliandhue.com" data-wf-page="project-calculator" data-wf-site="6913f152f7d49d3e348fc705" lang="en"><head><meta charset="utf-8"/><title>Oli&amp;Hue - Project Calculator</title><meta content="Build your project by selecting the services you need. Get an instant estimate and start your project with Oli&amp;Hue." name="description"/><meta content="Oli&amp;Hue - Project Calculator" property="og:title"/><meta content="Build your project by selecting the services you need. Get an instant estimate and start your project with Oli&amp;Hue." property="og:description"/><meta content="Oli&amp;Hue - Project Calculator" property="twitter:title"/><meta content="Build your project by selecting the services you need. Get an instant estimate and start your project with Oli&amp;Hue." property="twitter:description"/><meta property="og:type" content="website"/><meta content="summary_large_image" name="twitter:card"/><meta content="width=device-width, initial-scale=1" name="viewport"/><link href="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/css/oli-hue-website.webflow.shared.75446649e.css" rel="stylesheet" type="text/css" integrity="sha384-dURmSedbeYifO3DTI4CAh9OHVdi3sLabEKPyFjUfmSfYyK8XqzqCE5O5vqFT4/+G" crossorigin="anonymous"/><link href="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/css/oli-hue-website.webflow.6921456ce2e0fe226b2d2ace-f0ace30cf.css" rel="stylesheet" type="text/css" integrity="sha384-I/jR/ZL7kZKKQ6KjKauc6LOGj4xW9bWBQxjCZpLNYa/waXlVdxgQ1Wq60WzlCTBa" crossorigin="anonymous"/><style>@media (min-width:992px) {html.w-mod-js:not(.w-mod-ix) [data-w-id="0f58aa64-6a9d-9e6f-9a59-ca8c3fa2bc11"] {-webkit-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0;}html.w-mod-js:not(.w-mod-ix) [data-w-id="0f58aa64-6a9d-9e6f-9a59-ca8c3fa2bc17"] {-webkit-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0;}html.w-mod-js:not(.w-mod-ix) [data-w-id="0f58aa64-6a9d-9e6f-9a59-ca8c3fa2bc1a"] {-webkit-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0.5rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0;}}</style><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/691727147f09a9b4faea58a5_32x32.png" rel="shortcut icon" type="image/x-icon"/><link href="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/691726e3eb36b5f382bb12e9_256x256.png" rel="apple-touch-icon"/><link href="https://www.oliandhue.com/pricing/project" rel="canonical"/>
+<!-- code to improve the font quality -->
+<style>
+  * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
+
+<!-- Lennis script and styles -->
+<script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.4/dist/lenis.css">
+
+<!-- Project Wizard Styles -->
+<style>
+  /* ── Override Webflow's massive heading ── */
+  .pricing_heading {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.03em;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+  }
+  @media (max-width: 767px) {
+    .pricing_heading {
+      font-size: 1.75rem !important;
+    }
+  }
+
+  /* ── Widen the wizard container ── */
+  .pricing_wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ── Currency Toggle (pill style from plans.html) ── */
+  .currency-toggle {
+    display: inline-flex;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 3px;
+  }
+  .currency-toggle__btn {
+    padding: 0.4rem 0.85rem;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.4);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: color 0.25s ease, background 0.25s ease;
+    letter-spacing: 0.04em;
+  }
+  .currency-toggle__btn.is-active {
+    color: #fff;
+    background: rgba(255,255,255,0.12);
+  }
+
+  /* ── Progress Bar ── */
+  .wizard_progress {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .wizard_progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #a882ff, #6c5ce7);
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    width: 0%;
+  }
+
+  /* ── Wizard Steps ── */
+  .wizard_step {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    min-height: 300px;
+  }
+  .wizard_step.is-active {
+    display: flex;
+    animation: wizFadeIn 0.4s ease forwards;
+  }
+  @keyframes wizFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Question Text ── */
+  .wizard_question {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .wizard_helper {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  /* ── Option Cards Grid ── */
+  .wizard_options {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+    max-width: 640px;
+  }
+  .wizard_options--2col { grid-template-columns: 1fr 1fr; }
+  .wizard_options--3col { grid-template-columns: 1fr 1fr 1fr; }
+  .wizard_options--4col { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .wizard_option {
+    position: relative;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1rem;
+    padding: 1.5rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .wizard_option:hover {
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+  }
+  .wizard_option.is-selected {
+    border-color: rgba(168,130,255,0.5);
+    background: rgba(168,130,255,0.06);
+    box-shadow: 0 0 30px rgba(168,130,255,0.1);
+  }
+
+  /* Option Check */
+  .wizard_option-check {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+  .wizard_option.is-selected .wizard_option-check {
+    background: linear-gradient(135deg, #a882ff, #6c5ce7);
+    border-color: transparent;
+  }
+  .wizard_option-check svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+  }
+  .wizard_option.is-selected .wizard_option-check svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Option Icon */
+  .wizard_option-icon {
+    margin-bottom: 0.75rem;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Option Title */
+  .wizard_option-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+
+  /* Option Subtitle */
+  .wizard_option-sub {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+  }
+
+  /* ── Dropdown ── */
+  .wizard_dropdown {
+    width: 100%;
+    max-width: 360px;
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0.75rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.25rem center;
+  }
+  .wizard_dropdown:focus {
+    border-color: rgba(168,130,255,0.5);
+  }
+  .wizard_dropdown option {
+    background: #1a1a2e;
+    color: #fff;
+  }
+
+  /* ── Navigation Buttons ── */
+  .wizard_nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    width: 100%;
+    max-width: 640px;
+  }
+  .wizard_btn {
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+  }
+  .wizard_btn--back {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+  }
+  .wizard_btn--back:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: #fff;
+  }
+  .wizard_btn--continue {
+    background: linear-gradient(135deg, #a882ff, #6c5ce7);
+    color: #fff;
+    min-width: 160px;
+  }
+  .wizard_btn--continue:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(168,130,255,0.3);
+  }
+  .wizard_btn--continue:disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    filter: grayscale(0.5);
+  }
+  .wizard_btn--hidden {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* ── Summary Screen ── */
+  .summary_wrap {
+    width: 100%;
+    max-width: 640px;
+    text-align: left;
+  }
+  .summary_section {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .summary_section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .summary_section-title svg {
+    flex-shrink: 0;
+  }
+  .summary_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .summary_row:last-child {
+    border-bottom: none;
+  }
+  .summary_row-label {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .summary_row-value {
+    font-size: 0.875rem;
+    color: #fff;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  /* Total Bar */
+  .summary_total {
+    background: rgba(168,130,255,0.08);
+    border: 1px solid rgba(168,130,255,0.25);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .summary_total-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+  }
+  .summary_total-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .summary_cta {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  .summary_note {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 767px) {
+    .wizard_options--2col,
+    .wizard_options--3col,
+    .wizard_options--4col {
+      grid-template-columns: 1fr;
+    }
+    .wizard_question {
+      font-size: 1.375rem;
+    }
+    .wizard_helper {
+      font-size: 0.875rem;
+    }
+    .summary_total-value {
+      font-size: 1.375rem;
+    }
+  }
+  @media (max-width: 479px) {
+    .wizard_nav {
+      flex-direction: column;
+    }
+    .wizard_btn {
+      width: 100%;
+      text-align: center;
+    }
+    .wizard_btn--hidden {
+      display: none;
+    }
+  }
+</style>
+
+<link href="../css/navbar-custom.css" rel="stylesheet" type="text/css"/>
+<link href="../css/footer-custom.css" rel="stylesheet" type="text/css"/>
+</head><body><div class="page-wrapper"><nav class="navbar">
+        <div class="padding-global is-small">
+          <div class="navbar_component">
+            <div class="navbar_content">
+              <div class="navbar_brand">
+                <a
+                  href="../index.html"
+                  aria-current="page"
+                  class="navbar_logo-wrap w-inline-block w--current"
+                  ><div class="text-block-2">Oli &amp; Hue</div>
+                  <img
+                    src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69154baa31f6d9813bdeed83_059f9ea96b483707ee650d3745c3b824_Oli%26Hue.svg"
+                    loading="lazy"
+                    width="40"
+                    height="40"
+                    alt=""
+                    class="oli-hue-icon"
+                  />
+                  <div class="navbar_creative-text">Design &amp; Development Studio</div></
+                >
+              </div>
+              <div class="navbar_links-menu">
+                <div class="navbar_links">
+                  <a
+                    href="../index.html"
+                    data-w-id="df70bfa9-fec6-06b6-1b9f-9402e5712ace"
+                    aria-current="page"
+                    class="navbar_link w-inline-block w--current"
+                    ><div class="navbar_link-texts">
+                      <div class="navbar_link-text _1">Home</div>
+                      <div class="navbar_link-text _2">Home</div>
+                    </div>
+                    <div class="navbar_link-dot"></div></a
+                  ><a
+                    href="../works/1.html"
+                    data-w-id="df70bfa9-fec6-06b6-1b9f-9402e5712ace"
+                    class="navbar_link w-inline-block"
+                    ><div class="navbar_link-texts">
+                      <div class="navbar_link-text _1">Work</div>
+                      <div class="navbar_link-text _2">Work</div>
+                    </div></a
+                  ><a
+                    href="../blog/1.html"
+                    data-w-id="df70bfa9-fec6-06b6-1b9f-9402e5712ace"
+                    class="navbar_link w-inline-block"
+                    ><div class="navbar_link-texts">
+                      <div class="navbar_link-text _1">Blog</div>
+                      <div class="navbar_link-text _2">Blog</div>
+                    </div>
+                    <div class="navbar_link-dot"></div></a
+                  ><a
+                    href="../pricing/plans.html"
+                    data-w-id="df70bfa9-fec6-06b6-1b9f-9402e5712ace"
+                    class="navbar_link w-inline-block"
+                    ><div class="navbar_link-texts">
+                      <div class="navbar_link-text _1">Pricing</div>
+                      <div class="navbar_link-text _2">Pricing</div>
+                    </div>
+                    <div class="navbar_link-dot"></div></a
+                  ><a
+                    href="../studio.html"
+                    data-w-id="df70bfa9-fec6-06b6-1b9f-9402e5712ace"
+                    class="navbar_link w-inline-block"
+                    ><div class="navbar_link-texts">
+                      <div class="navbar_link-text _1">Studio</div>
+                      <div class="navbar_link-text _2">Studio</div>
+                    </div>
+                    <div class="navbar_link-dot"></div></a
+                  ><a href="../contact/1.html" class="navbar_contact-btn w-inline-block">Contact Us<span class="btn-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+                </div>
+                <div class="menu_component">
+                  <div
+                    fs-scrolldisable-media="(max-width: 767px)"
+                    fs-scrolldisable-element="toggle"
+                    data-w-id="5fdd110c-b4dc-4c3b-f311-33bd343dda78"
+                    class="hamburger"
+                  >
+                    <div class="hamburger_line _1"></div>
+                    <div class="hamburger_line _2"></div>
+                  </div>
+                  <div class="menu">
+                    <div class="menu_in">
+                      <div class="menu_content">
+                        <div class="div-block-127">
+                          <img
+                            src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6915531a7c80bf7768063f37_Logo%20White.svg"
+                            loading="lazy"
+                            alt=""
+                            class="image"
+                          />
+                          <div class="menu_links">
+                            <a
+                              href="../index.html"
+                              data-w-id="34ea61be-4150-c0ab-66d0-326592b2e049"
+                              aria-current="page"
+                              class="menu_link w-inline-block w--current"
+                              ><div class="menu_link-texts">
+                                <div class="menu_link-text _1">Home</div>
+                                <div class="menu_link-text _2">Home</div>
+                              </div>
+                              <div class="menu_link-dot"></div></a
+                            ><a
+                              href="../works/1.html"
+                              data-w-id="34ea61be-4150-c0ab-66d0-326592b2e049"
+                              class="menu_link w-inline-block"
+                              ><div class="menu_link-texts">
+                                <div class="menu_link-text _1">Work</div>
+                                <div class="menu_link-text _2">Work</div>
+                              </div>
+                              <div class="menu_link-dot"></div></a
+                            ><a
+                              href="../blog/1.html"
+                              data-w-id="34ea61be-4150-c0ab-66d0-326592b2e049"
+                              class="menu_link w-inline-block"
+                              ><div class="menu_link-texts">
+                                <div class="menu_link-text _1">Blog</div>
+                                <div class="menu_link-text _2">Blog</div>
+                              </div>
+                              <div class="menu_link-dot"></div></a
+                            ><a
+                              href="../pricing/plans.html"
+                              data-w-id="34ea61be-4150-c0ab-66d0-326592b2e049"
+                              class="menu_link w-inline-block"
+                              ><div class="menu_link-texts">
+                                <div class="menu_link-text _1">Pricing</div>
+                                <div class="menu_link-text _2">Pricing</div>
+                              </div>
+                              <div class="menu_link-dot"></div></a
+                            ><a
+                              href="../studio.html"
+                              data-w-id="34ea61be-4150-c0ab-66d0-326592b2e049"
+                              class="menu_link w-inline-block"
+                              ><div class="menu_link-texts">
+                                <div class="menu_link-text _1">Studio</div>
+                                <div class="menu_link-text _2">Studio</div>
+                              </div>
+                              <div class="menu_link-dot"></div></a
+                            ><a
+                              href="../contact/1.html"
+                              data-w-id="34ea61be-4150-c0ab-66d0-326592b2e049"
+                              class="menu_link menu_contact-btn w-inline-block"
+                              ><div class="menu_link-texts">
+                                <div class="menu_link-text _1">Contact Us</div>
+                                <div class="menu_link-text _2">Contact Us</div>
+                              </div>
+                              <div class="menu_link-dot"></div></a
+                            >
+                          </div>
+                        </div>
+                        <div class="menu_actions">
+                          <div class="menu_social-wrap">
+                            <div class="menu_social">
+                              <a
+                                href="https://www.linkedin.com/company/oliandhue/"
+                                target="_blank"
+                                class="menu_social-link w-inline-block"
+                                ><img
+                                  loading="lazy"
+                                  src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc88c_linkedin-svgrepo-com.svg"
+                                  alt=""
+                                  class="menu_social-icon" /></a
+                              ><a
+                                href="https://instagram.com/oliandhue"
+                                target="_blank"
+                                class="menu_social-link w-inline-block"
+                                ><img
+                                  loading="lazy"
+                                  src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc854_social-insta.svg"
+                                  alt=""
+                                  class="menu_social-icon" /></a
+                              ><a
+                                href="https://x.com/oliandhue"
+                                target="_blank"
+                                class="menu_social-link w-inline-block"
+                                ><img
+                                  loading="lazy"
+                                  src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc853_social-x.svg"
+                                  alt=""
+                                  class="menu_social-icon" /></a
+                              ><a
+                                href="https://dribbble.com/oliandhue"
+                                target="_blank"
+                                class="menu_social-link w-inline-block"
+                                ><img
+                                  loading="lazy"
+                                  src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc864_dribble.svg"
+                                  alt=""
+                                  class="menu_social-icon"
+                              /></a>
+                            </div>
+                          </div>
+                          <a
+                            data-w-id="5fdd110c-b4dc-4c3b-f311-33bd343dda97"
+                            href="../pricing/plans.html"
+                            class="menu_contact w-inline-block"
+                            ><img
+                              src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc7b1_link.png"
+                              loading="lazy"
+                              sizes="100vw"
+                              srcset="
+                                https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc7b1_link-p-500.png   500w,
+                                https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc7b1_link-p-800.png   800w,
+                                https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc7b1_link-p-1080.png 1080w,
+                                https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc7b1_link.png        1400w
+                              "
+                              alt=""
+                              class="menu_contact-img" />
+                            <div class="menu-contact-link">
+                              <div class="menu_contact-text">Contact Us</div>
+                              <img
+                                src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc7a9_arrow-white-diagonal.svg"
+                                loading="lazy"
+                                alt=""
+                                class="menu_contact-arrow"
+                              /></div
+                          ></a>
+                          <div class="menu_legal">
+                            <a
+                              href="../legal/privacy-policy.html"
+                              data-w-id="08715bc4-c4b7-73ba-45ba-b2d079cf51c2"
+                              class="menu_legal-link w-inline-block"
+                              ><div class="menu_legal-text">Privacy Policy</div>
+                              <div class="menu_legal-line grey"></div></a
+                            ><a
+                              href="../legal/terms-of-use.html"
+                              data-w-id="08715bc4-c4b7-73ba-45ba-b2d079cf51c2"
+                              class="menu_legal-link w-inline-block"
+                              ><div class="menu_legal-text">Terms of use</div>
+                              <div class="menu_legal-line grey"></div
+                            ></a>
+                          </div>
+                        </div>
+                        <div
+                          data-w-id="5fdd110c-b4dc-4c3b-f311-33bd343ddaa2"
+                          class="menu_close"
+                        >
+                          <img
+                            src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc7b0_close.svg"
+                            loading="lazy"
+                            alt=""
+                            class="menu_close-icon"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="menu_bg-blur"></div>
+                </div>
+              </div>
+            </div>
+            <div class="navbar_line"></div>
+          </div>
+        </div>
+      </nav><div class="main-wrapper black"><div class="section_pricing"><div class="padding-global is-tiny"><div class="pricing_component"><div class="padding-section-medium"></div><div class="padding-global"><div class="container-xsmall"><div class="pricing_wrap">
+
+<!-- Header -->
+<div class="pricing_head">
+  <div data-w-id="0f58aa64-6a9d-9e6f-9a59-ca8c3fa2bc11" class="label_wrap">
+    <div class="label_dot"></div>
+    <div class="text-color-white">
+      <h2 class="heading-style-h6"><strong>Build Your Project</strong></h2>
+    </div>
+  </div>
+  <h2 data-w-id="0f58aa64-6a9d-9e6f-9a59-ca8c3fa2bc17" class="pricing_heading">Project Calculator</h2>
+
+  <!-- Currency Toggle -->
+  <div style="display:flex; justify-content:center; margin-top:1rem;">
+    <div class="currency-toggle" id="currencyToggle">
+      <button class="currency-toggle__btn" data-currency="inr" id="btnINR">INR</button>
+      <button class="currency-toggle__btn" data-currency="usd" id="btnUSD">USD</button>
+    </div>
+  </div>
+</div>
+
+<!-- Progress Bar -->
+<div class="wizard_progress">
+  <div class="wizard_progress-bar" id="wizardProgress"></div>
+</div>
+
+<!-- ===================== WIZARD STEPS ===================== -->
+<div id="wizardContainer" data-w-id="0f58aa64-6a9d-9e6f-9a59-ca8c3fa2bc1a">
+
+<!-- STEP: services (multiselect, 2x2) -->
+<div class="wizard_step is-active" data-step="services">
+  <div class="wizard_question">What services are you looking for?</div>
+  <div class="wizard_helper">Select all that apply. We'll ask follow-up questions for each.</div>
+  <div class="wizard_options wizard_options--2col">
+    <!-- Product Design -->
+    <div class="wizard_option" data-value="product-design">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="28" height="28" rx="6" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="6" y="6" width="8" height="8" rx="2" stroke="rgba(168,130,255,0.8)" stroke-width="1.5"/>
+          <rect x="18" y="6" width="8" height="4" rx="1.5" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+          <rect x="6" y="18" width="20" height="8" rx="2" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Product Design</div>
+      <div class="wizard_option-sub">UI/UX for web &amp; mobile apps</div>
+    </div>
+    <!-- Website Design & Dev -->
+    <div class="wizard_option" data-value="website">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="5" width="28" height="20" rx="3" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="2" y1="10" x2="30" y2="10" stroke="rgba(168,130,255,0.3)" stroke-width="1.5"/>
+          <circle cx="5.5" cy="7.5" r="1" fill="rgba(168,130,255,0.6)"/>
+          <circle cx="8.5" cy="7.5" r="1" fill="rgba(168,130,255,0.6)"/>
+          <circle cx="11.5" cy="7.5" r="1" fill="rgba(168,130,255,0.6)"/>
+          <rect x="5" y="13" width="10" height="2" rx="1" fill="rgba(168,130,255,0.3)"/>
+          <rect x="5" y="17" width="22" height="2" rx="1" fill="rgba(168,130,255,0.2)"/>
+          <rect x="5" y="21" width="16" height="2" rx="1" fill="rgba(168,130,255,0.15)"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Website Design &amp; Dev</div>
+      <div class="wizard_option-sub">Landing pages to full websites</div>
+    </div>
+    <!-- Branding & Identity -->
+    <div class="wizard_option" data-value="branding">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3L19.5 12H29L21.5 17.5L24 27L16 21L8 27L10.5 17.5L3 12H12.5L16 3Z" fill="rgba(168,130,255,0.15)" stroke="rgba(168,130,255,0.6)" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Branding &amp; Identity</div>
+      <div class="wizard_option-sub">Logo, guidelines &amp; visual identity</div>
+    </div>
+    <!-- Other Design Work -->
+    <div class="wizard_option" data-value="other">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="2" width="24" height="28" rx="3" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="9" y1="9" x2="23" y2="9" stroke="rgba(168,130,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="9" y1="14" x2="23" y2="14" stroke="rgba(168,130,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="9" y1="19" x2="18" y2="19" stroke="rgba(168,130,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="23" cy="23" r="5" fill="rgba(168,130,255,0.15)" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+          <line x1="23" y1="21" x2="23" y2="25" stroke="rgba(168,130,255,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="21" y1="23" x2="25" y2="23" stroke="rgba(168,130,255,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Other Design Work</div>
+      <div class="wizard_option-sub">Pitch decks, brochures &amp; more</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back wizard_btn--hidden" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: pd_platform (single, 3-col) -->
+<div class="wizard_step" data-step="pd_platform">
+  <div class="wizard_question">What type of product?</div>
+  <div class="wizard_helper">Tell us about the platform you're targeting.</div>
+  <div class="wizard_options wizard_options--3col">
+    <div class="wizard_option" data-value="mobile">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="2" width="14" height="24" rx="3" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="7" y1="6" x2="21" y2="6" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <line x1="7" y1="22" x2="21" y2="22" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <circle cx="14" cy="24" r="1" fill="rgba(168,130,255,0.5)"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Mobile App</div>
+    </div>
+    <div class="wizard_option" data-value="web">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="4" width="24" height="17" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="2" y1="8" x2="26" y2="8" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <line x1="10" y1="21" x2="18" y2="21" stroke="rgba(168,130,255,0.4)" stroke-width="1.5"/>
+          <line x1="14" y1="21" x2="14" y2="25" stroke="rgba(168,130,255,0.4)" stroke-width="1.5"/>
+          <line x1="9" y1="25" x2="19" y2="25" stroke="rgba(168,130,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Web App</div>
+    </div>
+    <div class="wizard_option" data-value="both">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="4" width="18" height="13" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="1" y1="8" x2="19" y2="8" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <rect x="20" y="5" width="7" height="13" rx="1.5" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+          <line x1="10" y1="17" x2="10" y2="21" stroke="rgba(168,130,255,0.3)" stroke-width="1.5"/>
+          <line x1="6" y1="21" x2="14" y2="21" stroke="rgba(168,130,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Both</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: pd_development (single, 2-col) -->
+<div class="wizard_step" data-step="pd_development">
+  <div class="wizard_question">Will you need development too?</div>
+  <div class="wizard_helper">We can handle both design and development for you.</div>
+  <div class="wizard_options wizard_options--2col">
+    <div class="wizard_option" data-value="yes">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="12" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <path d="M10 10L6 14L10 18" stroke="rgba(168,130,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 10L22 14L18 18" stroke="rgba(168,130,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="16" y1="8" x2="12" y2="20" stroke="rgba(168,130,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Yes, design + build</div>
+      <div class="wizard_option-sub">Full end-to-end delivery</div>
+    </div>
+    <div class="wizard_option" data-value="no">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="22" height="22" rx="4" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <circle cx="14" cy="11" r="3" stroke="rgba(168,130,255,0.7)" stroke-width="1.5"/>
+          <path d="M8 21C8 17.5 10.5 15 14 15C17.5 15 20 17.5 20 21" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">No, design only</div>
+      <div class="wizard_option-sub">We'll hand off design files</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: pd_designsystem (single, 2-col) — hidden if pd_development=yes -->
+<div class="wizard_step" data-step="pd_designsystem">
+  <div class="wizard_question">Do you need a design system?</div>
+  <div class="wizard_helper">A design system ensures consistency and speeds up future work.</div>
+  <div class="wizard_options wizard_options--2col">
+    <div class="wizard_option" data-value="yes">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="10" height="10" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="16" y="2" width="10" height="10" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="2" y="16" width="10" height="10" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="16" y="16" width="10" height="10" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <circle cx="7" cy="7" r="2" fill="rgba(168,130,255,0.3)"/>
+          <circle cx="21" cy="7" r="2" fill="rgba(168,130,255,0.3)"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Yes</div>
+      <div class="wizard_option-sub">Tokens, components &amp; documentation</div>
+    </div>
+    <div class="wizard_option" data-value="no">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="12" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="9" y1="9" x2="19" y2="19" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="19" y1="9" x2="9" y2="19" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">No</div>
+      <div class="wizard_option-sub">Standard design delivery</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: pd_features (single, 4-col / 2x2) -->
+<div class="wizard_step" data-step="pd_features">
+  <div class="wizard_question">How many key features or screens?</div>
+  <div class="wizard_helper">This helps us estimate the scope of your product.</div>
+  <div class="wizard_options wizard_options--4col">
+    <div class="wizard_option" data-value="1-5">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-title">1 - 5</div>
+      <div class="wizard_option-sub">Small scope</div>
+    </div>
+    <div class="wizard_option" data-value="6-10">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-title">6 - 10</div>
+      <div class="wizard_option-sub">Medium scope</div>
+    </div>
+    <div class="wizard_option" data-value="11-20">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-title">11 - 20</div>
+      <div class="wizard_option-sub">Large scope</div>
+    </div>
+    <div class="wizard_option" data-value="20+">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-title">20+</div>
+      <div class="wizard_option-sub">Enterprise</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: pd_industry (dropdown) -->
+<div class="wizard_step" data-step="pd_industry">
+  <div class="wizard_question">What industry is this for?</div>
+  <div class="wizard_helper">This helps us assign the right team and references.</div>
+  <select class="wizard_dropdown" id="pd_industry_select">
+    <option value="">Select an industry...</option>
+    <option value="saas">SaaS</option>
+    <option value="fintech">Fintech</option>
+    <option value="healthcare">Healthcare</option>
+    <option value="ecommerce">E-commerce</option>
+    <option value="education">Education</option>
+    <option value="social">Social</option>
+    <option value="other">Other</option>
+  </select>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: ws_type (single, 3-col) -->
+<div class="wizard_step" data-step="ws_type">
+  <div class="wizard_question">What type of website?</div>
+  <div class="wizard_helper">This determines the design approach and target audience strategy.</div>
+  <div class="wizard_options wizard_options--3col">
+    <div class="wizard_option" data-value="b2b">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="8" width="10" height="16" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="15" y="4" width="10" height="20" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="6" y1="12" x2="10" y2="12" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <line x1="6" y1="16" x2="10" y2="16" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <line x1="18" y1="8" x2="22" y2="8" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <line x1="18" y1="12" x2="22" y2="12" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">B2B</div>
+      <div class="wizard_option-sub">Business audience</div>
+    </div>
+    <div class="wizard_option" data-value="b2c">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="10" r="5" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <path d="M5 24C5 19 9 16 14 16C19 16 23 19 23 24" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">B2C</div>
+      <div class="wizard_option-sub">Consumer audience</div>
+    </div>
+    <div class="wizard_option" data-value="both">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="10" r="4" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <circle cx="19" cy="10" r="4" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <path d="M2 23C2 19 5 17 9 17C11 17 12.5 17.5 13.5 18.5" stroke="rgba(168,130,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M14.5 18.5C15.5 17.5 17 17 19 17C23 17 26 19 26 23" stroke="rgba(168,130,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Both</div>
+      <div class="wizard_option-sub">Mixed audience</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: ws_ecommerce (single, 2-col) -->
+<div class="wizard_step" data-step="ws_ecommerce">
+  <div class="wizard_question">Do you need e-commerce?</div>
+  <div class="wizard_helper">Online store, product pages, cart &amp; checkout.</div>
+  <div class="wizard_options wizard_options--2col">
+    <div class="wizard_option" data-value="yes">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H7L10 20H22" stroke="rgba(168,130,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="11" cy="24" r="2" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+          <circle cx="21" cy="24" r="2" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+          <path d="M7 8H24L22 16H9L7 8Z" fill="rgba(168,130,255,0.15)" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Yes</div>
+      <div class="wizard_option-sub">Full e-commerce setup</div>
+    </div>
+    <div class="wizard_option" data-value="no">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="12" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="9" y1="9" x2="19" y2="19" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="19" y1="9" x2="9" y2="19" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">No</div>
+      <div class="wizard_option-sub">Not needed</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: ws_backend (single, 3-col) -->
+<div class="wizard_step" data-step="ws_backend">
+  <div class="wizard_question">How much backend work is needed?</div>
+  <div class="wizard_helper">This affects complexity and timeline significantly.</div>
+  <div class="wizard_options wizard_options--3col">
+    <div class="wizard_option" data-value="static">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="20" height="20" rx="3" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="8" y="9" width="12" height="3" rx="1" fill="rgba(168,130,255,0.3)"/>
+          <rect x="8" y="15" width="8" height="3" rx="1" fill="rgba(168,130,255,0.2)"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Static / Landing</div>
+      <div class="wizard_option-sub">Simple, no CMS</div>
+    </div>
+    <div class="wizard_option" data-value="cms">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="4" width="24" height="17" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="5" y="7" width="7" height="11" rx="1" stroke="rgba(168,130,255,0.4)" stroke-width="1"/>
+          <rect x="15" y="7" width="8" height="3" rx="1" fill="rgba(168,130,255,0.25)"/>
+          <rect x="15" y="12" width="8" height="2" rx="1" fill="rgba(168,130,255,0.15)"/>
+          <line x1="14" y1="21" x2="14" y2="25" stroke="rgba(168,130,255,0.3)" stroke-width="1.5"/>
+          <line x1="9" y1="25" x2="19" y2="25" stroke="rgba(168,130,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">CMS</div>
+      <div class="wizard_option-sub">WordPress, etc.</div>
+    </div>
+    <div class="wizard_option" data-value="custom">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="4" width="24" height="8" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="2" y="16" width="24" height="8" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <circle cx="6" cy="8" r="1.5" fill="rgba(168,130,255,0.5)"/>
+          <circle cx="6" cy="20" r="1.5" fill="rgba(168,130,255,0.5)"/>
+          <rect x="10" y="7" width="6" height="2" rx="1" fill="rgba(168,130,255,0.3)"/>
+          <rect x="10" y="19" width="8" height="2" rx="1" fill="rgba(168,130,255,0.3)"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Custom Backend</div>
+      <div class="wizard_option-sub">API, database, auth</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: ws_pages (single, 4-col) -->
+<div class="wizard_step" data-step="ws_pages">
+  <div class="wizard_question">Estimated number of pages?</div>
+  <div class="wizard_helper">Unique page designs (not counting blog posts or product pages).</div>
+  <div class="wizard_options wizard_options--4col">
+    <div class="wizard_option" data-value="1-5">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-title">1 - 5</div>
+      <div class="wizard_option-sub">Small site</div>
+    </div>
+    <div class="wizard_option" data-value="6-10">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-title">6 - 10</div>
+      <div class="wizard_option-sub">Medium site</div>
+    </div>
+    <div class="wizard_option" data-value="11-20">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-title">11 - 20</div>
+      <div class="wizard_option-sub">Large site</div>
+    </div>
+    <div class="wizard_option" data-value="20+">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-title">20+</div>
+      <div class="wizard_option-sub">Enterprise</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: ws_industry (dropdown) -->
+<div class="wizard_step" data-step="ws_industry">
+  <div class="wizard_question">What industry?</div>
+  <div class="wizard_helper">This helps us assign the right team and references.</div>
+  <select class="wizard_dropdown" id="ws_industry_select">
+    <option value="">Select an industry...</option>
+    <option value="saas">SaaS</option>
+    <option value="fintech">Fintech</option>
+    <option value="healthcare">Healthcare</option>
+    <option value="ecommerce">E-commerce</option>
+    <option value="education">Education</option>
+    <option value="social">Social</option>
+    <option value="other">Other</option>
+  </select>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: br_items (multiselect, 2x2) -->
+<div class="wizard_step" data-step="br_items">
+  <div class="wizard_question">What do you need?</div>
+  <div class="wizard_helper">Select all branding deliverables you need.</div>
+  <div class="wizard_options wizard_options--2col">
+    <div class="wizard_option" data-value="logo">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 4L18 12H24L19 16.5L21 24L14 19.5L7 24L9 16.5L4 12H10L14 4Z" fill="rgba(168,130,255,0.15)" stroke="rgba(168,130,255,0.6)" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Logo &amp; Mark</div>
+    </div>
+    <div class="wizard_option" data-value="guidelines">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="3" width="20" height="22" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <line x1="8" y1="8" x2="20" y2="8" stroke="rgba(168,130,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8" y1="12" x2="20" y2="12" stroke="rgba(168,130,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8" y1="16" x2="16" y2="16" stroke="rgba(168,130,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8" y1="20" x2="13" y2="20" stroke="rgba(168,130,255,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Brand Guidelines</div>
+    </div>
+    <div class="wizard_option" data-value="color-type">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="12" r="6" fill="rgba(168,130,255,0.2)" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+          <circle cx="17" cy="12" r="6" fill="rgba(108,92,231,0.2)" stroke="rgba(108,92,231,0.5)" stroke-width="1.5"/>
+          <text x="8" y="24" fill="rgba(168,130,255,0.6)" font-size="7" font-weight="600" font-family="sans-serif">Aa</text>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Color &amp; Typography System</div>
+    </div>
+    <div class="wizard_option" data-value="collateral">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="6" width="16" height="12" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="6" y="10" width="16" height="12" rx="2" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" fill="rgba(168,130,255,0.05)"/>
+          <rect x="10" y="14" width="16" height="12" rx="2" stroke="rgba(168,130,255,0.4)" stroke-width="1.5" fill="rgba(168,130,255,0.03)"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Brand Collateral</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: ot_items (multiselect, 3x2) -->
+<div class="wizard_step" data-step="ot_items">
+  <div class="wizard_question">What do you need?</div>
+  <div class="wizard_helper">Select all the design work you need.</div>
+  <div class="wizard_options wizard_options--3col">
+    <div class="wizard_option" data-value="pitch-deck">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="5" width="24" height="16" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <path d="M8 14L12 10L16 13L22 9" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="14" y1="21" x2="14" y2="25" stroke="rgba(168,130,255,0.3)" stroke-width="1.5"/>
+          <line x1="9" y1="25" x2="19" y2="25" stroke="rgba(168,130,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Pitch Deck</div>
+    </div>
+    <div class="wizard_option" data-value="brochure">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4V24H14V4H4Z" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <path d="M14 4V24H24V4H14Z" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+          <line x1="7" y1="9" x2="11" y2="9" stroke="rgba(168,130,255,0.3)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="7" y1="12" x2="11" y2="12" stroke="rgba(168,130,255,0.2)" stroke-width="1" stroke-linecap="round"/>
+          <rect x="17" y="8" width="4" height="4" rx="1" fill="rgba(168,130,255,0.2)"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Brochure</div>
+    </div>
+    <div class="wizard_option" data-value="social-media">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="20" height="20" rx="5" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <circle cx="14" cy="14" r="5" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+          <circle cx="21" cy="7" r="1.5" fill="rgba(168,130,255,0.5)"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Social Media Kit</div>
+    </div>
+    <div class="wizard_option" data-value="packaging">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" fill="rgba(168,130,255,0.1)" stroke="rgba(168,130,255,0.6)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M14 14L26 8" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <path d="M14 14L2 8" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+          <path d="M14 14V26" stroke="rgba(168,130,255,0.3)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Packaging Design</div>
+    </div>
+    <div class="wizard_option" data-value="illustrations">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 22L10 12L14 17L18 11L24 22H4Z" fill="rgba(168,130,255,0.15)" stroke="rgba(168,130,255,0.6)" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="20" cy="8" r="3" fill="rgba(168,130,255,0.2)" stroke="rgba(168,130,255,0.5)" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Illustrations</div>
+    </div>
+    <div class="wizard_option" data-value="presentation">
+      <div class="wizard_option-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      <div class="wizard_option-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="4" width="22" height="15" rx="2" stroke="rgba(168,130,255,0.6)" stroke-width="1.5"/>
+          <rect x="7" y="8" width="6" height="4" rx="1" fill="rgba(168,130,255,0.25)"/>
+          <line x1="15" y1="9" x2="21" y2="9" stroke="rgba(168,130,255,0.3)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="15" y1="12" x2="19" y2="12" stroke="rgba(168,130,255,0.2)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="14" y1="19" x2="14" y2="23" stroke="rgba(168,130,255,0.4)" stroke-width="1.5"/>
+          <line x1="9" y1="23" x2="19" y2="23" stroke="rgba(168,130,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="wizard_option-title">Presentation Design</div>
+    </div>
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+    <button class="wizard_btn wizard_btn--continue" id="wizContinue" disabled>Continue</button>
+  </div>
+</div>
+
+<!-- STEP: summary -->
+<div class="wizard_step" data-step="summary">
+  <div class="wizard_question">Your Project Summary</div>
+  <div class="wizard_helper">Review your selections and estimated investment.</div>
+  <div class="summary_wrap" id="summaryContent">
+    <!-- Dynamically rendered by JS -->
+  </div>
+  <div class="wizard_nav">
+    <button class="wizard_btn wizard_btn--back" id="wizBack">Back</button>
+  </div>
+</div>
+
+</div><!-- /wizardContainer -->
+
+<div class="spacer-medium"></div>
+
+</div><!-- /pricing_wrap -->
+</div><!-- /container-xsmall -->
+</div><!-- /padding-global -->
+<div class="padding-section-medium"></div>
+</div><!-- /pricing_component -->
+</div><!-- /padding-global is-tiny -->
+</div><!-- /section_pricing -->
+</div><!-- /main-wrapper black -->
+
+<div STYLE="--blur: 1rem; --ratio: 2;" class="progressive-blur_wrap"><div STYLE="--i: 6;" class="progressive-blur_panel is-1"></div><div STYLE="--i: 5;" class="progressive-blur_panel is-2"></div><div STYLE="--i: 4;" class="progressive-blur_panel is-3"></div><div STYLE="--i: 3;" class="progressive-blur_panel is-4"></div><div STYLE="--i: 2;" class="progressive-blur_panel is-5"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-6"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-7"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-8"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-9"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-10"></div></div><footer class="footer">
+        <div class="padding-global is-tiny">
+          <div class="footer_wrap">
+            <div class="footer_component">
+              <div class="footer_main">
+                <div class="footer_links-groups">
+                  <div
+                    id="w-node-_49f89e0f-c321-7bff-a29b-8acdeddf7dc8-eddf7dc2"
+                    class="footer_group"
+                  >
+                    <div class="footer_link-label">Pages</div>
+                    <div class="footer_lists">
+                      <div class="footer_links-list">
+                        <a
+                          href="../index.html"
+                          aria-current="page"
+                          class="footer_link w--current"
+                          >Home</a
+                        ><a href="../studio.html" class="footer_link">Studio</a
+                        ><a href="../pricing/plans.html" class="footer_link"
+                          >Pricing</a
+                        >
+                      </div>
+                      <div class="footer_links-list">
+                        <a href="../works/1.html" class="footer_link">Work</a
+                        ><a href="../works/case-studies.html" class="footer_link"
+                          >Case Studies</a
+                        ><a href="../blog/1.html" class="footer_link">Blog</a>
+                      </div>
+                      <div class="footer_links-list">
+                        <a href="../contact/1.html" class="footer_link">Contact</a
+                        ><a href="#" class="footer_link">Career</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer_group">
+                    <div class="footer_link-label">Services</div>
+                    <div class="footer_lists">
+                      <div class="footer_links-list">
+                        <span class="footer_link">Product Design (UI/UX)</span
+                        ><span class="footer_link">Software Development</span
+                        ><a href="https://bumbee.studio" target="_blank" class="footer_link">Bumbee.Studio — Marketing ↗</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer_secondary">
+                  <div class="footer_social">
+                    <a
+                      href="https://linkedin.com/company/oliandhue/"
+                      target="_blank"
+                      class="footer_social-link w-inline-block"
+                      ><img
+                        loading="lazy"
+                        src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc88c_linkedin-svgrepo-com.svg"
+                        alt=""
+                        class="footer_social-icon" /></a
+                    ><a
+                      href="https://instagram.com/oliandhue"
+                      target="_blank"
+                      class="footer_social-link w-inline-block"
+                      ><img
+                        loading="lazy"
+                        src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc854_social-insta.svg"
+                        alt=""
+                        class="footer_social-icon" /></a
+                    ><a
+                      href="https://x.com/oliandhue"
+                      target="_blank"
+                      class="footer_social-link w-inline-block"
+                      ><img
+                        loading="lazy"
+                        src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc853_social-x.svg"
+                        alt=""
+                        class="footer_social-icon" /></a
+                    ><a
+                      href="https://dribbble.com/oliandhue"
+                      target="_blank"
+                      class="footer_social-link w-inline-block"
+                      ><img
+                        loading="lazy"
+                        src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc864_dribble.svg"
+                        alt=""
+                        class="footer_social-icon"
+                    /></a>
+                  </div>
+                  <div class="footer_newsletter w-form">
+                    <form
+                      id="wf-form-Newsletter-form"
+                      name="wf-form-Newsletter-form"
+                      data-name="Newsletter form"
+                      method="get"
+                      class="footer_newsletter-form"
+                      data-wf-page-id="6913f153f7d49d3e348fc74f"
+                      data-wf-element-id="49f89e0f-c321-7bff-a29b-8acdeddf7df1"
+                    >
+                      <label for="email-3" class="field-label"
+                        >Join the newsletter</label
+                      >
+                      <div class="footer_field-wrap">
+                        <input
+                          class="footer_field w-input"
+                          maxlength="256"
+                          name="Email"
+                          data-name="Email"
+                          placeholder="Your Email"
+                          type="email"
+                          id="Email"
+                          required=""
+                        /><input
+                          type="submit"
+                          data-wait="Please wait..."
+                          class="footer_newsletter-button w-button"
+                          value="Subscribe"
+                        />
+                      </div>
+                    </form>
+                    <div class="form_success-message-2 w-form-done">
+                      <div>Your submission has been received!</div>
+                    </div>
+                    <div class="form_error-message w-form-fail">
+                      <div>
+                        Oops! Something went wrong while submitting the form.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="footer_brand">Oli &amp; Hue</div>
+          </div>
+        </div>
+      </footer></div><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6913f152f7d49d3e348fc705" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/js/webflow.391031e0.d050586c5748628d.js" type="text/javascript" integrity="sha384-3y23k20KyQzFDLKAFHAeMxQynxwx42FLk1aXRO92AuLXdAE4ymfEBQTGGh+J5c2s" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js" type="text/javascript"></script>
+<!-- Lennis setup -->
+<script>
+// Initialize Lenis
+const lenis = new Lenis({
+  smooth: true,
+  lerp: .1,
+  wheelMultiplier: 1,
+  infinite: false,
+});
+
+// Use requestAnimationFrame to continuously update the scroll
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+</script>
+
+<!-- Project Wizard Logic -->
+<script>
+(function() {
+  'use strict';
+
+  // ══════════════════════════════════════════
+  // STEP CONFIGURATION
+  // ══════════════════════════════════════════
+
+  var STEP_ORDER = [
+    'services',
+    'pd_platform', 'pd_development', 'pd_designsystem', 'pd_features', 'pd_industry',
+    'ws_type', 'ws_ecommerce', 'ws_backend', 'ws_pages', 'ws_industry',
+    'br_items',
+    'ot_items',
+    'summary'
+  ];
+
+  var STEPS = {
+    services:        { type: 'multiselect', showIf: function() { return true; } },
+    pd_platform:     { type: 'single',      showIf: function() { return hasService('product-design'); } },
+    pd_development:  { type: 'single',      showIf: function() { return hasService('product-design'); } },
+    pd_designsystem: { type: 'single',      showIf: function() { return hasService('product-design') && answers.pd_development !== 'yes'; } },
+    pd_features:     { type: 'single',      showIf: function() { return hasService('product-design'); } },
+    pd_industry:     { type: 'dropdown',    showIf: function() { return hasService('product-design'); } },
+    ws_type:         { type: 'single',      showIf: function() { return hasService('website'); } },
+    ws_ecommerce:    { type: 'single',      showIf: function() { return hasService('website'); } },
+    ws_backend:      { type: 'single',      showIf: function() { return hasService('website'); } },
+    ws_pages:        { type: 'single',      showIf: function() { return hasService('website'); } },
+    ws_industry:     { type: 'dropdown',    showIf: function() { return hasService('website'); } },
+    br_items:        { type: 'multiselect', showIf: function() { return hasService('branding'); } },
+    ot_items:        { type: 'multiselect', showIf: function() { return hasService('other'); } },
+    summary:         { type: 'summary',     showIf: function() { return true; } }
+  };
+
+  // ══════════════════════════════════════════
+  // STATE
+  // ══════════════════════════════════════════
+
+  var answers = {};
+  var stepHistory = [];
+  var currentStep = 'services';
+
+  // ══════════════════════════════════════════
+  // CURRENCY
+  // ══════════════════════════════════════════
+
+  function getDefaultCurrency() {
+    var stored = localStorage.getItem('olihue-currency');
+    if (stored) return stored;
+    try {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      return (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') ? 'inr' : 'usd';
+    } catch(e) { return 'inr'; }
+  }
+
+  var currency = getDefaultCurrency();
+
+  function formatINR(num) {
+    num = Math.round(num);
+    var str = num.toString();
+    var lastThree = str.substring(str.length - 3);
+    var otherNumbers = str.substring(0, str.length - 3);
+    if (otherNumbers !== '') lastThree = ',' + lastThree;
+    return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree;
+  }
+
+  function formatUSD(num) {
+    num = Math.round(num);
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function formatPrice(inr, usd) {
+    if (currency === 'inr') return '\u20B9' + formatINR(inr);
+    return '$' + formatUSD(usd);
+  }
+
+  function formatRange(est) {
+    if (currency === 'inr') {
+      return '\u20B9' + formatINR(est.inr.min) + ' \u2013 \u20B9' + formatINR(est.inr.max);
+    }
+    return '$' + formatUSD(est.usd.min) + ' \u2013 $' + formatUSD(est.usd.max);
+  }
+
+  // Currency toggle
+  var btnINR = document.getElementById('btnINR');
+  var btnUSD = document.getElementById('btnUSD');
+
+  function applyCurrency() {
+    if (currency === 'inr') {
+      btnINR.classList.add('is-active');
+      btnUSD.classList.remove('is-active');
+    } else {
+      btnINR.classList.remove('is-active');
+      btnUSD.classList.add('is-active');
+    }
+    // Re-render summary if we're on it
+    if (currentStep === 'summary') renderSummary();
+  }
+
+  btnINR.addEventListener('click', function() {
+    currency = 'inr';
+    localStorage.setItem('olihue-currency', currency);
+    applyCurrency();
+  });
+  btnUSD.addEventListener('click', function() {
+    currency = 'usd';
+    localStorage.setItem('olihue-currency', currency);
+    applyCurrency();
+  });
+
+  applyCurrency();
+
+  // ══════════════════════════════════════════
+  // HELPERS
+  // ══════════════════════════════════════════
+
+  function hasService(svc) {
+    return answers.services && answers.services.indexOf(svc) !== -1;
+  }
+
+  function getApplicableSteps() {
+    var applicable = [];
+    for (var i = 0; i < STEP_ORDER.length; i++) {
+      var key = STEP_ORDER[i];
+      if (STEPS[key].showIf()) applicable.push(key);
+    }
+    return applicable;
+  }
+
+  function getNextStep(current) {
+    var idx = STEP_ORDER.indexOf(current);
+    for (var i = idx + 1; i < STEP_ORDER.length; i++) {
+      if (STEPS[STEP_ORDER[i]].showIf()) return STEP_ORDER[i];
+    }
+    return null;
+  }
+
+  // ══════════════════════════════════════════
+  // STEP NAVIGATION
+  // ══════════════════════════════════════════
+
+  function goToStep(key) {
+    // Hide current
+    var currentEl = document.querySelector('.wizard_step.is-active');
+    if (currentEl) currentEl.classList.remove('is-active');
+
+    currentStep = key;
+
+    // Show new
+    var newEl = document.querySelector('.wizard_step[data-step="' + key + '"]');
+    if (newEl) newEl.classList.add('is-active');
+
+    // Update progress bar
+    updateProgress();
+
+    // Restore selected state from answers
+    restoreStepState(key);
+
+    // Update nav buttons
+    updateNavButtons(key);
+
+    // Render summary if needed
+    if (key === 'summary') renderSummary();
+
+    // Scroll to top of wizard
+    var wizEl = document.getElementById('wizardContainer');
+    if (wizEl) {
+      var rect = wizEl.getBoundingClientRect();
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var target = rect.top + scrollTop - 120;
+      if (typeof lenis !== 'undefined' && lenis.scrollTo) {
+        lenis.scrollTo(target, { duration: 0.6 });
+      } else {
+        window.scrollTo({ top: target, behavior: 'smooth' });
+      }
+    }
+  }
+
+  function updateProgress() {
+    var applicable = getApplicableSteps();
+    var idx = applicable.indexOf(currentStep);
+    var pct = applicable.length > 1 ? ((idx) / (applicable.length - 1)) * 100 : 0;
+    var bar = document.getElementById('wizardProgress');
+    if (bar) bar.style.width = pct + '%';
+  }
+
+  function updateNavButtons(key) {
+    var stepEl = document.querySelector('.wizard_step[data-step="' + key + '"]');
+    if (!stepEl) return;
+
+    var backBtns = stepEl.querySelectorAll('.wizard_btn--back');
+    var contBtns = stepEl.querySelectorAll('.wizard_btn--continue');
+
+    // Back button: hidden on first step
+    for (var i = 0; i < backBtns.length; i++) {
+      if (key === 'services') {
+        backBtns[i].classList.add('wizard_btn--hidden');
+      } else {
+        backBtns[i].classList.remove('wizard_btn--hidden');
+      }
+    }
+
+    // Continue button: validate
+    for (var j = 0; j < contBtns.length; j++) {
+      contBtns[j].disabled = !isStepValid(key);
+    }
+  }
+
+  function isStepValid(key) {
+    var cfg = STEPS[key];
+    if (!cfg) return false;
+    if (cfg.type === 'summary') return true;
+    if (cfg.type === 'multiselect') {
+      return answers[key] && answers[key].length > 0;
+    }
+    if (cfg.type === 'single') {
+      return answers[key] !== undefined && answers[key] !== '';
+    }
+    if (cfg.type === 'dropdown') {
+      return answers[key] !== undefined && answers[key] !== '';
+    }
+    return false;
+  }
+
+  function restoreStepState(key) {
+    var stepEl = document.querySelector('.wizard_step[data-step="' + key + '"]');
+    if (!stepEl) return;
+
+    var cfg = STEPS[key];
+
+    if (cfg.type === 'multiselect') {
+      var opts = stepEl.querySelectorAll('.wizard_option');
+      var selected = answers[key] || [];
+      for (var i = 0; i < opts.length; i++) {
+        if (selected.indexOf(opts[i].getAttribute('data-value')) !== -1) {
+          opts[i].classList.add('is-selected');
+        } else {
+          opts[i].classList.remove('is-selected');
+        }
+      }
+    } else if (cfg.type === 'single') {
+      var opts2 = stepEl.querySelectorAll('.wizard_option');
+      for (var j = 0; j < opts2.length; j++) {
+        if (opts2[j].getAttribute('data-value') === answers[key]) {
+          opts2[j].classList.add('is-selected');
+        } else {
+          opts2[j].classList.remove('is-selected');
+        }
+      }
+    } else if (cfg.type === 'dropdown') {
+      var sel = stepEl.querySelector('.wizard_dropdown');
+      if (sel && answers[key]) sel.value = answers[key];
+    }
+  }
+
+  function handleContinue() {
+    if (!isStepValid(currentStep)) return;
+    stepHistory.push(currentStep);
+    var next = getNextStep(currentStep);
+    if (next) goToStep(next);
+  }
+
+  function handleBack() {
+    if (stepHistory.length === 0) return;
+    var prev = stepHistory.pop();
+    goToStep(prev);
+  }
+
+  // ══════════════════════════════════════════
+  // ANSWER INVALIDATION
+  // ══════════════════════════════════════════
+
+  var SERVICE_KEYS = {
+    'product-design': ['pd_platform', 'pd_development', 'pd_designsystem', 'pd_features', 'pd_industry'],
+    'website': ['ws_type', 'ws_ecommerce', 'ws_backend', 'ws_pages', 'ws_industry'],
+    'branding': ['br_items'],
+    'other': ['ot_items']
+  };
+
+  function invalidateDeselected(oldServices, newServices) {
+    for (var svc in SERVICE_KEYS) {
+      if (oldServices.indexOf(svc) !== -1 && newServices.indexOf(svc) === -1) {
+        var keys = SERVICE_KEYS[svc];
+        for (var i = 0; i < keys.length; i++) {
+          delete answers[keys[i]];
+        }
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════
+  // EVENT DELEGATION
+  // ══════════════════════════════════════════
+
+  document.getElementById('wizardContainer').addEventListener('click', function(e) {
+    // Option click
+    var optionEl = e.target.closest('.wizard_option');
+    if (optionEl) {
+      var stepEl = optionEl.closest('.wizard_step');
+      var stepKey = stepEl.getAttribute('data-step');
+      var cfg = STEPS[stepKey];
+      var val = optionEl.getAttribute('data-value');
+
+      if (cfg.type === 'multiselect') {
+        optionEl.classList.toggle('is-selected');
+        var selected = [];
+        var allOpts = stepEl.querySelectorAll('.wizard_option.is-selected');
+        for (var i = 0; i < allOpts.length; i++) {
+          selected.push(allOpts[i].getAttribute('data-value'));
+        }
+
+        // If services step, invalidate deselected
+        if (stepKey === 'services') {
+          var oldServices = answers.services || [];
+          invalidateDeselected(oldServices, selected);
+        }
+
+        answers[stepKey] = selected;
+      } else if (cfg.type === 'single') {
+        // Deselect others
+        var siblings = stepEl.querySelectorAll('.wizard_option');
+        for (var j = 0; j < siblings.length; j++) {
+          siblings[j].classList.remove('is-selected');
+        }
+        optionEl.classList.add('is-selected');
+        answers[stepKey] = val;
+      }
+
+      updateNavButtons(stepKey);
+      return;
+    }
+
+    // Back button
+    var backBtn = e.target.closest('.wizard_btn--back');
+    if (backBtn) {
+      handleBack();
+      return;
+    }
+
+    // Continue button
+    var contBtn = e.target.closest('.wizard_btn--continue');
+    if (contBtn && !contBtn.disabled) {
+      handleContinue();
+      return;
+    }
+  });
+
+  // Dropdown change events
+  var dropdowns = document.querySelectorAll('.wizard_dropdown');
+  for (var d = 0; d < dropdowns.length; d++) {
+    (function(dropdown) {
+      dropdown.addEventListener('change', function() {
+        var stepEl = this.closest('.wizard_step');
+        var stepKey = stepEl.getAttribute('data-step');
+        answers[stepKey] = this.value;
+        updateNavButtons(stepKey);
+      });
+    })(dropdowns[d]);
+  }
+
+  // ══════════════════════════════════════════
+  // PRICING ENGINE
+  // ══════════════════════════════════════════
+
+  var PLATFORM_MULT = { 'mobile': 1.0, 'web': 1.0, 'both': 1.6 };
+  var FEATURE_MULT  = { '1-5': 1.0, '6-10': 1.4, '11-20': 1.8, '20+': 2.5 };
+  var WS_TYPE_MULT  = { 'b2b': 1.0, 'b2c': 1.0, 'both': 1.3 };
+  var BACKEND_MULT  = { 'static': 0.7, 'cms': 1.0, 'custom': 1.8 };
+  var PAGES_MULT    = { '1-5': 1.0, '6-10': 1.3, '11-20': 1.6, '20+': 2.0 };
+
+  var OT_PRICES = {
+    'pitch-deck':    { inr: 40000, usd: 479 },
+    'brochure':      { inr: 25000, usd: 299 },
+    'social-media':  { inr: 35000, usd: 419 },
+    'packaging':     { inr: 50000, usd: 599 },
+    'illustrations': { inr: 30000, usd: 359 },
+    'presentation':  { inr: 35000, usd: 419 }
+  };
+
+  function calculateEstimate() {
+    var totalINR = 0;
+    var totalUSD = 0;
+
+    // Product Design
+    if (hasService('product-design')) {
+      var pdBaseINR = 150000;
+      var pdBaseUSD = 1799;
+      var platMult = PLATFORM_MULT[answers.pd_platform] || 1.0;
+      var featMult = FEATURE_MULT[answers.pd_features] || 1.0;
+      var pdINR = pdBaseINR * platMult * featMult;
+      var pdUSD = pdBaseUSD * platMult * featMult;
+
+      // Design system (only if no dev)
+      if (answers.pd_development !== 'yes' && answers.pd_designsystem === 'yes') {
+        pdINR += 50000;
+        pdUSD += 599;
+      }
+
+      // Development
+      if (answers.pd_development === 'yes') {
+        pdINR += 200000;
+        pdUSD += 2399;
+      }
+
+      totalINR += pdINR;
+      totalUSD += pdUSD;
+    }
+
+    // Website
+    if (hasService('website')) {
+      var wsBaseINR = 100000;
+      var wsBaseUSD = 1199;
+      var typeMult = WS_TYPE_MULT[answers.ws_type] || 1.0;
+      var backendMult = BACKEND_MULT[answers.ws_backend] || 1.0;
+      var pagesMult = PAGES_MULT[answers.ws_pages] || 1.0;
+      var wsINR = wsBaseINR * typeMult * backendMult * pagesMult;
+      var wsUSD = wsBaseUSD * typeMult * backendMult * pagesMult;
+
+      // E-commerce
+      if (answers.ws_ecommerce === 'yes') {
+        wsINR += 100000;
+        wsUSD += 1199;
+      }
+
+      totalINR += wsINR;
+      totalUSD += wsUSD;
+    }
+
+    // Branding
+    if (hasService('branding')) {
+      var brItems = answers.br_items || [];
+      var brINR = 0;
+      var brUSD = 0;
+
+      if (brItems.length === 1 && brItems[0] === 'logo') {
+        brINR = 75000 * 0.5;
+        brUSD = 899 * 0.5;
+      } else {
+        // Logo base
+        var hasLogo = brItems.indexOf('logo') !== -1;
+        if (hasLogo) {
+          brINR += 75000 * 0.5;
+          brUSD += 899 * 0.5;
+        }
+        // Each extra item
+        for (var b = 0; b < brItems.length; b++) {
+          if (brItems[b] !== 'logo') {
+            brINR += 20000;
+            brUSD += 239;
+          }
+        }
+        // Full package bonus
+        if (brItems.length >= 4) {
+          brINR *= 1.3;
+          brUSD *= 1.3;
+        }
+      }
+
+      totalINR += brINR;
+      totalUSD += brUSD;
+    }
+
+    // Other Design Work
+    if (hasService('other')) {
+      var otItems = answers.ot_items || [];
+      for (var o = 0; o < otItems.length; o++) {
+        var p = OT_PRICES[otItems[o]];
+        if (p) {
+          totalINR += p.inr;
+          totalUSD += p.usd;
+        }
+      }
+    }
+
+    return {
+      inr: { min: Math.round(totalINR * 0.85), max: Math.round(totalINR * 1.15) },
+      usd: { min: Math.round(totalUSD * 0.85), max: Math.round(totalUSD * 1.15) }
+    };
+  }
+
+  // ══════════════════════════════════════════
+  // SUMMARY RENDERER
+  // ══════════════════════════════════════════
+
+  var LABEL_MAP = {
+    pd_platform: 'Platform',
+    pd_development: 'Development',
+    pd_designsystem: 'Design System',
+    pd_features: 'Features/Screens',
+    pd_industry: 'Industry',
+    ws_type: 'Website Type',
+    ws_ecommerce: 'E-commerce',
+    ws_backend: 'Backend',
+    ws_pages: 'Pages',
+    ws_industry: 'Industry'
+  };
+
+  var VALUE_MAP = {
+    'mobile': 'Mobile App',
+    'web': 'Web App',
+    'both': 'Both',
+    'yes': 'Yes',
+    'no': 'No',
+    'b2b': 'B2B',
+    'b2c': 'B2C',
+    'static': 'Static / Landing Page',
+    'cms': 'CMS (WordPress, etc.)',
+    'custom': 'Custom Backend',
+    'saas': 'SaaS',
+    'fintech': 'Fintech',
+    'healthcare': 'Healthcare',
+    'ecommerce': 'E-commerce',
+    'education': 'Education',
+    'social': 'Social',
+    'other': 'Other'
+  };
+
+  var BR_LABELS = {
+    'logo': 'Logo & Mark',
+    'guidelines': 'Brand Guidelines',
+    'color-type': 'Color & Typography System',
+    'collateral': 'Brand Collateral'
+  };
+
+  var OT_LABELS = {
+    'pitch-deck': 'Pitch Deck',
+    'brochure': 'Brochure',
+    'social-media': 'Social Media Kit',
+    'packaging': 'Packaging Design',
+    'illustrations': 'Illustrations',
+    'presentation': 'Presentation Design'
+  };
+
+  function renderSummary() {
+    var html = '';
+    var est = calculateEstimate();
+
+    // Product Design section
+    if (hasService('product-design')) {
+      html += '<div class="summary_section">';
+      html += '<div class="summary_section-title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="16" height="16" rx="3" stroke="rgba(168,130,255,0.8)" stroke-width="1.5"/><rect x="3" y="3" width="5" height="5" rx="1" stroke="rgba(168,130,255,0.6)" stroke-width="1"/></svg> Product Design</div>';
+      var pdKeys = ['pd_platform', 'pd_development', 'pd_designsystem', 'pd_features', 'pd_industry'];
+      for (var i = 0; i < pdKeys.length; i++) {
+        var k = pdKeys[i];
+        if (answers[k] !== undefined && answers[k] !== '' && STEPS[k].showIf()) {
+          html += '<div class="summary_row"><span class="summary_row-label">' + LABEL_MAP[k] + '</span><span class="summary_row-value">' + (VALUE_MAP[answers[k]] || answers[k]) + '</span></div>';
+        }
+      }
+      html += '</div>';
+    }
+
+    // Website section
+    if (hasService('website')) {
+      html += '<div class="summary_section">';
+      html += '<div class="summary_section-title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="3" width="16" height="11" rx="2" stroke="rgba(168,130,255,0.8)" stroke-width="1.5"/><line x1="1" y1="6" x2="17" y2="6" stroke="rgba(168,130,255,0.4)" stroke-width="1"/></svg> Website Design &amp; Dev</div>';
+      var wsKeys = ['ws_type', 'ws_ecommerce', 'ws_backend', 'ws_pages', 'ws_industry'];
+      for (var j = 0; j < wsKeys.length; j++) {
+        var wk = wsKeys[j];
+        if (answers[wk] !== undefined && answers[wk] !== '') {
+          html += '<div class="summary_row"><span class="summary_row-label">' + LABEL_MAP[wk] + '</span><span class="summary_row-value">' + (VALUE_MAP[answers[wk]] || answers[wk]) + '</span></div>';
+        }
+      }
+      html += '</div>';
+    }
+
+    // Branding section
+    if (hasService('branding')) {
+      html += '<div class="summary_section">';
+      html += '<div class="summary_section-title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 7H16L12 10L13.5 15.5L9 12L4.5 15.5L6 10L2 7H7L9 2Z" stroke="rgba(168,130,255,0.8)" stroke-width="1.5" fill="rgba(168,130,255,0.1)" stroke-linejoin="round"/></svg> Branding &amp; Identity</div>';
+      var brItems = answers.br_items || [];
+      html += '<div class="summary_row"><span class="summary_row-label">Deliverables</span><span class="summary_row-value">';
+      var brLabels = [];
+      for (var b = 0; b < brItems.length; b++) {
+        brLabels.push(BR_LABELS[brItems[b]] || brItems[b]);
+      }
+      html += brLabels.join(', ');
+      html += '</span></div>';
+      html += '</div>';
+    }
+
+    // Other section
+    if (hasService('other')) {
+      html += '<div class="summary_section">';
+      html += '<div class="summary_section-title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="1" width="12" height="16" rx="2" stroke="rgba(168,130,255,0.8)" stroke-width="1.5"/><line x1="6" y1="5" x2="12" y2="5" stroke="rgba(168,130,255,0.4)" stroke-width="1" stroke-linecap="round"/><line x1="6" y1="8" x2="12" y2="8" stroke="rgba(168,130,255,0.3)" stroke-width="1" stroke-linecap="round"/></svg> Other Design Work</div>';
+      var otItems = answers.ot_items || [];
+      html += '<div class="summary_row"><span class="summary_row-label">Items</span><span class="summary_row-value">';
+      var otLabels = [];
+      for (var oi = 0; oi < otItems.length; oi++) {
+        otLabels.push(OT_LABELS[otItems[oi]] || otItems[oi]);
+      }
+      html += otLabels.join(', ');
+      html += '</span></div>';
+      html += '</div>';
+    }
+
+    // Total bar
+    html += '<div class="summary_total">';
+    html += '<div class="summary_total-label">Estimated Investment</div>';
+    html += '<div class="summary_total-value">' + formatRange(est) + '</div>';
+    html += '</div>';
+
+    // CTA
+    var params = [];
+    params.push('source=project-calculator');
+    params.push('currency=' + currency);
+    if (answers.services) params.push('services=' + encodeURIComponent(answers.services.join(',')));
+
+    // Add all answers as params
+    for (var key in answers) {
+      if (key === 'services') continue;
+      var val = answers[key];
+      if (Array.isArray(val)) {
+        params.push(key + '=' + encodeURIComponent(val.join(',')));
+      } else if (val) {
+        params.push(key + '=' + encodeURIComponent(val));
+      }
+    }
+
+    var estVal = currency === 'inr' ? est.inr.min : est.usd.min;
+    params.push('estimate_min=' + estVal);
+    var estMax = currency === 'inr' ? est.inr.max : est.usd.max;
+    params.push('estimate_max=' + estMax);
+
+    var href = '../contact/1.html?' + params.join('&');
+
+    html += '<div class="summary_cta">';
+    html += '<a href="' + href + '" class="button-gradient w-inline-block">';
+    html += '<div class="button-grad_inner">';
+    html += '<div class="button-grad_gradient">';
+    html += '<div class="button-grad_ball ball-1"></div>';
+    html += '<div class="button-grad_ball gradient__ball--2"></div>';
+    html += '</div>';
+    html += '<div class="button-grad_text">Get a Quote &rarr;</div>';
+    html += '</div>';
+    html += '<div class="button-grad_glow">';
+    html += '<div class="button-grad_ball ball-1"></div>';
+    html += '<div class="button-grad_ball gradient__ball--2"></div>';
+    html += '</div>';
+    html += '</a>';
+    html += '</div>';
+
+    html += '<div class="summary_note">Final pricing is based on project scope and complexity. We\'ll discuss the details on a quick call.</div>';
+
+    document.getElementById('summaryContent').innerHTML = html;
+  }
+
+  // ══════════════════════════════════════════
+  // INITIALIZE
+  // ══════════════════════════════════════════
+
+  // Set initial progress
+  updateProgress();
+  updateNavButtons('services');
+
+})();
+</script>
+
+</body></html>

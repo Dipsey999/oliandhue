@@ -1,0 +1,131 @@
+/* ═══ Footer Layout Fix — Horizontal Sections on Desktop ═══ */
+
+/* Make the main footer area a clean 3-column layout by
+   collapsing .footer_links-groups so its children (Pages, Services)
+   become direct grid items alongside .footer_secondary */
+
+@media (min-width: 992px) {
+  .footer_main {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  /* Collapse the wrapper so .footer_group items participate in the parent grid */
+  .footer_links-groups {
+    display: contents;
+  }
+
+  /* Pages group — override Webflow's span 2 grid-column and let it size to content */
+  .footer_group:first-child {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-width: 0;
+  }
+
+  /* Services group — constrain to content width */
+  .footer_group:last-child {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-width: 0;
+  }
+
+  /* Pages link grid — proper 3-column with breathing room */
+  .footer_group:first-child .footer_lists {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.25rem 2.5rem;
+  }
+
+  /* Services list — single column, comfortable spacing */
+  .footer_group:last-child .footer_lists {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer_group:last-child .footer_links-list {
+    gap: 0.375rem;
+  }
+
+  /* Secondary (social + newsletter) — push to the right */
+  .footer_secondary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.75rem;
+    justify-self: end;
+  }
+}
+
+/* ═══ Spacing & Typography Polish ═══ */
+
+/* Section labels */
+.footer_link-label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+/* Link hover */
+.footer_link {
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.footer_link:hover {
+  opacity: 0.7;
+}
+
+/* ═══ Tablet (768–991px) — 2-column: links left, secondary right ═══ */
+@media (min-width: 768px) and (max-width: 991px) {
+  .footer_main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .footer_links-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .footer_group:first-child .footer_lists {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.25rem 1.5rem;
+  }
+
+  .footer_secondary {
+    align-items: flex-end;
+  }
+}
+
+/* ═══ Mobile (< 768px) — single column, everything stacked ═══ */
+@media (max-width: 767px) {
+  .footer_main {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .footer_links-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer_group:first-child .footer_lists {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.25rem 1.5rem;
+  }
+
+  .footer_secondary {
+    align-items: flex-start;
+  }
+
+  .footer_newsletter-form {
+    width: 100%;
+  }
+}

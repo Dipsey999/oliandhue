@@ -1,0 +1,169 @@
+/* ═══════════════════════════════════════════════════════
+   Navbar Custom Styles — Contact Button & Overrides
+   ═══════════════════════════════════════════════════════ */
+
+/* ── CSS Custom Property for border animation ── */
+@property --contact-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ── Liquid Glass Contact Button ── */
+.navbar_contact-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.35rem;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #1a1a2e;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 46, 0.06) 0%,
+    rgba(26, 26, 46, 0.02) 100%
+  );
+  border: 1px solid rgba(26, 26, 46, 0.1);
+  text-decoration: none;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  isolation: isolate;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-left: 0.25rem;
+  white-space: nowrap;
+}
+
+/* Inner glass refraction / highlight sweep */
+.navbar_contact-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.3) 60%,
+    transparent 100%
+  );
+  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Rotating liquid border glow */
+.navbar_contact-btn::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--contact-angle, 0deg),
+    transparent 0%,
+    rgba(168, 130, 255, 0.55) 5%,
+    rgba(108, 92, 231, 0.35) 10%,
+    transparent 16%,
+    transparent 50%,
+    rgba(168, 130, 255, 0.45) 55%,
+    rgba(108, 92, 231, 0.25) 60%,
+    transparent 66%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -2;
+  animation: contactBorderSpin 3.5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes contactBorderSpin {
+  to { --contact-angle: 360deg; }
+}
+
+/* ── Hover State ── */
+.navbar_contact-btn:hover {
+  color: #1a1a2e;
+  background: linear-gradient(
+    135deg,
+    rgba(168, 130, 255, 0.1) 0%,
+    rgba(108, 92, 231, 0.06) 100%
+  );
+  border-color: rgba(168, 130, 255, 0.3);
+  transform: translateY(-1px) scale(1.04);
+  box-shadow:
+    0 6px 24px rgba(168, 130, 255, 0.15),
+    0 2px 8px rgba(168, 130, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.navbar_contact-btn:hover::before {
+  left: 120%;
+}
+
+.navbar_contact-btn:hover::after {
+  opacity: 1;
+}
+
+/* ── Active / Press State ── */
+.navbar_contact-btn:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.1s;
+}
+
+/* ── Arrow icon inside button ── */
+.navbar_contact-btn .btn-arrow {
+  display: inline-block;
+  margin-left: 0.35rem;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1;
+}
+.navbar_contact-btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+.navbar_contact-btn .btn-arrow svg {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+}
+
+/* ── Mobile menu: Contact button adaptation ── */
+.menu_contact-btn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  margin-top: 1rem;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all 0.4s ease;
+  width: fit-content;
+}
+.menu_contact-btn:hover {
+  background: rgba(168, 130, 255, 0.12);
+  border-color: rgba(168, 130, 255, 0.35);
+  box-shadow: 0 4px 20px rgba(168, 130, 255, 0.15);
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .navbar_contact-btn {
+    display: none;
+  }
+}
