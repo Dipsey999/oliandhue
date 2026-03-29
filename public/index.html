@@ -5233,76 +5233,62 @@
           }
         });
 
-        // Entrance animation for first panel (already visible)
-        var firstPanel = panels[0];
-        gsap.set(firstPanel, { opacity: 1 });
+        // First panel is already visible — ensure all its children are too
+        gsap.set(panels[0], { opacity: 1 });
+        gsap.set(panels[0].querySelectorAll('.home-services_bg-number, .home-services_number, .home-services_title, .home-services_service, .home-services_img-wrap, .home-services_text-wrap, .home-services_item-head'), {
+          opacity: 1, x: 0, y: 0, scale: 1, clearProps: 'all'
+        });
 
-        // Animate first panel's children on entry
-        var firstBg = firstPanel.querySelector('.home-services_bg-number');
-        var firstNum = firstPanel.querySelector('.home-services_number');
-        var firstTitle = firstPanel.querySelector('.home-services_title');
-        var firstPills = firstPanel.querySelectorAll('.home-services_service');
-        var firstImg = firstPanel.querySelector('.home-services_img-wrap');
-        var firstText = firstPanel.querySelector('.home-services_text-wrap');
-
-        gsap.from(firstBg, { opacity: 0, scale: 0.7, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
-        });
-        gsap.from(firstNum, { x: -30, opacity: 0, duration: 0.6, delay: 0.1, ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
-        });
-        gsap.from(firstTitle, { y: 30, opacity: 0, duration: 0.6, delay: 0.2, ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
-        });
-        gsap.from(firstPills, { x: -20, opacity: 0, stagger: 0.08, duration: 0.5, delay: 0.3, ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
-        });
-        gsap.from(firstImg, { scale: 0.85, opacity: 0, duration: 0.8, delay: 0.3, ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
-        });
-        gsap.from(firstText, { y: 20, opacity: 0, duration: 0.6, delay: 0.5, ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
-        });
+        // Hold first panel visible while user reads it
+        tl.to(panels[0], { duration: 1.5 });
 
         // Build transitions for panel 2 and 3
         for (var i = 1; i < totalPanels; i++) {
           var prevPanel = panels[i - 1];
           var currPanel = panels[i];
 
-          // Get child elements
+          // Get child elements for the incoming panel
           var bgNum = currPanel.querySelector('.home-services_bg-number');
           var num = currPanel.querySelector('.home-services_number');
           var title = currPanel.querySelector('.home-services_title');
+          var itemHead = currPanel.querySelector('.home-services_item-head');
           var pills = currPanel.querySelectorAll('.home-services_service');
           var img = currPanel.querySelector('.home-services_img-wrap');
           var text = currPanel.querySelector('.home-services_text-wrap');
 
+          // Set initial hidden state for incoming content
+          gsap.set([bgNum, num, title, itemHead, img, text], { opacity: 0 });
+          gsap.set(pills, { opacity: 0 });
+
           // Exit: previous panel fades out + slides up + scales down
           tl.to(prevPanel, {
             opacity: 0,
-            y: -80,
-            scale: 0.9,
-            duration: 0.5,
+            y: -60,
+            scale: 0.92,
+            duration: 0.8,
             ease: 'power2.in'
           });
 
-          // Enter: current panel fades in + slides up from below
+          // Enter: current panel slides up from below
           tl.fromTo(currPanel,
-            { opacity: 0, y: 80 },
-            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
-            '-=0.2' // slight overlap for smoothness
+            { opacity: 0, y: 60 },
+            { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
+            '-=0.4'
           );
 
-          // Staggered content entrance
-          tl.from(bgNum, { opacity: 0, scale: 0.7, duration: 0.4, ease: 'power3.out' }, '-=0.3');
-          tl.from(num, { x: -30, opacity: 0, duration: 0.3, ease: 'power3.out' }, '-=0.25');
-          tl.from(title, { y: 30, opacity: 0, duration: 0.3, ease: 'power3.out' }, '-=0.2');
-          tl.from(pills, { x: -20, opacity: 0, stagger: 0.05, duration: 0.25, ease: 'power3.out' }, '-=0.15');
-          tl.from(img, { scale: 0.85, opacity: 0, duration: 0.4, ease: 'power3.out' }, '-=0.3');
-          tl.from(text, { y: 20, opacity: 0, duration: 0.3, ease: 'power3.out' }, '-=0.2');
+          // Staggered content reveal (using a label for parallel animation)
+          var label = 'panel' + i + 'content';
+          tl.addLabel(label, '-=0.4');
+          tl.to(bgNum, { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' }, label);
+          tl.fromTo(itemHead, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }, label + '+=0.1');
+          tl.fromTo(num, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power3.out' }, label + '+=0.1');
+          tl.fromTo(title, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, label + '+=0.15');
+          tl.fromTo(pills, { opacity: 0, x: -15 }, { opacity: 1, x: 0, stagger: 0.06, duration: 0.4, ease: 'power3.out' }, label + '+=0.2');
+          tl.fromTo(img, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' }, label + '+=0.1');
+          tl.fromTo(text, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, label + '+=0.25');
 
-          // Hold this panel visible for a beat
-          tl.to(currPanel, { duration: 0.3 });
+          // Hold this panel visible while user reads
+          tl.to(currPanel, { duration: 1.5 });
         }
       })();
     </script>
