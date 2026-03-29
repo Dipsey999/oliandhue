@@ -1237,23 +1237,26 @@
         z-index: 1;
       }
 
-      /* ── Sticky overlapping cards: preserve Webflow scroll behavior ── */
+      /* ── Sticky stacking cards: each card scrolls on top of the previous ── */
+      .home-services_items {
+        position: relative;
+      }
+
       .home-services_item {
         position: sticky;
-        top: 20vh;
         background-color: #0a0a0f;
-        transition: box-shadow 0.5s ease, border-color 0.5s ease;
+        transition: box-shadow 0.5s ease, border-color 0.5s ease, transform 0.3s ease;
         border: 1px solid transparent;
         border-radius: 1.5rem;
         padding: 2.5rem 2rem;
-        margin-bottom: -12rem;
-        z-index: 1;
+        margin-bottom: 4rem;
+        box-shadow: 0 -4px 30px rgba(0,0,0,0.5);
       }
-      .home-services_item:last-child {
-        margin-bottom: 0;
-      }
-      .home-services_item:nth-child(2) { z-index: 2; }
-      .home-services_item:nth-child(3) { z-index: 3; }
+
+      /* Each card sticks at a slightly offset top so they peek behind */
+      .home-services_item:nth-child(1) { top: 12vh; z-index: 1; }
+      .home-services_item:nth-child(2) { top: 14vh; z-index: 2; }
+      .home-services_item:nth-child(3) { top: 16vh; z-index: 3; margin-bottom: 0; }
 
       /* ── Top accent glow line per pillar ── */
       .home-services_item::before {
@@ -5212,6 +5215,31 @@
           requestAnimationFrame(rotateBorder);
         }
         rotateBorder();
+
+        // ── Stacking card scroll effect: scale down cards as next card overlaps ──
+        var cards = Array.from(section.querySelectorAll('.home-services_item'));
+        function onScrollStack() {
+          cards.forEach(function(card, i) {
+            if (i >= cards.length - 1) return; // skip last card
+            var rect = card.getBoundingClientRect();
+            var nextCard = cards[i + 1];
+            var nextRect = nextCard.getBoundingClientRect();
+
+            // How much the next card has overlapped this one (0 = not overlapping, 1 = fully covered)
+            var overlap = 0;
+            if (nextRect.top < rect.bottom) {
+              overlap = Math.min(1, (rect.bottom - nextRect.top) / rect.height);
+            }
+
+            // Scale down and dim the card as it gets covered
+            var scale = 1 - (overlap * 0.05); // scale from 1.0 to 0.95
+            var brightness = 1 - (overlap * 0.4); // dim to 60%
+            card.style.transform = 'scale(' + scale + ')';
+            card.style.filter = 'brightness(' + brightness + ')';
+          });
+          requestAnimationFrame(onScrollStack);
+        }
+        onScrollStack();
       })();
     </script>
 
