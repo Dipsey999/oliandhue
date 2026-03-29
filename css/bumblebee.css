@@ -1,0 +1,206 @@
+/* ===== Bumblebee Hover Animation ===== */
+
+/* The bee container - positioned relative to the hovered element */
+.bumblebee-zone {
+  position: relative;
+}
+
+/* Individual bee */
+.bee {
+  position: absolute;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  font-size: 0;
+  /* hide until triggered */
+}
+
+.bee-svg {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* Wing flap animation */
+.bee-wing {
+  transform-origin: 50% 100%;
+  animation: wingFlap 0.08s ease-in-out infinite alternate;
+}
+.bee-wing.right {
+  animation-delay: 0.04s;
+}
+
+@keyframes wingFlap {
+  0%   { transform: scaleY(1) rotate(-5deg); }
+  100% { transform: scaleY(0.4) rotate(5deg); }
+}
+
+/* === Bee flight paths === */
+
+/* Bee 1: flies in from left, loops around, settles right of text */
+.bee.bee-1 {
+  animation: beeFly1 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes beeFly1 {
+  0%   { opacity: 0; transform: translate(-60px, -10px) rotate(-20deg) scale(0.3); }
+  10%  { opacity: 1; transform: translate(-30px, -25px) rotate(-10deg) scale(0.8); }
+  25%  { opacity: 1; transform: translate(20px, -40px) rotate(5deg) scale(1); }
+  40%  { opacity: 1; transform: translate(60px, -20px) rotate(15deg) scale(1); }
+  55%  { opacity: 1; transform: translate(80px, -35px) rotate(-5deg) scale(1); }
+  70%  { opacity: 1; transform: translate(50px, -30px) rotate(-15deg) scale(1); }
+  85%  { opacity: 1; transform: translate(70px, -25px) rotate(5deg) scale(1); }
+  100% { opacity: 1; transform: translate(60px, -28px) rotate(0deg) scale(1); }
+}
+
+/* Bee 2: smaller bee, delayed, different path */
+.bee.bee-2 {
+  animation: beeFly2 2.5s 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes beeFly2 {
+  0%   { opacity: 0; transform: translate(120px, 20px) rotate(20deg) scale(0.2); }
+  15%  { opacity: 0.8; transform: translate(90px, -15px) rotate(10deg) scale(0.6); }
+  30%  { opacity: 0.8; transform: translate(40px, -45px) rotate(-10deg) scale(0.65); }
+  50%  { opacity: 0.8; transform: translate(-10px, -30px) rotate(5deg) scale(0.65); }
+  70%  { opacity: 0.8; transform: translate(15px, -50px) rotate(-8deg) scale(0.65); }
+  100% { opacity: 0.7; transform: translate(5px, -42px) rotate(3deg) scale(0.6); }
+}
+
+/* Bee 3: tiny bee, longest delay */
+.bee.bee-3 {
+  animation: beeFly3 2.8s 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes beeFly3 {
+  0%   { opacity: 0; transform: translate(30px, 30px) rotate(30deg) scale(0.15); }
+  20%  { opacity: 0.6; transform: translate(100px, -10px) rotate(-15deg) scale(0.45); }
+  45%  { opacity: 0.6; transform: translate(130px, -50px) rotate(10deg) scale(0.5); }
+  70%  { opacity: 0.6; transform: translate(110px, -55px) rotate(-5deg) scale(0.5); }
+  100% { opacity: 0.5; transform: translate(120px, -48px) rotate(2deg) scale(0.45); }
+}
+
+/* Settled bee gentle hover/buzz */
+.bee.settled {
+  animation: beeHover 1.5s ease-in-out infinite alternate !important;
+  opacity: 1 !important;
+}
+
+.bee.bee-2.settled {
+  animation: beeHover2 1.8s 0.3s ease-in-out infinite alternate !important;
+  opacity: 0.7 !important;
+}
+
+.bee.bee-3.settled {
+  animation: beeHover3 2s 0.6s ease-in-out infinite alternate !important;
+  opacity: 0.5 !important;
+}
+
+@keyframes beeHover {
+  0%   { transform: translate(58px, -26px) rotate(-3deg); }
+  100% { transform: translate(62px, -30px) rotate(3deg); }
+}
+
+@keyframes beeHover2 {
+  0%   { transform: translate(3px, -40px) rotate(-4deg) scale(0.6); }
+  100% { transform: translate(7px, -44px) rotate(4deg) scale(0.6); }
+}
+
+@keyframes beeHover3 {
+  0%   { transform: translate(118px, -46px) rotate(-2deg) scale(0.45); }
+  100% { transform: translate(122px, -50px) rotate(5deg) scale(0.45); }
+}
+
+/* Bee exit animation */
+.bee.bee-exit {
+  animation: beeExit 0.6s ease-in forwards !important;
+}
+
+@keyframes beeExit {
+  0%   { opacity: 1; }
+  100% { opacity: 0; transform: translate(150px, -80px) rotate(25deg) scale(0.2); }
+}
+
+/* Honey drop particles */
+.honey-drop {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50% 50% 50% 0;
+  background: #F5A623;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 99;
+  transform: rotate(-45deg);
+}
+
+.honey-drop.drop-1 { animation: honeyFall 1.8s 1s ease-in forwards; }
+.honey-drop.drop-2 { animation: honeyFall 2s 1.5s ease-in forwards; }
+.honey-drop.drop-3 { animation: honeyFall 1.6s 2s ease-in forwards; }
+
+@keyframes honeyFall {
+  0%   { opacity: 0; transform: translate(65px, -25px) rotate(-45deg) scale(0.5); }
+  20%  { opacity: 0.8; transform: translate(65px, -22px) rotate(-45deg) scale(1); }
+  100% { opacity: 0; transform: translate(65px, 15px) rotate(-45deg) scale(0.3); }
+}
+
+/* Dotted flight trail */
+.bee-trail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 98;
+  overflow: visible;
+}
+
+.bee-trail svg {
+  position: absolute;
+  top: -60px;
+  left: -70px;
+  width: 220px;
+  height: 80px;
+  overflow: visible;
+}
+
+.bee-trail path {
+  fill: none;
+  stroke: rgba(245, 166, 35, 0.3);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  stroke-linecap: round;
+  stroke-dashoffset: 200;
+  animation: trailDraw 2s 0.1s ease-out forwards;
+}
+
+@keyframes trailDraw {
+  0%   { stroke-dashoffset: 200; opacity: 0; }
+  10%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.4; }
+}
+
+/* Buzz text effect on the link itself */
+.bumblebee-zone:hover .footer_link,
+.bumblebee-zone:hover .home-services_title {
+  animation: textBuzz 0.15s ease-in-out 3;
+}
+
+@keyframes textBuzz {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(1px); }
+  50%  { transform: translateX(-1px); }
+  75%  { transform: translateX(0.5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Golden glow on hover */
+.bumblebee-zone:hover .footer_link {
+  color: #F5A623 !important;
+  transition: color 0.3s ease;
+}
+
+.bumblebee-zone .footer_link {
+  transition: color 0.3s ease;
+}

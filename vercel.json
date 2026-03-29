@@ -1,6 +1,12 @@
 {
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
   "cleanUrls": false,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/admin/:path*", "destination": "/admin/:path*" },
+    { "source": "/api/:path*", "destination": "/api/:path*" }
+  ],
   "headers": [
     {
       "source": "/fonts/(.*)",
