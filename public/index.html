@@ -1227,43 +1227,11 @@
         color: #000;
       }
 
-      /* ═══════ Services section — premium overhaul ═══════ */
+      /* ═══════ Services section — cinematic scroll-pinned panels ═══════ */
       .section_home-services {
         position: relative;
         overflow: hidden;
-      }
-      .home-services_component {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* ── Sticky stacking cards: each card scrolls on top of the previous ── */
-      .home-services_items {
-        position: relative;
-        background-color: #0a0a0f;
-      }
-
-      .home-services_item {
-        position: sticky;
-        background-color: #0a0a0f;
-        transition: box-shadow 0.5s ease, border-color 0.5s ease, transform 0.3s ease;
-        border: 1px solid transparent;
-        border-radius: 1.5rem;
-        padding: 2.5rem 2rem;
-        margin-bottom: 0;
-        box-shadow: 0 -4px 30px rgba(0,0,0,0.5);
-        overflow: hidden;
-      }
-
-      /* Each card sticks at a slightly offset top so they peek behind */
-      .home-services_item:nth-child(1) { top: 12vh; z-index: 1; }
-      .home-services_item:nth-child(2) { top: 14vh; z-index: 2; }
-      .home-services_item:nth-child(3) { top: 16vh; z-index: 3; }
-
-      /* Ensure entire section and ALL children have dark background — no cream bleed */
-      .section_home-services,
-      .section_home-services * {
-        --_section-bg: #0a0a0f;
+        background: #0a0a0f !important;
       }
       .section_home-services,
       .section_home-services .padding-global,
@@ -1274,105 +1242,98 @@
       .section_home-services .home-services_component {
         background-color: #0a0a0f !important;
       }
+      .home-services_component {
+        position: relative;
+        z-index: 1;
+      }
 
-      /* ── Top accent glow line per pillar ── */
-      .home-services_item::before {
-        content: '';
+      /* ── Panel viewport container ── */
+      .home-services_items {
+        position: relative;
+        min-height: 70vh;
+      }
+
+      /* ── Each panel is absolutely positioned, fills container ── */
+      .home-services_item {
         position: absolute;
         top: 0;
-        left: 10%;
-        right: 10%;
-        height: 2px;
-        border-radius: 2px;
+        left: 0;
+        width: 100%;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        border: none !important;
+        border-radius: 0;
+        padding: 3rem 0;
         opacity: 0;
-        transition: opacity 0.5s ease, filter 0.5s ease;
+        will-change: transform, opacity;
       }
-      .home-services_item:hover::before { opacity: 1; }
-      .home-services_item[data-pillar="design"]::before {
-        background: linear-gradient(90deg, transparent, #8b5cf6, #a78bfa, transparent);
-        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
-      }
-      .home-services_item[data-pillar="dev"]::before {
-        background: linear-gradient(90deg, transparent, #06b6d4, #22d3ee, transparent);
-        filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));
-      }
-      .home-services_item[data-pillar="marketing"]::before {
-        background: linear-gradient(90deg, transparent, #f59e0b, #fbbf24, transparent);
-        filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
+      .home-services_item:first-child {
+        opacity: 1;
       }
 
-      /* ── Animated rotating gradient border on hover ── */
-      .home-services_item::after {
-        content: '';
+      /* ── Panel inner layout: 2-column grid ── */
+      .home-services_item-in {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 3rem;
+        align-items: start;
+        width: 100%;
+      }
+
+      /* ── Giant background number ── */
+      .home-services_bg-number {
         position: absolute;
-        inset: -1px;
-        border-radius: 1.5rem;
-        padding: 1px;
-        background: conic-gradient(from var(--border-angle, 0deg), transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        font-size: clamp(10rem, 25vw, 20rem);
+        font-weight: 800;
+        color: rgba(255,255,255,0.03);
         pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      .home-services_item:hover::after { opacity: 1; }
-
-      /* Per-pillar hover background + border glow */
-      .home-services_item[data-pillar="design"]:hover {
-        background: linear-gradient(135deg, #0a0a0f 0%, rgba(139, 92, 246, 0.06) 50%, #0a0a0f 100%);
-        border-color: rgba(139, 92, 246, 0.15);
-        box-shadow: 0 0 80px rgba(139, 92, 246, 0.06), inset 0 0 60px rgba(139, 92, 246, 0.03);
-      }
-      .home-services_item[data-pillar="dev"]:hover {
-        background: linear-gradient(135deg, #0a0a0f 0%, rgba(6, 182, 212, 0.06) 50%, #0a0a0f 100%);
-        border-color: rgba(6, 182, 212, 0.15);
-        box-shadow: 0 0 80px rgba(6, 182, 212, 0.06), inset 0 0 60px rgba(6, 182, 212, 0.03);
-      }
-      .home-services_item[data-pillar="marketing"]:hover {
-        background: linear-gradient(135deg, #0a0a0f 0%, rgba(245, 158, 11, 0.06) 50%, #0a0a0f 100%);
-        border-color: rgba(245, 158, 11, 0.15);
-        box-shadow: 0 0 80px rgba(245, 158, 11, 0.06), inset 0 0 60px rgba(245, 158, 11, 0.03);
+        z-index: 0;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        user-select: none;
       }
 
-      /* ── Number badge — pillar-colored glow ── */
+      /* ── Card styling within panel ── */
+      .home-services_examples {
+        position: relative;
+        z-index: 2;
+      }
+      .home-services_desc {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* ── Number badge ── */
       .home-services_number {
         transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
-      .home-services_item[data-pillar="design"]:hover .home-services_number {
-        box-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 0 50px rgba(139, 92, 246, 0.2);
+      .home-services_item[data-pillar="design"] .home-services_number {
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 50px rgba(139, 92, 246, 0.15);
         background: #8b5cf6 !important;
-        transform: scale(1.2);
       }
-      .home-services_item[data-pillar="dev"]:hover .home-services_number {
-        box-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 50px rgba(6, 182, 212, 0.2);
+      .home-services_item[data-pillar="dev"] .home-services_number {
+        box-shadow: 0 0 20px rgba(6, 182, 212, 0.4), 0 0 50px rgba(6, 182, 212, 0.15);
         background: #06b6d4 !important;
-        transform: scale(1.2);
       }
-      .home-services_item[data-pillar="marketing"]:hover .home-services_number {
-        box-shadow: 0 0 20px rgba(245, 158, 11, 0.6), 0 0 50px rgba(245, 158, 11, 0.2);
+      .home-services_item[data-pillar="marketing"] .home-services_number {
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.4), 0 0 50px rgba(245, 158, 11, 0.15);
         background: #f59e0b !important;
-        transform: scale(1.2);
       }
 
-      /* ── Title glow ── */
+      /* ── Title — pillar colored ── */
       .home-services_title {
         transition: all 0.4s ease;
       }
-      .home-services_item[data-pillar="design"]:hover .home-services_title {
-        color: #c4b5fd;
-        text-shadow: 0 0 40px rgba(139, 92, 246, 0.25);
-      }
-      .home-services_item[data-pillar="dev"]:hover .home-services_title {
-        color: #a5f3fc;
-        text-shadow: 0 0 40px rgba(6, 182, 212, 0.25);
-      }
-      .home-services_item[data-pillar="marketing"]:hover .home-services_title {
-        color: #fde68a;
-        text-shadow: 0 0 40px rgba(245, 158, 11, 0.25);
-      }
+      .home-services_item[data-pillar="design"] .home-services_title { color: #e9e0ff; }
+      .home-services_item[data-pillar="dev"] .home-services_title { color: #cffafe; }
+      .home-services_item[data-pillar="marketing"] .home-services_title { color: #fef3c7; }
 
-      /* ── Service pills — shimmer + pillar-colored hover ── */
+      /* ── Service pills ── */
       .home-services_service {
         transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         cursor: default;
@@ -1380,96 +1341,88 @@
         overflow: hidden;
         border: 1px solid transparent;
       }
-      .home-services_service::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      }
-      .home-services_item:hover .home-services_service::after {
-        animation: pill-shimmer 2.5s ease-in-out infinite;
-      }
-      @keyframes pill-shimmer {
-        0% { left: -100%; }
-        100% { left: 250%; }
-      }
-      .home-services_service:nth-child(2)::after { animation-delay: 0.2s !important; }
-      .home-services_service:nth-child(3)::after { animation-delay: 0.4s !important; }
-      .home-services_service:nth-child(4)::after { animation-delay: 0.6s !important; }
-      .home-services_service:nth-child(5)::after { animation-delay: 0.8s !important; }
-      .home-services_service:nth-child(6)::after { animation-delay: 1s !important; }
-
       .home-services_item[data-pillar="design"] .home-services_service:hover {
         background: rgba(139, 92, 246, 0.15) !important;
         border-color: rgba(139, 92, 246, 0.35);
         color: #c4b5fd !important;
-        transform: translateY(-3px) scale(1.04);
-        box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
+        transform: translateY(-2px);
       }
       .home-services_item[data-pillar="dev"] .home-services_service:hover {
         background: rgba(6, 182, 212, 0.15) !important;
         border-color: rgba(6, 182, 212, 0.35);
         color: #a5f3fc !important;
-        transform: translateY(-3px) scale(1.04);
-        box-shadow: 0 8px 30px rgba(6, 182, 212, 0.2);
+        transform: translateY(-2px);
       }
       .home-services_item[data-pillar="marketing"] .home-services_service:hover {
         background: rgba(245, 158, 11, 0.15) !important;
         border-color: rgba(245, 158, 11, 0.35);
         color: #fde68a !important;
-        transform: translateY(-3px) scale(1.04);
-        box-shadow: 0 8px 30px rgba(245, 158, 11, 0.2);
+        transform: translateY(-2px);
       }
 
-      /* ── Image — colored glow + zoom ── */
+      /* ── Image ── */
       .home-services_img-wrap {
         overflow: hidden;
         border-radius: 0.75rem;
         transition: box-shadow 0.5s ease;
       }
-      .home-services_img {
-        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
-      }
-      .home-services_item:hover .home-services_img {
-        transform: scale(1.06);
-      }
-      .home-services_item[data-pillar="design"]:hover .home-services_img-wrap {
-        box-shadow: 0 12px 50px rgba(139, 92, 246, 0.2), 0 0 0 1px rgba(139, 92, 246, 0.15);
-      }
-      .home-services_item[data-pillar="dev"]:hover .home-services_img-wrap {
-        box-shadow: 0 12px 50px rgba(6, 182, 212, 0.2), 0 0 0 1px rgba(6, 182, 212, 0.15);
-      }
-      .home-services_item[data-pillar="marketing"]:hover .home-services_img-wrap {
-        box-shadow: 0 12px 50px rgba(245, 158, 11, 0.2), 0 0 0 1px rgba(245, 158, 11, 0.15);
-      }
 
-      /* ── Description text brightens on hover ── */
-      .home-services_text-wrap p { transition: color 0.4s ease; }
+      /* ── Description text ── */
+      .home-services_text-wrap p { color: #888; transition: color 0.4s ease; }
       .home-services_item:hover .text-color-grey-300 { color: #b0b0b0; }
 
-      /* ── Divider lines — sweeping light ── */
+      /* ── Divider lines ── */
       .line.is-darker {
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent) !important;
         position: relative;
         overflow: hidden;
       }
-      .line.is-darker::after {
-        content: '';
+
+      /* ── Progress dots (right side) ── */
+      .svc-progress {
         position: absolute;
-        top: 0;
-        left: -40%;
-        width: 40%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        animation: line-sweep 4s ease-in-out infinite;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 10;
       }
-      @keyframes line-sweep {
-        0% { left: -40%; }
-        50% { left: 100%; }
-        100% { left: 100%; }
+      .svc-progress-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        transition: all 0.5s ease;
+        cursor: pointer;
+      }
+      .svc-progress-dot.is-active {
+        transform: scale(1.5);
+      }
+      .svc-progress-dot.is-active[data-dot="design"] {
+        background: #8b5cf6;
+        box-shadow: 0 0 12px rgba(139,92,246,0.6);
+      }
+      .svc-progress-dot.is-active[data-dot="dev"] {
+        background: #06b6d4;
+        box-shadow: 0 0 12px rgba(6,182,212,0.6);
+      }
+      .svc-progress-dot.is-active[data-dot="marketing"] {
+        background: #f59e0b;
+        box-shadow: 0 0 12px rgba(245,158,11,0.6);
+      }
+
+      /* ── Scroll progress bar (bottom) ── */
+      .svc-scroll-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 0%;
+        background: linear-gradient(90deg, #8b5cf6, #06b6d4, #f59e0b);
+        z-index: 10;
+        transition: width 0.1s linear;
       }
 
       /* ── Head decoration ── */
@@ -1498,6 +1451,26 @@
         filter: blur(100px);
       }
       .section_home-services:hover .services-spotlight { opacity: 1; }
+
+      /* ── Mobile: stack vertically, no pin ── */
+      @media (max-width: 991px) {
+        .home-services_items {
+          height: auto;
+          overflow: visible;
+        }
+        .home-services_item {
+          position: relative;
+          opacity: 1;
+          padding: 2rem 0;
+        }
+        .home-services_item-in {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        .home-services_bg-number { display: none; }
+        .svc-progress { display: none; }
+        .svc-scroll-bar { display: none; }
+      }
 
       /* ═══ Testimonials section — bold overhaul ═══ */
       .section_testimonials {
@@ -3719,7 +3692,17 @@
                       class="home-services_content"
                     >
                       <div class="home-services_items">
+                        <!-- Progress dots -->
+                        <div class="svc-progress">
+                          <div class="svc-progress-dot is-active" data-dot="design"></div>
+                          <div class="svc-progress-dot" data-dot="dev"></div>
+                          <div class="svc-progress-dot" data-dot="marketing"></div>
+                        </div>
+                        <!-- Scroll progress bar -->
+                        <div class="svc-scroll-bar"></div>
+
                         <div class="home-services_item" data-pillar="design">
+                          <div class="home-services_bg-number">01</div>
                           <div
                             data-w-id="e9a97131-8855-95c0-d8dd-d2a7a42d1eb6"
                             class="line is-darker"
@@ -3776,6 +3759,7 @@
                           </div>
                         </div>
                         <div class="home-services_item" data-pillar="dev">
+                          <div class="home-services_bg-number">02</div>
                           <div
                             data-w-id="e9a97131-8855-95c0-d8dd-d2a7a42d1ed4"
                             class="line is-darker"
@@ -3844,6 +3828,7 @@
                           </div>
                         </div>
                         <div class="home-services_item padding-small" data-pillar="marketing">
+                          <div class="home-services_bg-number">03</div>
                           <div
                             data-w-id="e9a97131-8855-95c0-d8dd-d2a7a42d1ee3"
                             class="line is-darker"
@@ -5152,6 +5137,9 @@
     ></script>
     <script
       src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js"
+    ></script>
+    <script
+      src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js"
       type="text/javascript"
     ></script>
     <!-- Lennis setup -->
@@ -5173,90 +5161,149 @@
       requestAnimationFrame(raf);
     </script>
 
-    <!-- Services section — spotlight, particles, rotating border -->
+    <!-- Services section — GSAP ScrollTrigger cinematic panels -->
     <script>
       (function() {
         var section = document.querySelector('.section_home-services');
         if (!section) return;
 
-        // ── Mouse-following spotlight ──
-        var spotlight = document.createElement('div');
-        spotlight.className = 'services-spotlight';
-        section.appendChild(spotlight);
+        var isMobile = window.innerWidth <= 991;
 
-        var pillarColors = {
-          design: 'rgba(139, 92, 246, 0.07)',
-          dev: 'rgba(6, 182, 212, 0.07)',
-          marketing: 'rgba(245, 158, 11, 0.07)'
-        };
-        var currentColor = 'rgba(255, 255, 255, 0.03)';
-        var targetX = 0, targetY = 0, spotX = 0, spotY = 0;
+        // ── Mouse-following spotlight (desktop only) ──
+        if (!isMobile) {
+          var spotlight = document.createElement('div');
+          spotlight.className = 'services-spotlight';
+          section.appendChild(spotlight);
+          var pillarColors = {
+            design: 'rgba(139, 92, 246, 0.07)',
+            dev: 'rgba(6, 182, 212, 0.07)',
+            marketing: 'rgba(245, 158, 11, 0.07)'
+          };
+          var currentColor = 'rgba(255, 255, 255, 0.03)';
+          var targetX = 0, targetY = 0, spotX = 0, spotY = 0;
+          section.addEventListener('mousemove', function(e) {
+            targetX = e.clientX - 250;
+            targetY = e.clientY - 250;
+            var item = e.target.closest('.home-services_item[data-pillar]');
+            currentColor = item ? (pillarColors[item.getAttribute('data-pillar')] || 'rgba(255,255,255,0.03)') : 'rgba(255,255,255,0.03)';
+          });
+          function animateSpot() {
+            spotX += (targetX - spotX) * 0.06;
+            spotY += (targetY - spotY) * 0.06;
+            spotlight.style.left = spotX + 'px';
+            spotlight.style.top = spotY + 'px';
+            spotlight.style.background = 'radial-gradient(circle, ' + currentColor + ' 0%, transparent 70%)';
+            requestAnimationFrame(animateSpot);
+          }
+          animateSpot();
+        }
 
-        section.addEventListener('mousemove', function(e) {
-          targetX = e.clientX - 250;
-          targetY = e.clientY - 250;
-          var item = e.target.closest('.home-services_item[data-pillar]');
-          currentColor = item ? (pillarColors[item.getAttribute('data-pillar')] || 'rgba(255,255,255,0.03)') : 'rgba(255,255,255,0.03)';
+        // Skip ScrollTrigger on mobile
+        if (isMobile) return;
+
+        // ── GSAP ScrollTrigger — pinned panel transitions ──
+        gsap.registerPlugin(ScrollTrigger);
+
+        var panels = gsap.utils.toArray('.home-services_item');
+        var dots = gsap.utils.toArray('.svc-progress-dot');
+        var scrollBar = section.querySelector('.svc-scroll-bar');
+        var itemsContainer = section.querySelector('.home-services_items');
+        var totalPanels = panels.length;
+
+        // Main scroll-pinned timeline — pin the whole section
+        var tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: '+=' + (totalPanels * 100) + 'vh',
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            anticipatePin: 1,
+            onUpdate: function(self) {
+              // Update scroll progress bar
+              if (scrollBar) scrollBar.style.width = (self.progress * 100) + '%';
+
+              // Update progress dots
+              var activeIdx = Math.min(Math.floor(self.progress * totalPanels), totalPanels - 1);
+              dots.forEach(function(dot, i) {
+                dot.classList.toggle('is-active', i === activeIdx);
+              });
+            }
+          }
         });
 
-        function animateSpot() {
-          spotX += (targetX - spotX) * 0.06;
-          spotY += (targetY - spotY) * 0.06;
-          spotlight.style.left = spotX + 'px';
-          spotlight.style.top = spotY + 'px';
-          spotlight.style.background = 'radial-gradient(circle, ' + currentColor + ' 0%, transparent 70%)';
-          requestAnimationFrame(animateSpot);
-        }
-        animateSpot();
+        // Entrance animation for first panel (already visible)
+        var firstPanel = panels[0];
+        gsap.set(firstPanel, { opacity: 1 });
 
-        // ── Floating particles ──
-        var particles = document.createElement('div');
-        particles.className = 'services-particles';
-        section.appendChild(particles);
-        var pColors = ['rgba(139,92,246,0.25)', 'rgba(6,182,212,0.25)', 'rgba(245,158,11,0.25)'];
-        for (var i = 0; i < 25; i++) {
-          var p = document.createElement('div');
-          p.className = 'services-particle';
-          p.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (Math.random()*100) + '%;animation-delay:' + (Math.random()*8) + 's;animation-duration:' + (6+Math.random()*6) + 's;background:' + pColors[i%3] + ';width:' + (1.5+Math.random()*2) + 'px;height:' + (1.5+Math.random()*2) + 'px;';
-          particles.appendChild(p);
-        }
+        // Animate first panel's children on entry
+        var firstBg = firstPanel.querySelector('.home-services_bg-number');
+        var firstNum = firstPanel.querySelector('.home-services_number');
+        var firstTitle = firstPanel.querySelector('.home-services_title');
+        var firstPills = firstPanel.querySelectorAll('.home-services_service');
+        var firstImg = firstPanel.querySelector('.home-services_img-wrap');
+        var firstText = firstPanel.querySelector('.home-services_text-wrap');
 
-        // ── Rotating gradient border ──
-        var angle = 0;
-        var items = section.querySelectorAll('.home-services_item');
-        function rotateBorder() {
-          angle = (angle + 0.5) % 360;
-          items.forEach(function(item) {
-            item.style.setProperty('--border-angle', angle + 'deg');
+        gsap.from(firstBg, { opacity: 0, scale: 0.7, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
+        });
+        gsap.from(firstNum, { x: -30, opacity: 0, duration: 0.6, delay: 0.1, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
+        });
+        gsap.from(firstTitle, { y: 30, opacity: 0, duration: 0.6, delay: 0.2, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
+        });
+        gsap.from(firstPills, { x: -20, opacity: 0, stagger: 0.08, duration: 0.5, delay: 0.3, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
+        });
+        gsap.from(firstImg, { scale: 0.85, opacity: 0, duration: 0.8, delay: 0.3, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
+        });
+        gsap.from(firstText, { y: 20, opacity: 0, duration: 0.6, delay: 0.5, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
+        });
+
+        // Build transitions for panel 2 and 3
+        for (var i = 1; i < totalPanels; i++) {
+          var prevPanel = panels[i - 1];
+          var currPanel = panels[i];
+
+          // Get child elements
+          var bgNum = currPanel.querySelector('.home-services_bg-number');
+          var num = currPanel.querySelector('.home-services_number');
+          var title = currPanel.querySelector('.home-services_title');
+          var pills = currPanel.querySelectorAll('.home-services_service');
+          var img = currPanel.querySelector('.home-services_img-wrap');
+          var text = currPanel.querySelector('.home-services_text-wrap');
+
+          // Exit: previous panel fades out + slides up + scales down
+          tl.to(prevPanel, {
+            opacity: 0,
+            y: -80,
+            scale: 0.9,
+            duration: 0.5,
+            ease: 'power2.in'
           });
-          requestAnimationFrame(rotateBorder);
+
+          // Enter: current panel fades in + slides up from below
+          tl.fromTo(currPanel,
+            { opacity: 0, y: 80 },
+            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+            '-=0.2' // slight overlap for smoothness
+          );
+
+          // Staggered content entrance
+          tl.from(bgNum, { opacity: 0, scale: 0.7, duration: 0.4, ease: 'power3.out' }, '-=0.3');
+          tl.from(num, { x: -30, opacity: 0, duration: 0.3, ease: 'power3.out' }, '-=0.25');
+          tl.from(title, { y: 30, opacity: 0, duration: 0.3, ease: 'power3.out' }, '-=0.2');
+          tl.from(pills, { x: -20, opacity: 0, stagger: 0.05, duration: 0.25, ease: 'power3.out' }, '-=0.15');
+          tl.from(img, { scale: 0.85, opacity: 0, duration: 0.4, ease: 'power3.out' }, '-=0.3');
+          tl.from(text, { y: 20, opacity: 0, duration: 0.3, ease: 'power3.out' }, '-=0.2');
+
+          // Hold this panel visible for a beat
+          tl.to(currPanel, { duration: 0.3 });
         }
-        rotateBorder();
-
-        // ── Stacking card scroll effect: scale down cards as next card overlaps ──
-        var cards = Array.from(section.querySelectorAll('.home-services_item'));
-        function onScrollStack() {
-          cards.forEach(function(card, i) {
-            if (i >= cards.length - 1) return; // skip last card
-            var rect = card.getBoundingClientRect();
-            var nextCard = cards[i + 1];
-            var nextRect = nextCard.getBoundingClientRect();
-
-            // How much the next card has overlapped this one (0 = not overlapping, 1 = fully covered)
-            var overlap = 0;
-            if (nextRect.top < rect.bottom) {
-              overlap = Math.min(1, (rect.bottom - nextRect.top) / rect.height);
-            }
-
-            // Scale down and dim the card as it gets covered
-            var scale = 1 - (overlap * 0.05); // scale from 1.0 to 0.95
-            var brightness = 1 - (overlap * 0.4); // dim to 60%
-            card.style.transform = 'scale(' + scale + ')';
-            card.style.filter = 'brightness(' + brightness + ')';
-          });
-          requestAnimationFrame(onScrollStack);
-        }
-        onScrollStack();
       })();
     </script>
 
