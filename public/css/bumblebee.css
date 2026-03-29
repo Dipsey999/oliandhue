@@ -5,6 +5,11 @@
   position: relative;
 }
 
+/* Clip bees inside service cards so they don't leak into gaps */
+.home-services_item .bumblebee-zone {
+  overflow: hidden;
+}
+
 /* Individual bee */
 .bee {
   position: absolute;

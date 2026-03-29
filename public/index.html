@@ -1240,6 +1240,7 @@
       /* ── Sticky stacking cards: each card scrolls on top of the previous ── */
       .home-services_items {
         position: relative;
+        background-color: #0a0a0f;
       }
 
       .home-services_item {
@@ -1249,14 +1250,30 @@
         border: 1px solid transparent;
         border-radius: 1.5rem;
         padding: 2.5rem 2rem;
-        margin-bottom: 4rem;
+        margin-bottom: 0;
         box-shadow: 0 -4px 30px rgba(0,0,0,0.5);
+        overflow: hidden;
       }
 
       /* Each card sticks at a slightly offset top so they peek behind */
       .home-services_item:nth-child(1) { top: 12vh; z-index: 1; }
       .home-services_item:nth-child(2) { top: 14vh; z-index: 2; }
-      .home-services_item:nth-child(3) { top: 16vh; z-index: 3; margin-bottom: 0; }
+      .home-services_item:nth-child(3) { top: 16vh; z-index: 3; }
+
+      /* Ensure entire section and ALL children have dark background — no cream bleed */
+      .section_home-services,
+      .section_home-services * {
+        --_section-bg: #0a0a0f;
+      }
+      .section_home-services,
+      .section_home-services .padding-global,
+      .section_home-services .padding-global.is-tiny,
+      .section_home-services .container-medium,
+      .section_home-services .head-grid,
+      .section_home-services .home-services_content,
+      .section_home-services .home-services_component {
+        background-color: #0a0a0f !important;
+      }
 
       /* ── Top accent glow line per pillar ── */
       .home-services_item::before {
