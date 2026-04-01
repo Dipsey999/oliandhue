@@ -25,6 +25,32 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
   const [emailOnInquiry, setEmailOnInquiry] = useState(notifications.email_on_inquiry ?? true)
   const [emailOnSubscriber, setEmailOnSubscriber] = useState(notifications.email_on_subscriber ?? false)
 
+  // Notification recipients
+  const notifEmails = (initialSettings.notification_emails ?? {}) as Record<string, string[]>
+  const [recipients, setRecipients] = useState<string[]>(notifEmails.emails ?? [])
+  const [newEmail, setNewEmail] = useState('')
+  const [emailError, setEmailError] = useState('')
+
+  function addRecipient() {
+    setEmailError('')
+    const email = newEmail.trim().toLowerCase()
+    if (!email) return
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError('Invalid email format')
+      return
+    }
+    if (recipients.includes(email)) {
+      setEmailError('Email already added')
+      return
+    }
+    setRecipients([...recipients, email])
+    setNewEmail('')
+  }
+
+  function removeRecipient(email: string) {
+    setRecipients(recipients.filter((e) => e !== email))
+  }
+
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
     setSaving(true)
@@ -51,6 +77,12 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
       updated_at: new Date().toISOString(),
     }
 
+    const emailsPayload = {
+      key: 'notification_emails',
+      value: { emails: recipients },
+      updated_at: new Date().toISOString(),
+    }
+
     const { error: e1 } = await supabase
       .from('settings')
       .upsert(companyPayload, { onConflict: 'key' })
@@ -59,7 +91,11 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
       .from('settings')
       .upsert(notifPayload, { onConflict: 'key' })
 
-    if (e1 || e2) {
+    const { error: e3 } = await supabase
+      .from('settings')
+      .upsert(emailsPayload, { onConflict: 'key' })
+
+    if (e1 || e2 || e3) {
       setMessage('Failed to save settings')
     } else {
       setMessage('Settings saved successfully')
@@ -155,6 +191,54 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
             </div>
           </label>
         </div>
+      </div>
+
+      {/* Notification Recipients */}
+      <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-6">
+        <h2 className="text-sm font-semibold text-white mb-1">Notification Recipients</h2>
+        <p className="text-xs text-neutral-500 mb-4">Email addresses that receive notifications when new submissions arrive.</p>
+
+        {/* Current recipients */}
+        {recipients.length > 0 && (
+          <div className="space-y-2 mb-4">
+            {recipients.map((email) => (
+              <div key={email} className="flex items-center justify-between bg-neutral-800 rounded-lg px-3 py-2">
+                <span className="text-sm text-neutral-300">{email}</span>
+                <button
+                  type="button"
+                  onClick={() => removeRecipient(email)}
+                  className="text-neutral-500 hover:text-red-400 text-xs font-medium transition"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {recipients.length === 0 && (
+          <p className="text-sm text-neutral-600 mb-4">No recipients added yet. Add an email to start receiving notifications.</p>
+        )}
+
+        {/* Add new recipient */}
+        <div className="flex gap-2">
+          <input
+            type="email"
+            value={newEmail}
+            onChange={(e) => { setNewEmail(e.target.value); setEmailError(''); }}
+            onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addRecipient(); } }}
+            placeholder="email@example.com"
+            className="flex-1 bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
+          />
+          <button
+            type="button"
+            onClick={addRecipient}
+            className="bg-white text-black text-sm font-medium px-4 py-2 rounded-lg hover:bg-neutral-200 transition"
+          >
+            Add
+          </button>
+        </div>
+        {emailError && <p className="text-xs text-red-400 mt-1">{emailError}</p>}
       </div>
 
       {message && (

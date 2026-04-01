@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { sendNotification } from '@/lib/email'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -50,6 +51,13 @@ export async function POST(request: NextRequest) {
         { status: 500, headers: corsHeaders }
       )
     }
+
+    // Fire-and-forget email notification
+    sendNotification('inquiry', {
+      name: name.trim(), email: email.trim(), phone: phone?.trim(),
+      requirement, project_details: project_details?.trim(),
+      project_links: project_links?.trim(), budget,
+    })
 
     return NextResponse.json({ success: true }, { headers: corsHeaders })
   } catch (err) {
