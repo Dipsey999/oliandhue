@@ -50,9 +50,9 @@ export async function sendNotification(
 
     // Check if this notification type is enabled
     const prefKey = {
-      submission: 'email_on_submission',
-      inquiry: 'email_on_inquiry',
-      subscriber: 'email_on_subscriber',
+      submission: 'email_on_new_submission',
+      inquiry: 'email_on_new_inquiry',
+      subscriber: 'email_on_new_subscriber',
     }[type]
 
     if (!prefs[prefKey]) return // notification disabled
@@ -72,7 +72,7 @@ export async function sendNotification(
 
     // Send to all recipients
     await resend.emails.send({
-      from: 'Oli & Hue <notifications@oliandhue.com>',
+      from: 'Oli & Hue <onboarding@resend.dev>',
       to: emails,
       subject,
       html,
