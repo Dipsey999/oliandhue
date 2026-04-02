@@ -9,6 +9,7 @@ interface SubmissionData {
   name: string
   email: string
   phone?: string
+  requirement?: string
   message?: string
 }
 
@@ -95,6 +96,7 @@ function buildEmail(
           { label: 'Name', value: d.name },
           { label: 'Email', value: d.email },
           { label: 'Phone', value: d.phone || '—' },
+          { label: 'Requirements', value: d.requirement || '—' },
           { label: 'Message', value: d.message || '—' },
         ]),
       }

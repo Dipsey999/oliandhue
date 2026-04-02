@@ -14,6 +14,7 @@ export interface ContactSubmission {
   email: string
   message: string | null
   phone: string | null
+  requirement: string | null
   checkbox_newsletter: boolean
   status: 'new' | 'read' | 'replied' | 'archived'
   form_source: string

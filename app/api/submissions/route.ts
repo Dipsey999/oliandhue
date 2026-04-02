@@ -15,7 +15,7 @@ export async function OPTIONS() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, phone, message, checkbox_newsletter } = body
+    const { name, email, phone, requirement, message, checkbox_newsletter } = body
 
     // Validate required fields
     if (!name || typeof name !== 'string' || !name.trim()) {
@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
       name: name.trim(),
       email: email.trim(),
       phone: phone?.trim() || null,
+      requirement: requirement?.trim() || null,
       message: message?.trim() || null,
       checkbox_newsletter: !!checkbox_newsletter,
     })
@@ -51,7 +52,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Fire-and-forget email notification
-    sendNotification('submission', { name: name.trim(), email: email.trim(), phone: phone?.trim(), message: message?.trim() })
+    sendNotification('submission', { name: name.trim(), email: email.trim(), phone: phone?.trim(), requirement: requirement?.trim(), message: message?.trim() })
 
     return NextResponse.json({ success: true }, { headers: corsHeaders })
   } catch (err) {

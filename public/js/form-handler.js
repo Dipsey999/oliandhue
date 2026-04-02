@@ -93,6 +93,7 @@
       name: fields['name'] || fields['Name'] || '',
       email: fields['Email'] || fields['email'] || '',
       phone: fields['Phone'] || fields['phone'] || '',
+      requirement: fields['requirement_list'] || '',
       message: fields['Message'] || fields['message'] || '',
       checkbox_newsletter: !!fields['checkbox'],
     };
