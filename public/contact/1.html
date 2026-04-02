@@ -430,6 +430,64 @@ requestAnimationFrame(raf);
 
 
 
+<!-- Plan URL params banner -->
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var plan = params.get('plan');
+  var track = params.get('track');
+  var source = params.get('source');
+
+  if (plan) {
+    // Show banner above the form
+    var formComponent = document.querySelector('.contact-form_component');
+    if (formComponent) {
+      var banner = document.createElement('div');
+      banner.style.cssText = 'background:#1a1a2e;border:1px solid #333;border-radius:10px;padding:12px 16px;margin-bottom:16px;color:#fff;font-size:14px;';
+      var text = 'You selected the <strong>' + plan + '</strong> plan';
+      if (track) text += ' (<strong>' + track + '</strong>)';
+      banner.innerHTML = text;
+      formComponent.parentElement.insertBefore(banner, formComponent);
+    }
+
+    // Add hidden fields to the form
+    var form = document.getElementById('wf-form-Contact-form');
+    if (form) {
+      var hiddenPlan = document.createElement('input');
+      hiddenPlan.type = 'hidden';
+      hiddenPlan.name = 'plan';
+      hiddenPlan.value = plan;
+      form.appendChild(hiddenPlan);
+
+      if (track) {
+        var hiddenTrack = document.createElement('input');
+        hiddenTrack.type = 'hidden';
+        hiddenTrack.name = 'track';
+        hiddenTrack.value = track;
+        form.appendChild(hiddenTrack);
+      }
+
+      if (source) {
+        var hiddenSource = document.createElement('input');
+        hiddenSource.type = 'hidden';
+        hiddenSource.name = 'plan_source';
+        hiddenSource.value = source;
+        form.appendChild(hiddenSource);
+      }
+
+      // Set hidden requirement_list field with plan info
+      var reqField = document.createElement('input');
+      reqField.type = 'hidden';
+      reqField.name = 'requirement_list';
+      var reqValue = 'One-time Plan: ' + plan;
+      if (track) reqValue += ' (' + track + ')';
+      reqField.value = reqValue;
+      form.appendChild(reqField);
+    }
+  }
+})();
+</script>
+
 <!-- Disable Textfields in contact -->
 
 <script>

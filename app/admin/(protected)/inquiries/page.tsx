@@ -40,8 +40,8 @@ export default async function InquiriesPage({
       <div className="p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-xl font-bold text-white">Project Inquiries</h1>
-            <p className="text-sm text-neutral-500 mt-1">{inquiries?.length ?? 0} total inquiries</p>
+            <h1 className="text-xl font-bold text-white">One-time Plan Submissions</h1>
+            <p className="text-sm text-neutral-500 mt-1">{inquiries?.length ?? 0} total submissions</p>
           </div>
         </div>
 

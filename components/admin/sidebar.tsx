@@ -18,7 +18,7 @@ const iconMap = {
 const NAV_ITEMS = [
   { label: 'Dashboard', href: '/admin/dashboard', icon: 'LayoutDashboard' },
   { label: 'Submissions', href: '/admin/submissions', icon: 'MessageSquare' },
-  { label: 'Inquiries', href: '/admin/inquiries', icon: 'Briefcase' },
+  { label: 'One-time Plans', href: '/admin/inquiries', icon: 'Briefcase' },
   { label: 'Subscribers', href: '/admin/subscribers', icon: 'Mail' },
   { label: 'Clients', href: '/admin/clients', icon: 'Users' },
   { label: 'Blog', href: '/admin/blog', icon: 'FileText' },

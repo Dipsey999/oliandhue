@@ -89,14 +89,35 @@
    */
   function handleContactForm(form) {
     var fields = serializeForm(form);
+
+    // Read plan info from URL params
+    var urlParams = new URLSearchParams(window.location.search);
+    var plan = urlParams.get('plan') || '';
+    var track = urlParams.get('track') || '';
+    var source = urlParams.get('source') || '';
+
+    // Build requirement string
+    var requirement = fields['requirement_list'] || '';
+    if (plan && !requirement) {
+      requirement = 'One-time Plan: ' + plan;
+      if (track) requirement += ' (' + track + ')';
+    }
+
     var payload = {
       name: fields['name'] || fields['Name'] || '',
       email: fields['Email'] || fields['email'] || '',
       phone: fields['Phone'] || fields['phone'] || '',
-      requirement: fields['requirement_list'] || '',
+      requirement: requirement,
       message: fields['Message'] || fields['message'] || '',
       checkbox_newsletter: !!fields['checkbox'],
     };
+
+    // Include plan details if present
+    if (plan) {
+      payload.plan = plan;
+      if (track) payload.track = track;
+      if (source) payload.source = source;
+    }
 
     return postJSON(apiBase() + '/api/submissions', payload);
   }

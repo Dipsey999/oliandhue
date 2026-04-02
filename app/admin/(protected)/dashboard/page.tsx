@@ -46,7 +46,7 @@ export default async function DashboardPage() {
       <div className="p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <StatsCard title="New Submissions" value={submissions.count ?? 0} icon={MessageSquare} description="Unread contact messages" />
-          <StatsCard title="New Inquiries" value={inquiries.count ?? 0} icon={Briefcase} description="Pending project requests" />
+          <StatsCard title="One-time Plans" value={inquiries.count ?? 0} icon={Briefcase} description="One-time plan submissions" />
           <StatsCard title="Subscribers" value={subscribers.count ?? 0} icon={Mail} description="Newsletter signups" />
           <StatsCard title="Published Posts" value={blogPosts.count ?? 0} icon={FileText} description="Live blog articles" />
         </div>
