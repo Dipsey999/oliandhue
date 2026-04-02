@@ -8,6 +8,7 @@ type NotificationType = 'submission' | 'inquiry' | 'subscriber'
 interface SubmissionData {
   name: string
   email: string
+  phone?: string
   message?: string
 }
 
@@ -93,6 +94,7 @@ function buildEmail(
         html: emailTemplate('New Contact Submission', [
           { label: 'Name', value: d.name },
           { label: 'Email', value: d.email },
+          { label: 'Phone', value: d.phone || '—' },
           { label: 'Message', value: d.message || '—' },
         ]),
       }

@@ -85,13 +85,14 @@
 
   /**
    * contact/1.html  —  "Contact form"
-   * Fields: name, Email, Message, checkbox (newsletter opt-in)
+   * Fields: name, Email, Phone, Message, checkbox (newsletter opt-in)
    */
   function handleContactForm(form) {
     var fields = serializeForm(form);
     var payload = {
       name: fields['name'] || fields['Name'] || '',
       email: fields['Email'] || fields['email'] || '',
+      phone: fields['Phone'] || fields['phone'] || '',
       message: fields['Message'] || fields['message'] || '',
       checkbox_newsletter: !!fields['checkbox'],
     };
