@@ -159,6 +159,155 @@
   transform: translateX(16px);
 }
 
+/* ── Typography & Layout Overrides ── */
+
+/* Heading — not massive, refined */
+.pricing_heading {
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  line-height: 1.1 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* Widen container for 3 columns */
+.section_pricing .container-xsmall {
+  max-width: 1100px;
+}
+
+/* Card block */
+.pricing_block {
+  position: relative;
+  padding: 2rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 480px;
+  overflow: visible;
+}
+
+/* Plan name in card — compact */
+.pricing_plan-name {
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.5rem !important;
+  color: #fff;
+}
+
+/* "Starting from" label */
+.pricing_starting-label {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+}
+
+/* Price number */
+.pricing_price {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.15rem;
+  line-height: 1.4;
+}
+.pricing_price .price-display {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(131deg, #fff 30%, #666);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Per month note */
+.pricing_price-note {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 0;
+}
+
+/* Let's Talk style */
+.pricing_price-talk {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.15rem;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(131deg, #fff 30%, #888);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Feature list */
+.pricing_features {
+  flex: 1;
+  margin-top: 0.75rem;
+}
+.pricing_feature {
+  margin-bottom: 0.25rem;
+}
+.pricing_feature-text {
+  font-size: 0.8125rem !important;
+  line-height: 1.5 !important;
+  color: rgba(255,255,255,0.55);
+}
+.pricing_feature-detail {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Button wrapper */
+.pricing_button-wrapper {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* Guarantee text */
+.pricing_guarantee {
+  text-align: center;
+  width: 100%;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
+}
+
+/* Divider */
+.pricing_divider-label {
+  font-size: 0.65rem !important;
+  color: rgba(255,255,255,0.3) !important;
+}
+.pricing_divider-line {
+  opacity: 0.15;
+}
+
+/* Popular badge */
+.pricing_badge {
+  font-size: 0.6rem;
+}
+
+/* Info text */
+.pricing_info-text {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Mobile: single column */
+@media (max-width: 991px) {
+  .pricing_grid {
+    grid-template-columns: 1fr !important;
+    max-width: 26rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pricing_block {
+    min-height: auto;
+  }
+}
+
 /* Animation entry */
 @media (min-width:992px) {
   html.w-mod-js:not(.w-mod-ix) [data-w-id="dp-card-1"],
@@ -479,12 +628,13 @@
                   </h2>
                 </div>
               </div>
-              <h2
+              <h1
                 data-w-id="7bddbbc7-19d8-4f7e-8774-349841e43c3b"
                 class="pricing_heading"
               >
                 Design Partner
-              </h2>
+              </h1>
+              <p style="text-align:center;color:rgba(255,255,255,0.45);font-size:0.875rem;margin-top:0.5rem;margin-bottom:0;">Choose the plan that fits your needs. Scale up or down anytime.</p>
             </div>
 
             <!-- Toggles -->
@@ -517,7 +667,7 @@
                   <div class="pricing_main">
                     <div class="pricing_value-wrap">
                       <h2 class="pricing_plan-name">Starter</h2>
-                      <div class="pricing_price">Starting from <span class="price-display" data-inr="&#8377;75,000" data-usd="$899"></span></div>
+                      <div class="pricing_starting-label">Starting from</div><div class="pricing_price"><span class="price-display" data-inr="&#8377;75,000" data-usd="$899"></span></div>
                       <p class="pricing_price-note">per month</p>
                     </div>
                     <ul role="list" class="pricing_features">
@@ -579,7 +729,7 @@
                   <div class="pricing_main">
                     <div class="pricing_value-wrap">
                       <h2 class="pricing_plan-name">Professional</h2>
-                      <div class="pricing_price">Starting from <span class="price-display" data-inr="&#8377;1,50,000" data-usd="$1,799"></span></div>
+                      <div class="pricing_starting-label">Starting from</div><div class="pricing_price"><span class="price-display" data-inr="&#8377;1,50,000" data-usd="$1,799"></span></div>
                       <p class="pricing_price-note">per month</p>
                     </div>
                     <ul role="list" class="pricing_features">
@@ -707,7 +857,7 @@
                   <div class="pricing_main">
                     <div class="pricing_value-wrap">
                       <h2 class="pricing_plan-name">Build</h2>
-                      <div class="pricing_price">Starting from <span class="price-display" data-inr="&#8377;2,00,000" data-usd="$2,399"></span></div>
+                      <div class="pricing_starting-label">Starting from</div><div class="pricing_price"><span class="price-display" data-inr="&#8377;2,00,000" data-usd="$2,399"></span></div>
                       <p class="pricing_price-note">per month</p>
                     </div>
                     <ul role="list" class="pricing_features">
@@ -769,7 +919,7 @@
                   <div class="pricing_main">
                     <div class="pricing_value-wrap">
                       <h2 class="pricing_plan-name">Growth</h2>
-                      <div class="pricing_price">Starting from <span class="price-display" data-inr="&#8377;3,50,000" data-usd="$4,199"></span></div>
+                      <div class="pricing_starting-label">Starting from</div><div class="pricing_price"><span class="price-display" data-inr="&#8377;3,50,000" data-usd="$4,199"></span></div>
                       <p class="pricing_price-note">per month</p>
                     </div>
                     <ul role="list" class="pricing_features">
