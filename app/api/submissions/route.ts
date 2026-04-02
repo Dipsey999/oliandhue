@@ -34,14 +34,19 @@ export async function POST(request: NextRequest) {
 
     const supabase = createAdminClient()
 
-    const { error } = await supabase.from('contact_submissions').insert({
+    const insertData: Record<string, unknown> = {
       name: name.trim(),
       email: email.trim(),
       phone: phone?.trim() || null,
-      requirement: requirement?.trim() || null,
       message: message?.trim() || null,
       checkbox_newsletter: !!checkbox_newsletter,
-    })
+    }
+    // Only include requirement if it has a value (column may not exist yet)
+    if (requirement?.trim()) {
+      insertData.requirement = requirement.trim()
+    }
+
+    const { error } = await supabase.from('contact_submissions').insert(insertData)
 
     if (error) {
       console.error('Supabase insert error (contact_submissions):', error)
