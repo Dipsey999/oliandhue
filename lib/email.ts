@@ -74,7 +74,7 @@ export async function sendNotification(
     for (const email of emails) {
       try {
         await resend.emails.send({
-          from: 'Oli & Hue <notifications@oliandhue.com>',
+          from: 'Oli & Hue <hello@oliandhue.com>',
           to: [email],
           subject,
           html,
