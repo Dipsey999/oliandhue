@@ -353,6 +353,57 @@
     line-height: 1.6;
   }
 
+  /* ── Inline Quote Form ── */
+  .summary_form-section {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1rem;
+    background: rgba(255,255,255,0.02);
+  }
+  .summary_input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    color: #fff;
+    font-size: 0.85rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .summary_input::placeholder {
+    color: rgba(255,255,255,0.3);
+  }
+  .summary_input:focus {
+    border-color: rgba(255,255,255,0.25);
+  }
+  .summary_textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+  .summary_submit-btn {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    background: #fff;
+    color: #0a0a0a;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .summary_submit-btn:hover {
+    background: #e5e5e5;
+  }
+  .summary_submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 767px) {
     .wizard_options--2col,
@@ -2056,25 +2107,94 @@ requestAnimationFrame(raf);
 
     var href = '../contact/1.html?' + params.join('&');
 
-    html += '<div class="summary_cta">';
-    html += '<a href="' + href + '" class="button-gradient w-inline-block">';
-    html += '<div class="button-grad_inner">';
-    html += '<div class="button-grad_gradient">';
-    html += '<div class="button-grad_ball ball-1"></div>';
-    html += '<div class="button-grad_ball gradient__ball--2"></div>';
+    // Inline contact form
+    html += '<div class="summary_form-section">';
+    html += '<h3 style="color:#fff;font-size:1.1rem;font-weight:600;margin-bottom:0.25rem;">Get Your Quote</h3>';
+    html += '<p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-bottom:1.25rem;">Fill in your details and we\'ll get back to you within 24 hours.</p>';
+    html += '<form id="wizard-quote-form" class="summary_form">';
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">';
+    html += '<input type="text" name="name" placeholder="Full name" required class="summary_input" />';
+    html += '<input type="email" name="email" placeholder="name@company.com" required class="summary_input" />';
     html += '</div>';
-    html += '<div class="button-grad_text">Get a Quote &rarr;</div>';
+    html += '<input type="tel" name="phone" placeholder="+91 9901 177474" class="summary_input" style="margin-top:0.75rem;" />';
+    html += '<textarea name="message" placeholder="Any additional details about your project..." rows="3" class="summary_input summary_textarea" style="margin-top:0.75rem;"></textarea>';
+    // Store all wizard data as hidden fields
+    html += '<input type="hidden" name="services" value="' + (answers.services || []).join(', ') + '" />';
+    for (var key in answers) {
+      if (key === 'services') continue;
+      var val = answers[key];
+      var v = Array.isArray(val) ? val.join(', ') : (val || '');
+      if (v) html += '<input type="hidden" name="wizard_' + key + '" value="' + v.replace(/"/g, '&quot;') + '" />';
+    }
+    html += '<input type="hidden" name="estimate" value="' + (currency === 'inr' ? formatINR(est.inr.min) + ' – ' + formatINR(est.inr.max) : '$' + est.usd.min.toLocaleString() + ' – $' + est.usd.max.toLocaleString()) + '" />';
+    html += '<input type="hidden" name="currency" value="' + currency + '" />';
+    html += '<div style="margin-top:1rem;">';
+    html += '<button type="submit" class="summary_submit-btn">Get a Quote &rarr;</button>';
     html += '</div>';
-    html += '<div class="button-grad_glow">';
-    html += '<div class="button-grad_ball ball-1"></div>';
-    html += '<div class="button-grad_ball gradient__ball--2"></div>';
-    html += '</div>';
-    html += '</a>';
+    html += '<div id="wizard-form-success" style="display:none;text-align:center;padding:1.5rem;"><div style="font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:0.25rem;">Thank you!</div><div style="color:rgba(255,255,255,0.5);font-size:0.85rem;">We\'ll review your project and get back to you within 24 hours.</div></div>';
+    html += '<div id="wizard-form-error" style="display:none;text-align:center;padding:0.75rem;color:#f87171;font-size:0.8rem;">Something went wrong. Please try again.</div>';
+    html += '</form>';
     html += '</div>';
 
     html += '<div class="summary_note">Final pricing is based on project scope and complexity. We\'ll discuss the details on a quick call.</div>';
 
     document.getElementById('summaryContent').innerHTML = html;
+
+    // Attach form submit handler
+    var quoteForm = document.getElementById('wizard-quote-form');
+    if (quoteForm) {
+      quoteForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = quoteForm.querySelector('.summary_submit-btn');
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+
+        var fd = new FormData(quoteForm);
+        // Build project_details from all wizard_ fields
+        var details = [];
+        if (fd.get('services')) details.push('Services: ' + fd.get('services'));
+        for (var pair of fd.entries()) {
+          if (pair[0].startsWith('wizard_')) {
+            var label = pair[0].replace('wizard_', '').replace(/_/g, ' ');
+            details.push(label + ': ' + pair[1]);
+          }
+        }
+        if (fd.get('estimate')) details.push('Estimate: ' + fd.get('estimate'));
+        if (fd.get('message')) details.push('Message: ' + fd.get('message'));
+
+        var payload = {
+          name: fd.get('name'),
+          email: fd.get('email'),
+          phone: fd.get('phone') || '',
+          requirement: fd.get('services') || '',
+          project_details: details.join('\n'),
+          project_links: '',
+          budget: fd.get('estimate') || ''
+        };
+
+        fetch('/api/inquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.success) {
+            quoteForm.style.display = 'none';
+            document.getElementById('wizard-form-success').style.display = 'block';
+          } else {
+            document.getElementById('wizard-form-error').style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Get a Quote →';
+          }
+        })
+        .catch(function() {
+          document.getElementById('wizard-form-error').style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Get a Quote →';
+        });
+      });
+    }
   }
 
   // ══════════════════════════════════════════
