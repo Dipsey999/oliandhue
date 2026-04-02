@@ -5,6 +5,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Phone field — span full grid width */
+.contact-form_input:has(#Phone) {
+  grid-column: 1 / -1;
+  border-right: none !important;
+}
+
 /* Requirements section — full width */
 .contact-form_requirements-section {
   padding: 1.5rem 0;
