@@ -1,7 +1,13 @@
 import { Resend } from 'resend'
 import { createAdminClient } from '@/lib/supabase/admin'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend() {
+  if (!process.env.RESEND_API_KEY) {
+    console.error('[email] RESEND_API_KEY not set')
+    return null
+  }
+  return new Resend(process.env.RESEND_API_KEY)
+}
 
 type NotificationType = 'submission' | 'inquiry' | 'subscriber'
 
@@ -71,6 +77,9 @@ export async function sendNotification(
     const { subject, html } = buildEmail(type, data)
 
     // Send to each recipient individually (so one failure doesn't block others)
+    const resend = getResend()
+    if (!resend) return
+
     for (const email of emails) {
       try {
         await resend.emails.send({
