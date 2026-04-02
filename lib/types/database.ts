@@ -16,8 +16,15 @@ export interface ContactSubmission {
   phone: string | null
   requirement: string | null
   checkbox_newsletter: boolean
-  status: 'new' | 'read' | 'replied' | 'archived'
+  status: 'new' | 'contacted' | 'in_discussion' | 'proposal_sent' | 'negotiation' | 'won' | 'lost' | 'archived'
   form_source: string
+  company: string | null
+  priority: 'low' | 'medium' | 'high' | 'urgent'
+  tags: string[] | null
+  notes: string | null
+  assigned_to: string | null
+  follow_up_date: string | null
+  project_value: string | null
   created_at: string
   updated_at: string
 }
@@ -31,10 +38,15 @@ export interface ProjectInquiry {
   project_details: string | null
   project_links: string | null
   budget: string | null
-  status: 'new' | 'in_progress' | 'completed' | 'archived'
+  status: 'new' | 'contacted' | 'in_discussion' | 'proposal_sent' | 'negotiation' | 'won' | 'lost' | 'archived'
   assigned_to: string | null
   client_id: string | null
   notes: string | null
+  company: string | null
+  priority: 'low' | 'medium' | 'high' | 'urgent'
+  tags: string[] | null
+  follow_up_date: string | null
+  project_value: string | null
   created_at: string
   updated_at: string
 }
@@ -108,5 +120,31 @@ export interface ActivityLog {
   entity_type: string | null
   entity_id: string | null
   metadata: Record<string, unknown> | null
+  created_at: string
+}
+
+export interface Payment {
+  id: string
+  entity_type: 'submission' | 'inquiry'
+  entity_id: string
+  amount: number
+  currency: 'INR' | 'USD'
+  status: 'pending' | 'partial' | 'paid' | 'overdue' | 'refunded'
+  payment_date: string | null
+  due_date: string | null
+  method: 'bank_transfer' | 'upi' | 'paypal' | 'stripe' | 'other' | null
+  invoice_number: string | null
+  notes: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface StatusHistory {
+  id: string
+  entity_type: 'submission' | 'inquiry'
+  entity_id: string
+  old_status: string | null
+  new_status: string
+  changed_by: string | null
   created_at: string
 }

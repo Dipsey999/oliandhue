@@ -9,7 +9,7 @@ export function StatusBadge({ status }: { status: string }) {
         STATUS_COLORS[status] || 'bg-gray-100 text-gray-600'
       )}
     >
-      {status.replace('_', ' ')}
+      {status.replace(/_/g, ' ')}
     </span>
   )
 }

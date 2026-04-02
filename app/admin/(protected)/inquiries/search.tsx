@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Search } from 'lucide-react'
 
-export function SubmissionsSearch({ defaultValue }: { defaultValue?: string }) {
+export function InquiriesSearch({ defaultValue }: { defaultValue?: string }) {
   const router = useRouter()
   const [query, setQuery] = useState(defaultValue ?? '')
 
@@ -12,7 +12,7 @@ export function SubmissionsSearch({ defaultValue }: { defaultValue?: string }) {
     e.preventDefault()
     const params = new URLSearchParams()
     if (query) params.set('q', query)
-    router.push(`/admin/submissions?${params.toString()}`)
+    router.push(`/admin/inquiries?${params.toString()}`)
   }
 
   return (

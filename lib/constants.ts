@@ -1,8 +1,12 @@
-export const SUBMISSION_STATUSES = ['new', 'read', 'replied', 'archived'] as const
-export type SubmissionStatus = (typeof SUBMISSION_STATUSES)[number]
+export const PIPELINE_STATUSES = ['new', 'contacted', 'in_discussion', 'proposal_sent', 'negotiation', 'won', 'lost', 'archived'] as const
+export type PipelineStatus = (typeof PIPELINE_STATUSES)[number]
 
-export const INQUIRY_STATUSES = ['new', 'in_progress', 'completed', 'archived'] as const
-export type InquiryStatus = (typeof INQUIRY_STATUSES)[number]
+// Backward-compatible aliases
+export const SUBMISSION_STATUSES = PIPELINE_STATUSES
+export type SubmissionStatus = PipelineStatus
+
+export const INQUIRY_STATUSES = PIPELINE_STATUSES
+export type InquiryStatus = PipelineStatus
 
 export const REQUIREMENT_TYPES = ['product_design', 'website', 'branding'] as const
 export type RequirementType = (typeof REQUIREMENT_TYPES)[number]
@@ -10,13 +14,47 @@ export type RequirementType = (typeof REQUIREMENT_TYPES)[number]
 export const ROLES = ['admin', 'member'] as const
 export type Role = (typeof ROLES)[number]
 
+export const PRIORITIES = ['low', 'medium', 'high', 'urgent'] as const
+export type Priority = (typeof PRIORITIES)[number]
+
+export const PAYMENT_STATUSES = ['pending', 'partial', 'paid', 'overdue', 'refunded'] as const
+export type PaymentStatus = (typeof PAYMENT_STATUSES)[number]
+
+export const PAYMENT_METHODS = ['bank_transfer', 'upi', 'paypal', 'stripe', 'other'] as const
+export type PaymentMethod = (typeof PAYMENT_METHODS)[number]
+
+export const PAYMENT_METHOD_LABELS: Record<string, string> = {
+  bank_transfer: 'Bank Transfer',
+  upi: 'UPI',
+  paypal: 'PayPal',
+  stripe: 'Stripe',
+  other: 'Other',
+}
+
 export const STATUS_COLORS: Record<string, string> = {
   new: 'bg-blue-900/40 text-blue-300',
-  read: 'bg-neutral-800 text-neutral-300',
-  replied: 'bg-green-900/40 text-green-300',
-  in_progress: 'bg-yellow-900/40 text-yellow-300',
-  completed: 'bg-green-900/40 text-green-300',
+  contacted: 'bg-cyan-900/40 text-cyan-300',
+  in_discussion: 'bg-purple-900/40 text-purple-300',
+  proposal_sent: 'bg-indigo-900/40 text-indigo-300',
+  negotiation: 'bg-amber-900/40 text-amber-300',
+  won: 'bg-green-900/40 text-green-300',
+  lost: 'bg-red-900/40 text-red-300',
   archived: 'bg-neutral-800 text-neutral-500',
+}
+
+export const PRIORITY_COLORS: Record<string, string> = {
+  low: 'bg-neutral-800 text-neutral-400',
+  medium: 'bg-blue-900/40 text-blue-300',
+  high: 'bg-orange-900/40 text-orange-300',
+  urgent: 'bg-red-900/40 text-red-300',
+}
+
+export const PAYMENT_STATUS_COLORS: Record<string, string> = {
+  pending: 'bg-yellow-900/40 text-yellow-300',
+  partial: 'bg-blue-900/40 text-blue-300',
+  paid: 'bg-green-900/40 text-green-300',
+  overdue: 'bg-red-900/40 text-red-300',
+  refunded: 'bg-neutral-800 text-neutral-400',
 }
 
 export const REQUIREMENT_LABELS: Record<string, string> = {

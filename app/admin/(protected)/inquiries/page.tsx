@@ -1,12 +1,19 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server'
 import { Topbar } from '@/components/admin/topbar'
 import { StatusBadge } from '@/components/admin/status-badge'
+import { PriorityBadge } from '@/components/admin/priority-badge'
 import { formatDate } from '@/lib/utils'
 import { REQUIREMENT_LABELS } from '@/lib/constants'
 import Link from 'next/link'
 import type { Profile, ProjectInquiry } from '@/lib/types/database'
+import { InquiriesSearch } from './search'
 
-export default async function InquiriesPage() {
+export default async function InquiriesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>
+}) {
+  const { q } = await searchParams
   const supabase = await createServerSupabaseClient()
 
   const { data: { user } } = await supabase.auth.getUser()
@@ -16,11 +23,16 @@ export default async function InquiriesPage() {
     .eq('id', user?.id ?? '')
     .single<Profile>()
 
-  const { data: inquiries } = await supabase
+  let query = supabase
     .from('project_inquiries')
     .select('*')
     .order('created_at', { ascending: false })
-    .returns<ProjectInquiry[]>()
+
+  if (q) {
+    query = query.or(`name.ilike.%${q}%,email.ilike.%${q}%`)
+  }
+
+  const { data: inquiries } = await query.returns<ProjectInquiry[]>()
 
   return (
     <>
@@ -33,6 +45,8 @@ export default async function InquiriesPage() {
           </div>
         </div>
 
+        <InquiriesSearch defaultValue={q} />
+
         <div className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden">
           <table className="w-full">
             <thead>
@@ -40,7 +54,8 @@ export default async function InquiriesPage() {
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Name</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Email</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Requirement</th>
-                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Budget</th>
+                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Priority</th>
+                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Project Value</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Status</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Date</th>
               </tr>
@@ -48,7 +63,7 @@ export default async function InquiriesPage() {
             <tbody className="divide-y divide-neutral-800">
               {(inquiries ?? []).length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-8 text-center text-sm text-neutral-500">
+                  <td colSpan={7} className="px-4 py-8 text-center text-sm text-neutral-500">
                     No inquiries found
                   </td>
                 </tr>
@@ -64,7 +79,8 @@ export default async function InquiriesPage() {
                     <td className="px-4 py-3 text-sm text-neutral-400">
                       {i.requirement ? REQUIREMENT_LABELS[i.requirement] || i.requirement : '-'}
                     </td>
-                    <td className="px-4 py-3 text-sm text-neutral-400">{i.budget || '-'}</td>
+                    <td className="px-4 py-3"><PriorityBadge priority={i.priority ?? 'medium'} /></td>
+                    <td className="px-4 py-3 text-sm text-neutral-400">{i.project_value || '-'}</td>
                     <td className="px-4 py-3"><StatusBadge status={i.status} /></td>
                     <td className="px-4 py-3 text-sm text-neutral-500">{formatDate(i.created_at)}</td>
                   </tr>

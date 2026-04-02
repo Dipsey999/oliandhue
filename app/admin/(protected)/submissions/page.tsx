@@ -1,6 +1,7 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server'
 import { Topbar } from '@/components/admin/topbar'
 import { StatusBadge } from '@/components/admin/status-badge'
+import { PriorityBadge } from '@/components/admin/priority-badge'
 import { formatDate, truncate } from '@/lib/utils'
 import Link from 'next/link'
 import type { Profile, ContactSubmission } from '@/lib/types/database'
@@ -30,7 +31,7 @@ export default async function SubmissionsPage({
     query = query.or(`name.ilike.%${q}%,email.ilike.%${q}%`)
   }
 
-  const { data: submissions, count } = await query.returns<ContactSubmission[]>()
+  const { data: submissions } = await query.returns<ContactSubmission[]>()
 
   return (
     <>
@@ -51,7 +52,9 @@ export default async function SubmissionsPage({
               <tr className="border-b border-neutral-800 bg-[#0a0a0a]">
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Name</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Email</th>
-                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Message</th>
+                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Requirement</th>
+                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Priority</th>
+                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Assigned To</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Status</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Date</th>
               </tr>
@@ -59,7 +62,7 @@ export default async function SubmissionsPage({
             <tbody className="divide-y divide-neutral-800">
               {(submissions ?? []).length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-sm text-neutral-500">
+                  <td colSpan={7} className="px-4 py-8 text-center text-sm text-neutral-500">
                     No submissions found
                   </td>
                 </tr>
@@ -72,7 +75,9 @@ export default async function SubmissionsPage({
                       </Link>
                     </td>
                     <td className="px-4 py-3 text-sm text-neutral-400">{s.email}</td>
-                    <td className="px-4 py-3 text-sm text-neutral-500">{truncate(s.message || '', 50)}</td>
+                    <td className="px-4 py-3 text-sm text-neutral-400">{s.requirement ? truncate(s.requirement, 30) : '-'}</td>
+                    <td className="px-4 py-3"><PriorityBadge priority={s.priority ?? 'medium'} /></td>
+                    <td className="px-4 py-3 text-sm text-neutral-400">{s.assigned_to || '-'}</td>
                     <td className="px-4 py-3"><StatusBadge status={s.status} /></td>
                     <td className="px-4 py-3 text-sm text-neutral-500">{formatDate(s.created_at)}</td>
                   </tr>
