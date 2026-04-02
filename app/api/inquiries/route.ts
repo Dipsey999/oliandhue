@@ -52,8 +52,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Fire-and-forget email notification
-    sendNotification('inquiry', {
+    // Send email notification (await so Vercel doesn't kill it)
+    await sendNotification('inquiry', {
       name: name.trim(), email: email.trim(), phone: phone?.trim(),
       requirement, project_details: project_details?.trim(),
       project_links: project_links?.trim(), budget,

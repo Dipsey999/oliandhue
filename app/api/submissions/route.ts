@@ -56,8 +56,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Fire-and-forget email notification
-    sendNotification('submission', { name: name.trim(), email: email.trim(), phone: phone?.trim(), requirement: requirement?.trim(), message: message?.trim() })
+    // Send email notification (await so Vercel doesn't kill it)
+    await sendNotification('submission', { name: name.trim(), email: email.trim(), phone: phone?.trim(), requirement: requirement?.trim(), message: message?.trim() })
 
     return NextResponse.json({ success: true }, { headers: corsHeaders })
   } catch (err) {
