@@ -50,9 +50,9 @@ export async function sendNotification(
 
     // Check if this notification type is enabled
     const prefKey = {
-      submission: 'email_on_new_submission',
-      inquiry: 'email_on_new_inquiry',
-      subscriber: 'email_on_new_subscriber',
+      submission: 'email_on_submission',
+      inquiry: 'email_on_inquiry',
+      subscriber: 'email_on_subscriber',
     }[type]
 
     if (!prefs[prefKey]) return // notification disabled
@@ -70,13 +70,19 @@ export async function sendNotification(
     // Build email content
     const { subject, html } = buildEmail(type, data)
 
-    // Send to all recipients
-    await resend.emails.send({
-      from: 'Oli & Hue <onboarding@resend.dev>',
-      to: emails,
-      subject,
-      html,
-    })
+    // Send to each recipient individually (so one failure doesn't block others)
+    for (const email of emails) {
+      try {
+        await resend.emails.send({
+          from: 'Oli & Hue <onboarding@resend.dev>',
+          to: [email],
+          subject,
+          html,
+        })
+      } catch (e) {
+        console.error('[email send failed for ' + email + ']', e)
+      }
+    }
   } catch (err) {
     console.error('[email notification error]', err)
     // Don't throw — notifications shouldn't break the form submission
