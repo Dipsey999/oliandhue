@@ -103,6 +103,13 @@ export interface PortfolioItem {
   final_title: string | null
   final_text: string | null
   final_image_url: string | null
+  role_text: string | null
+  overview_heading: string | null
+  overview_text: string | null
+  results_heading: string | null
+  results_text: string | null
+  showcase_image_url: string | null
+  next_project_slug: string | null
   display_order: number
   published: boolean
   tags: string[] | null

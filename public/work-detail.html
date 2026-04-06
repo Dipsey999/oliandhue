@@ -308,8 +308,8 @@
       </div>
     </section>
 
-    <!-- Content Section -->
-    <section id="work-content-section" class="section-work-content" style="display:none;">
+    <!-- Overview Section -->
+    <section id="work-overview-section" class="section-work-content" style="display:none;">
       <div class="padding-section-large is-tablet-small"></div>
       <div class="padding-global">
         <div class="container-medium">
@@ -317,9 +317,9 @@
             <div class="work-content_content">
               <div class="work-content_head">
                 <div class="text-style-label">Project Overview</div>
-                <h2 id="work-subtitle" class="work-content_heading"></h2>
+                <h2 id="work-overview-heading" class="work-content_heading"></h2>
               </div>
-              <div id="work-content" class="text-rich-text w-richtext" style="color:rgba(255,255,255,0.7);"></div>
+              <div id="work-overview-text" class="text-rich-text w-richtext" style="color:rgba(255,255,255,0.7);"></div>
             </div>
             <div id="work-side-images" class="case-content_imgs-wrap" style="display:none;">
               <div id="work-side-gallery" role="list" class="case-content_imgs-list"></div>
@@ -329,12 +329,56 @@
       </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section (remaining images) -->
     <section id="work-gallery-section" class="section-work-content" style="display:none;">
       <div class="padding-section-small"></div>
       <div class="padding-global">
         <div class="container-medium">
           <div id="work-gallery" style="display:grid;grid-template-columns:1fr;gap:1.5rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="work-results-section" class="section-work-content" style="display:none;">
+      <div class="padding-section-large is-tablet-small"></div>
+      <div class="padding-global">
+        <div class="container-medium">
+          <div class="work-content_content" style="max-width:48rem;">
+            <div class="work-content_head">
+              <div class="text-style-label">Results</div>
+              <h2 id="work-results-heading" class="work-content_heading"></h2>
+            </div>
+            <div id="work-results-text" class="text-rich-text w-richtext" style="color:rgba(255,255,255,0.7);"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section id="work-showcase-section" class="section-work-content" style="display:none;">
+      <div class="padding-section-small"></div>
+      <div class="padding-global">
+        <div class="container-medium">
+          <div class="work_img-wrap">
+            <img id="work-showcase-img" loading="lazy" alt="" style="width:100%;display:block;border-radius:0.75rem;" class="work_img"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next Project Section -->
+    <section id="work-next-section" class="section_work-related" style="display:none;">
+      <div class="padding-section-medium"></div>
+      <div class="padding-global">
+        <div class="container-medium">
+          <a id="work-next-link" href="#" class="w-inline-block" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:2rem;border:1px solid rgba(255,255,255,0.1);border-radius:1rem;text-decoration:none;transition:border-color 0.2s;">
+            <div>
+              <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:rgba(255,255,255,0.4);margin-bottom:0.25rem;">Next Project</div>
+              <div id="work-next-name" style="color:#fff;font-size:1.125rem;font-weight:500;"></div>
+            </div>
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -543,49 +587,86 @@ requestAnimationFrame(raf);
       var metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc && data.description) metaDesc.setAttribute('content', data.description);
 
-      // Fill header
-      document.getElementById('work-brand').textContent = data.client_name || data.name;
-      document.getElementById('work-role').textContent = getCategoryLabel(data.category);
-      document.getElementById('work-heading').textContent = data.description || data.name;
+      // --- Header Section ---
+      document.getElementById('work-brand').textContent = data.name || '';
+      document.getElementById('work-role').textContent = data.role_text || getCategoryLabel(data.category);
+      document.getElementById('work-heading').textContent = data.heading || data.name;
 
-      // Cover image
       if (data.cover_image_url) {
         document.getElementById('work-cover').src = data.cover_image_url;
         document.getElementById('work-cover').alt = data.name;
       }
 
-      // Show header
       document.getElementById('work-header-section').style.display = '';
 
-      // Content (rich text)
-      if (data.intro_text) {
-        // Set subtitle from name
-        document.getElementById('work-subtitle').textContent = data.name;
-        document.getElementById('work-content').innerHTML = data.intro_text;
-        document.getElementById('work-content-section').style.display = '';
+      // --- Overview Section ---
+      if (data.overview_heading || data.overview_text) {
+        if (data.overview_heading) {
+          document.getElementById('work-overview-heading').textContent = data.overview_heading;
+        }
+        if (data.overview_text) {
+          document.getElementById('work-overview-text').innerHTML = escapeHtml(data.overview_text).replace(/\n/g, '<br>');
+        }
+
+        // Side images (first 3 case images shown beside overview, like hatch.html)
+        if (data.case_images && data.case_images.length > 0) {
+          var sideGallery = document.getElementById('work-side-gallery');
+          var sideImages = data.case_images.slice(0, 3);
+          sideGallery.innerHTML = sideImages.map(function(url) {
+            return '<div role="listitem" class="case-content_imgs-item w-dyn-item">' +
+              '<div class="case-content_image-wrap">' +
+              '<img loading="lazy" src="' + escapeAttr(url) + '" alt="' + escapeAttr(data.name) + '" class="case-content_image"/>' +
+              '</div></div>';
+          }).join('');
+          document.getElementById('work-side-images').style.display = '';
+        }
+
+        document.getElementById('work-overview-section').style.display = '';
       }
 
-      // Side images (first 3 case images shown beside content, like hatch.html)
-      if (data.case_images && data.case_images.length > 0) {
-        var sideGallery = document.getElementById('work-side-gallery');
-        var sideImages = data.case_images.slice(0, 3);
-        sideGallery.innerHTML = sideImages.map(function(url) {
-          return '<div role="listitem" class="case-content_imgs-item w-dyn-item">' +
-            '<div class="case-content_image-wrap">' +
-            '<img loading="lazy" src="' + escapeAttr(url) + '" alt="' + escapeAttr(data.name) + '" class="case-content_image"/>' +
-            '</div></div>';
-        }).join('');
-        document.getElementById('work-side-images').style.display = '';
-
-        // Remaining images in full-width gallery
+      // --- Gallery Section (remaining images after the first 3) ---
+      if (data.case_images && data.case_images.length > 3) {
         var remaining = data.case_images.slice(3);
-        if (remaining.length > 0) {
-          var gallery = document.getElementById('work-gallery');
-          gallery.innerHTML = remaining.map(function(url) {
-            return '<div class="work_img-wrap"><img src="' + escapeAttr(url) + '" alt="' + escapeAttr(data.name) + '" style="width:100%;display:block;border-radius:0.75rem;" loading="lazy" class="work_img"/></div>';
-          }).join('');
-          document.getElementById('work-gallery-section').style.display = '';
+        var gallery = document.getElementById('work-gallery');
+        gallery.innerHTML = remaining.map(function(url) {
+          return '<div class="work_img-wrap"><img src="' + escapeAttr(url) + '" alt="' + escapeAttr(data.name) + '" style="width:100%;display:block;border-radius:0.75rem;" loading="lazy" class="work_img"/></div>';
+        }).join('');
+        document.getElementById('work-gallery-section').style.display = '';
+      }
+
+      // --- Results Section ---
+      if (data.results_heading || data.results_text) {
+        if (data.results_heading) {
+          document.getElementById('work-results-heading').textContent = data.results_heading;
         }
+        if (data.results_text) {
+          document.getElementById('work-results-text').innerHTML = escapeHtml(data.results_text).replace(/\n/g, '<br>');
+        }
+        document.getElementById('work-results-section').style.display = '';
+      }
+
+      // --- Showcase Section ---
+      if (data.showcase_image_url) {
+        document.getElementById('work-showcase-img').src = data.showcase_image_url;
+        document.getElementById('work-showcase-img').alt = data.name + ' showcase';
+        document.getElementById('work-showcase-section').style.display = '';
+      }
+
+      // --- Next Project Section ---
+      if (data.next_project_slug) {
+        fetch('/api/portfolio/' + encodeURIComponent(data.next_project_slug))
+          .then(function(r) {
+            if (!r.ok) throw new Error('Not found');
+            return r.json();
+          })
+          .then(function(nextData) {
+            document.getElementById('work-next-name').textContent = nextData.name;
+            document.getElementById('work-next-link').href = 'work-detail.html?slug=' + encodeURIComponent(nextData.slug);
+            document.getElementById('work-next-section').style.display = '';
+          })
+          .catch(function() {
+            // Next project not found — silently skip
+          });
       }
 
       // Show back link
@@ -609,6 +690,11 @@ requestAnimationFrame(raf);
   function escapeAttr(str) {
     if (!str) return '';
     return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 })();
 </script>
