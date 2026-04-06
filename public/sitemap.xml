@@ -111,6 +111,13 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Testimonials -->
+  <url>
+    <loc>https://www.oliandhue.com/testimonials.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Contact -->
   <url>
     <loc>https://www.oliandhue.com/contact.html</loc>

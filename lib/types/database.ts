@@ -148,3 +148,30 @@ export interface StatusHistory {
   changed_by: string | null
   created_at: string
 }
+
+export interface Testimonial {
+  id: string
+  client_name: string
+  client_role: string | null
+  company: string | null
+  content: string
+  rating: number
+  avatar_url: string | null
+  is_featured: boolean
+  published: boolean
+  display_order: number
+  created_at: string
+  updated_at: string
+}
+
+export interface TestimonialSubmission {
+  id: string
+  client_name: string
+  client_email: string
+  client_role: string | null
+  company: string | null
+  content: string
+  rating: number
+  status: 'pending' | 'approved' | 'rejected'
+  created_at: string
+}

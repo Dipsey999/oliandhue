@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard, MessageSquare, Briefcase, Mail, Users,
-  FileText, Image, UserCog, Settings, LogOut
+  FileText, Image, UserCog, Settings, LogOut, Star
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
 
 const iconMap = {
   LayoutDashboard, MessageSquare, Briefcase, Mail, Users,
-  FileText, Image, UserCog, Settings,
+  FileText, Star, Image, UserCog, Settings,
 } as const
 
 const NAV_ITEMS = [
@@ -22,6 +22,7 @@ const NAV_ITEMS = [
   { label: 'Subscribers', href: '/admin/subscribers', icon: 'Mail' },
   { label: 'Clients', href: '/admin/clients', icon: 'Users' },
   { label: 'Blog', href: '/admin/blog', icon: 'FileText' },
+  { label: 'Testimonials', href: '/admin/testimonials', icon: 'Star' },
   { label: 'Portfolio', href: '/admin/portfolio', icon: 'Image' },
   { label: 'Team', href: '/admin/team', icon: 'UserCog' },
   { label: 'Settings', href: '/admin/settings', icon: 'Settings' },
