@@ -70,8 +70,8 @@
     }
 
     .tst-section {
-      padding: 5rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 6rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -91,33 +91,35 @@
     }
 
     .tst-section-inner {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 3rem;
       display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 3rem;
-      align-items: start;
+      grid-template-columns: 1fr 240px;
+      gap: 4rem;
+      align-items: center;
     }
 
     /* Left column — quote */
     .tst-quote-col {}
 
     .tst-quote-mark {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 4rem;
-      line-height: 1;
-      margin-bottom: 1.5rem;
       display: block;
-      /* color set inline via JS accent */
+      margin-bottom: 2rem;
+      line-height: 1;
+    }
+    .tst-quote-mark svg {
+      width: 80px;
+      height: 60px;
     }
 
     .tst-quote-text {
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      font-weight: 600;
-      color: #1a1a2e;
-      line-height: 1.4;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      color: #0d0d0d;
+      line-height: 1.3;
       margin: 0;
+      letter-spacing: -0.02em;
     }
 
     /* Right column — author */
@@ -125,19 +127,19 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 1.25rem;
-      padding-top: 0.5rem;
+      gap: 1rem;
     }
 
     .tst-company-logo {
-      max-height: 28px;
-      max-width: 120px;
+      max-height: 32px;
+      max-width: 140px;
       object-fit: contain;
     }
     .tst-company-name-text {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #1a1a2e;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0d0d0d;
+      letter-spacing: -0.01em;
     }
 
     .tst-author-row {
@@ -147,23 +149,23 @@
     }
 
     .tst-avatar {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
       /* border set inline via JS accent */
     }
     .tst-avatar-placeholder {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 0.9rem;
+      font-weight: 700;
       flex-shrink: 0;
       /* background + border set inline via JS accent */
     }
@@ -171,23 +173,24 @@
     .tst-author-info {}
     .tst-author-name {
       font-weight: 600;
-      font-size: 0.9rem;
-      color: #1a1a2e;
+      font-size: 0.875rem;
+      color: #0d0d0d;
       line-height: 1.3;
     }
     .tst-author-role {
       font-size: 0.8rem;
       color: #888;
-      margin-top: 0.1rem;
+      margin-top: 0.15rem;
       line-height: 1.3;
     }
 
     .tst-stars {
       display: flex;
       gap: 2px;
+      margin-top: 0.25rem;
     }
     .tst-star {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       line-height: 1;
     }
     .tst-star-filled { color: #F5A623; }
@@ -348,9 +351,9 @@
       .tst-quote-text {
         font-size: clamp(1.25rem, 4vw, 1.75rem);
       }
-      .tst-quote-mark {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+      .tst-quote-mark svg {
+        width: 50px;
+        height: 38px;
       }
       .tst-form-row { grid-template-columns: 1fr; }
     }
@@ -780,7 +783,7 @@
       return '<section class="tst-section">'
         + '<div class="tst-section-inner">'
           + '<div class="tst-quote-col">'
-            + '<span class="tst-quote-mark" style="color: ' + accent + ';">\u201C</span>'
+            + '<span class="tst-quote-mark"><svg viewBox="0 0 80 60" fill="' + accent + '" xmlns="http://www.w3.org/2000/svg"><path d="M0 40.5C0 26.5 8.5 14 22 6L26 12C16 18 12 26 11.5 32H20C26.6 32 32 37.4 32 44V48C32 54.6 26.6 60 20 60H12C5.4 60 0 54.6 0 48V40.5ZM48 40.5C48 26.5 56.5 14 70 6L74 12C64 18 60 26 59.5 32H68C74.6 32 80 37.4 80 44V48C80 54.6 74.6 60 68 60H60C53.4 60 48 54.6 48 48V40.5Z"/></svg></span>'
             + '<p class="tst-quote-text">' + escapeHtml(t.content) + '</p>'
           + '</div>'
           + '<div class="tst-author-col">'
