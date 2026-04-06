@@ -4,6 +4,7 @@ import { formatDate } from '@/lib/utils'
 import Link from 'next/link'
 import { Plus } from 'lucide-react'
 import type { Profile, PortfolioItem } from '@/lib/types/database'
+import { WORK_CATEGORY_LABELS } from '@/lib/constants'
 
 export default async function PortfolioPage() {
   const supabase = await createServerSupabaseClient()
@@ -23,11 +24,11 @@ export default async function PortfolioPage() {
 
   return (
     <>
-      <Topbar user={profile} title="Portfolio" />
+      <Topbar user={profile} title="Work" />
       <div className="p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-xl font-bold text-white">Portfolio Items</h1>
+            <h1 className="text-xl font-bold text-white">Work</h1>
             <p className="text-sm text-neutral-500 mt-1">{items?.length ?? 0} total items</p>
           </div>
           <Link
@@ -44,6 +45,8 @@ export default async function PortfolioPage() {
             <thead>
               <tr className="border-b border-neutral-800 bg-[#0a0a0a]">
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Name</th>
+                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Category</th>
+                <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Client</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Slug</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Published</th>
                 <th className="text-left text-xs font-medium text-neutral-500 uppercase tracking-wider px-4 py-3">Order</th>
@@ -53,7 +56,7 @@ export default async function PortfolioPage() {
             <tbody className="divide-y divide-neutral-800">
               {(items ?? []).length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-sm text-neutral-500">
+                  <td colSpan={7} className="px-4 py-8 text-center text-sm text-neutral-500">
                     No portfolio items yet
                   </td>
                 </tr>
@@ -65,9 +68,15 @@ export default async function PortfolioPage() {
                         {item.name}
                       </Link>
                     </td>
+                    <td className="px-4 py-3 text-sm text-neutral-400">
+                      {item.category ? WORK_CATEGORY_LABELS[item.category] ?? item.category : <span className="text-neutral-600">--</span>}
+                    </td>
+                    <td className="px-4 py-3 text-sm text-neutral-400">
+                      {item.client_name || <span className="text-neutral-600">--</span>}
+                    </td>
                     <td className="px-4 py-3 text-sm text-neutral-500 font-mono">{item.slug}</td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${item.published ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'}`}>
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${item.published ? 'bg-green-900/40 text-green-300' : 'bg-neutral-800 text-neutral-500'}`}>
                         {item.published ? 'Yes' : 'No'}
                       </span>
                     </td>

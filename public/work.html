@@ -376,12 +376,11 @@
                       </div>
                       <div class="footer_links-list">
                         <a href="work.html" class="footer_link">Work</a
-                        ><a href="works/case-studies.html" class="footer_link"
-                          >Case Studies</a
                         ><a href="blog.html" class="footer_link">Blog</a>
                       </div>
                       <div class="footer_links-list">
                         <a href="contact.html" class="footer_link">Contact</a
+                        ><a href="testimonials.html" class="footer_link">Testimonials</a
                         ><a href="#" class="footer_link">Career</a>
                       </div>
                     </div>
@@ -690,4 +689,82 @@ requestAnimationFrame(raf);
 </script>
 <script src="js/form-handler.js"></script>
 <script src="js/bumblebee.js"></script>
+<script>
+/* ═══ Dynamic Portfolio Items from API ═══ */
+(function() {
+  var CATEGORY_MAP = {
+    product_design: 'product-design',
+    website: 'website',
+    branding: 'branding',
+    design_dev: 'design-dev'
+  };
+
+  var list = document.querySelector('.work-list_list');
+  if (!list) return;
+
+  fetch('/api/portfolio')
+    .then(function(res) { return res.json(); })
+    .then(function(items) {
+      if (!Array.isArray(items) || items.length === 0) return;
+
+      items.forEach(function(item) {
+        var filterValue = item.category ? (CATEGORY_MAP[item.category] || '') : '';
+        var hasLink = item.external_link && item.external_link.trim() !== '';
+        var href = hasLink ? item.external_link : '#';
+
+        var wrapper = document.createElement('div');
+        wrapper.setAttribute('role', 'listitem');
+        wrapper.className = 'work-list_item w-dyn-item';
+        if (filterValue) {
+          wrapper.setAttribute('data-categories', filterValue);
+        }
+
+        var block = document.createElement('div');
+        block.className = 'work-list_block';
+
+        var link = document.createElement('a');
+        link.setAttribute('aria-label', 'link to work page');
+        link.href = href;
+        link.className = 'work-list_link w-inline-block';
+        if (hasLink) {
+          link.setAttribute('target', '_blank');
+        }
+
+        var img = document.createElement('img');
+        img.loading = 'eager';
+        img.src = item.cover_image_url || '';
+        img.alt = item.name || '';
+        img.className = 'work-list_img';
+
+        var nameDiv = document.createElement('div');
+        nameDiv.className = 'work-list_name';
+
+        var dot = document.createElement('div');
+        dot.className = 'work-list_dot';
+
+        var title = document.createElement('h2');
+        title.className = 'work-list_title';
+        title.textContent = item.name || '';
+
+        nameDiv.appendChild(dot);
+        nameDiv.appendChild(title);
+        link.appendChild(img);
+        link.appendChild(nameDiv);
+        block.appendChild(link);
+        wrapper.appendChild(block);
+        list.appendChild(wrapper);
+      });
+
+      // Re-query items so the filter system picks up the new cards
+      var pills = document.querySelectorAll('.work-filter_pill');
+      var activePill = document.querySelector('.work-filter_pill.is-active');
+      if (activePill) {
+        activePill.click();
+      }
+    })
+    .catch(function(err) {
+      console.error('Failed to load portfolio items:', err);
+    });
+})();
+</script>
 </body></html>

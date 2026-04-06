@@ -63,6 +63,24 @@ export const REQUIREMENT_LABELS: Record<string, string> = {
   branding: 'Branding',
 }
 
+export const WORK_CATEGORIES = ['product_design', 'website', 'branding', 'design_dev'] as const
+export type WorkCategory = (typeof WORK_CATEGORIES)[number]
+
+export const WORK_CATEGORY_LABELS: Record<string, string> = {
+  product_design: 'Product Design',
+  website: 'Website',
+  branding: 'Branding',
+  design_dev: 'Design & Dev',
+}
+
+// Maps DB category to the data-categories value used in work.html filter
+export const WORK_CATEGORY_FILTER_MAP: Record<string, string> = {
+  product_design: 'product-design',
+  website: 'website',
+  branding: 'branding',
+  design_dev: 'design-dev',
+}
+
 export const NAV_ITEMS = [
   { label: 'Dashboard', href: '/admin/dashboard', icon: 'LayoutDashboard' },
   { label: 'Submissions', href: '/admin/submissions', icon: 'MessageSquare' },

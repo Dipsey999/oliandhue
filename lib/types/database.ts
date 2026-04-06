@@ -88,6 +88,10 @@ export interface PortfolioItem {
   id: string
   name: string
   slug: string
+  category: 'product_design' | 'website' | 'branding' | 'design_dev' | null
+  client_name: string | null
+  external_link: string | null
+  description: string | null
   brand_description: string | null
   heading: string | null
   brand_color: string | null

@@ -23,7 +23,7 @@ const NAV_ITEMS = [
   { label: 'Clients', href: '/admin/clients', icon: 'Users' },
   { label: 'Blog', href: '/admin/blog', icon: 'FileText' },
   { label: 'Testimonials', href: '/admin/testimonials', icon: 'Star' },
-  { label: 'Portfolio', href: '/admin/portfolio', icon: 'Image' },
+  { label: 'Work', href: '/admin/portfolio', icon: 'Image' },
   { label: 'Team', href: '/admin/team', icon: 'UserCog' },
   { label: 'Settings', href: '/admin/settings', icon: 'Settings' },
 ] as const
