@@ -499,4 +499,71 @@ requestAnimationFrame(raf);
 
 <script src="js/form-handler.js"></script>
 <script src="js/bumblebee.js"></script>
+
+<!-- Dynamic blog loading -->
+<script>
+(function() {
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function createBlogCard(post) {
+    var card = document.createElement('div');
+    card.setAttribute('role', 'listitem');
+    card.className = 'blog-list_item w-dyn-item';
+
+    var imgHtml = '';
+    if (post.cover_image_url) {
+      imgHtml = '<div class="blog-list_img-wrap"><img src="' + escapeHtml(post.cover_image_url) + '" loading="lazy" alt="" class="blog-list_img"/></div>';
+    }
+
+    var descHtml = '';
+    if (post.description) {
+      descHtml = '<p class="blog-list_desc">' + escapeHtml(post.description) + '</p>';
+    }
+
+    card.innerHTML =
+      '<a aria-label="link to article" href="/blog-post.html?slug=' + escapeHtml(post.slug) + '" class="blog-list_block w-inline-block">' +
+        imgHtml +
+        '<div class="blog-list_texts large-width">' +
+          '<p class="blog-list_date">' + formatDate(post.published_at) + '</p>' +
+          '<h2 class="heading-style-h6">' + escapeHtml(post.title) + '</h2>' +
+          descHtml +
+        '</div>' +
+      '</a>';
+
+    return card;
+  }
+
+  fetch('/api/blog')
+    .then(function(res) { return res.json(); })
+    .then(function(posts) {
+      if (!Array.isArray(posts) || posts.length === 0) return;
+
+      var listEl = document.querySelector('.blog-list_list.w-dyn-items');
+      if (!listEl) return;
+
+      // Clear static cards
+      listEl.innerHTML = '';
+
+      // Render dynamic cards
+      posts.forEach(function(post) {
+        listEl.appendChild(createBlogCard(post));
+      });
+    })
+    .catch(function(err) {
+      // Silently fail — keep static cards as fallback
+      console.warn('Blog API unavailable, using static content');
+    });
+})();
+</script>
 </body></html>

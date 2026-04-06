@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { RichTextEditor } from '@/components/admin/rich-text-editor'
 import type { BlogPost } from '@/lib/types/database'
 
 function slugify(text: string) {
@@ -136,12 +137,10 @@ export function BlogForm({ post }: BlogFormProps) {
 
       <div>
         <label className="text-xs font-medium text-neutral-500 uppercase tracking-wider block mb-1.5">Content</label>
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          rows={12}
+        <RichTextEditor
+          content={content}
+          onChange={setContent}
           placeholder="Write your post content here..."
-          className="w-full border border-neutral-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent resize-y"
         />
       </div>
 
