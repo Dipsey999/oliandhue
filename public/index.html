@@ -1458,21 +1458,36 @@
       /* ── Mobile: stack vertically, no pin ── */
       @media (max-width: 991px) {
         .home-services_items {
-          height: auto;
-          overflow: visible;
+          height: auto !important;
+          overflow: visible !important;
         }
         .home-services_item {
-          position: relative;
-          opacity: 1;
-          padding: 2rem 0;
+          position: relative !important;
+          opacity: 1 !important;
+          padding: 2rem 0 !important;
+          height: auto !important;
+          min-height: auto !important;
         }
         .home-services_item-in {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
+          grid-template-columns: 1fr !important;
+          gap: 1.5rem !important;
+          display: block !important;
         }
-        .home-services_bg-number { display: none; }
-        .svc-progress { display: none; }
-        .svc-scroll-bar { display: none; }
+        .home-services_examples {
+          margin-bottom: 1.5rem;
+        }
+        .home-services_services {
+          display: flex !important;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: 0.75rem;
+        }
+        .home-services_desc {
+          display: block !important;
+        }
+        .home-services_bg-number { display: none !important; }
+        .svc-progress { display: none !important; }
+        .svc-scroll-bar { display: none !important; }
       }
 
       /* ═══ Testimonials section — bold overhaul ═══ */
