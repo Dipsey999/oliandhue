@@ -165,6 +165,7 @@ export interface Testimonial {
   client_name: string
   client_role: string | null
   company: string | null
+  company_logo_url: string | null
   content: string
   rating: number
   avatar_url: string | null

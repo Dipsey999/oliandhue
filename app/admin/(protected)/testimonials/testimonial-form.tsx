@@ -17,6 +17,7 @@ export function TestimonialForm({ testimonial }: TestimonialFormProps) {
   const [clientName, setClientName] = useState(testimonial?.client_name ?? '')
   const [clientRole, setClientRole] = useState(testimonial?.client_role ?? '')
   const [company, setCompany] = useState(testimonial?.company ?? '')
+  const [companyLogoUrl, setCompanyLogoUrl] = useState(testimonial?.company_logo_url ?? '')
   const [content, setContent] = useState(testimonial?.content ?? '')
   const [rating, setRating] = useState(testimonial?.rating ?? 5)
   const [avatarUrl, setAvatarUrl] = useState(testimonial?.avatar_url ?? '')
@@ -35,6 +36,7 @@ export function TestimonialForm({ testimonial }: TestimonialFormProps) {
       client_name: clientName.trim(),
       client_role: clientRole.trim() || null,
       company: company.trim() || null,
+      company_logo_url: companyLogoUrl.trim() || null,
       content: content.trim(),
       rating,
       avatar_url: avatarUrl.trim() || null,
@@ -121,6 +123,19 @@ export function TestimonialForm({ testimonial }: TestimonialFormProps) {
           type="text"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
+          className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-600 focus:border-transparent"
+        />
+      </div>
+
+      <div>
+        <label className="text-xs font-medium text-neutral-500 uppercase tracking-wider block mb-1.5">
+          Company Logo URL
+        </label>
+        <input
+          type="url"
+          value={companyLogoUrl}
+          onChange={(e) => setCompanyLogoUrl(e.target.value)}
+          placeholder="https://..."
           className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-600 focus:border-transparent"
         />
       </div>

@@ -27,6 +27,400 @@
   <link href="css/navbar-custom.css" rel="stylesheet" type="text/css"/>
   <link href="css/bumblebee.css" rel="stylesheet" type="text/css"/>
   <link href="css/footer-custom.css" rel="stylesheet" type="text/css"/>
+
+  <style>
+    /* ── Testimonials Page — Premium Light Theme ── */
+
+    .tst-hero {
+      background: #f5f3f0;
+      padding: 8rem 0 4rem;
+      text-align: center;
+    }
+    .tst-hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .tst-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+      background: rgba(0,0,0,0.04);
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .tst-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: #1a1a2e;
+      margin: 0 0 1rem;
+      letter-spacing: -0.02em;
+    }
+    .tst-hero-sub {
+      font-size: 1rem;
+      color: #888;
+      line-height: 1.6;
+      margin: 0 0 2.5rem;
+    }
+    .tst-stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .tst-stat {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #666;
+      letter-spacing: 0.02em;
+    }
+    .tst-stat-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #ccc;
+      flex-shrink: 0;
+    }
+
+    /* ── Featured Testimonial ── */
+    .tst-featured-section {
+      background: #f5f3f0;
+      padding: 0 0 4rem;
+    }
+    .tst-featured-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.02);
+      border-radius: 20px;
+      padding: 2.5rem 3rem;
+      position: relative;
+    }
+    .tst-featured-quote-mark {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba(0,0,0,0.06);
+      position: absolute;
+      top: 1.5rem;
+      left: 2.5rem;
+    }
+    .tst-featured-text {
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.8;
+      color: #333;
+      margin: 1.5rem 0 2rem;
+    }
+    .tst-featured-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .tst-featured-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #f0f0f0;
+      flex-shrink: 0;
+    }
+    .tst-featured-avatar-placeholder {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a1a2e, #333);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .tst-featured-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1a1a2e;
+    }
+    .tst-featured-role {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.15rem;
+    }
+
+    /* ── Grid Section ── */
+    .tst-grid-section {
+      background: #fff;
+      padding: 4rem 0 5rem;
+    }
+    .tst-grid-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .tst-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── Card ── */
+    .tst-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.02);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: tst-fadeInUp 0.5s ease forwards;
+    }
+    .tst-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    @keyframes tst-fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .tst-card-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 1.25rem;
+    }
+    .tst-star {
+      font-size: 0.875rem;
+      line-height: 1;
+    }
+    .tst-star-filled { color: #F5A623; }
+    .tst-star-empty  { color: #ddd; }
+
+    .tst-card-quote {
+      position: relative;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+    .tst-card-quote-mark {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2rem;
+      line-height: 1;
+      color: rgba(0,0,0,0.08);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .tst-card-quote-text {
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.75;
+      color: #333;
+    }
+
+    .tst-card-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .tst-card-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #f0f0f0;
+      flex-shrink: 0;
+    }
+    .tst-card-avatar-placeholder {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a1a2e, #333);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .tst-card-name {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #1a1a2e;
+    }
+    .tst-card-role {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.1rem;
+    }
+    .tst-card-logo {
+      max-height: 20px;
+      max-width: 80px;
+      filter: grayscale(1);
+      opacity: 0.5;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Loading / Empty ── */
+    .tst-loading, .tst-empty {
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+      padding: 3rem 1rem;
+      grid-column: 1 / -1;
+    }
+
+    /* ── Submit Section ── */
+    .tst-submit-section {
+      background: #f5f3f0;
+      padding: 5rem 0;
+    }
+    .tst-submit-inner {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .tst-submit-heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      text-align: center;
+      margin: 0 0 0.5rem;
+    }
+    .tst-submit-sub {
+      font-size: 0.9rem;
+      color: #888;
+      text-align: center;
+      margin: 0 0 2.5rem;
+    }
+
+    .tst-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tst-input,
+    .tst-textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      background: #fff;
+      color: #1a1a2e;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .tst-input:focus,
+    .tst-textarea:focus {
+      border-color: #1a1a2e;
+    }
+    .tst-input::placeholder,
+    .tst-textarea::placeholder {
+      color: #bbb;
+    }
+    .tst-textarea {
+      resize: vertical;
+      margin-bottom: 0.75rem;
+    }
+
+    .tst-form-rating-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+    .tst-form-stars {
+      display: flex;
+      gap: 0.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .tst-form-star-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.1rem 0.15rem;
+      transition: color 0.15s, transform 0.15s;
+      line-height: 1;
+    }
+    .tst-form-star-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .tst-submit-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .tst-submit-btn:hover {
+      background: #2a2a42;
+    }
+    .tst-submit-btn:active {
+      transform: scale(0.99);
+    }
+    .tst-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .tst-form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #1a1a2e;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .tst-form-success strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .tst-form-error {
+      display: none;
+      text-align: center;
+      padding: 0.75rem;
+      color: #e74c3c;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .tst-hero { padding: 6rem 0 3rem; }
+      .tst-featured-card { padding: 2rem 1.5rem; margin: 0 1rem; }
+      .tst-featured-quote-mark { left: 1.5rem; }
+      .tst-grid { grid-template-columns: 1fr; }
+      .tst-form-row { grid-template-columns: 1fr; }
+      .tst-stats { gap: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .tst-hero { padding: 5rem 0 2.5rem; }
+      .tst-featured-card { padding: 1.5rem 1.25rem; }
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -191,60 +585,66 @@
 
     <main class="main-wrapper">
 
-      <!-- Header Section -->
-      <section style="background:#0a0a0a;color:#fff;padding:6rem 0 3rem;">
-        <div class="padding-global">
-          <div class="container-medium" style="text-align:center;">
-            <h1 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;margin-bottom:0.75rem;">What Our Clients Say</h1>
-            <p style="color:rgba(255,255,255,0.5);font-size:1rem;max-width:500px;margin:0 auto;">Real feedback from startups and businesses we've helped with design and development.</p>
+      <!-- Hero Section -->
+      <section class="tst-hero">
+        <div class="tst-hero-inner">
+          <div class="tst-pill">Testimonials</div>
+          <h1>Trusted by founders<br/>building the future.</h1>
+          <p class="tst-hero-sub">Hear from the startups and businesses we've partnered with.</p>
+          <div class="tst-stats">
+            <span class="tst-stat">12+ Projects</span>
+            <span class="tst-stat-dot"></span>
+            <span class="tst-stat">3 Countries</span>
+            <span class="tst-stat-dot"></span>
+            <span class="tst-stat">100% Retention</span>
           </div>
         </div>
       </section>
 
-      <!-- Testimonials Grid -->
-      <section style="background:#0a0a0a;padding:2rem 0 4rem;">
-        <div class="padding-global">
-          <div class="container-medium">
-            <div id="testimonials-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;">
-              <p style="color:rgba(255,255,255,0.4);text-align:center;grid-column:1/-1;">Loading testimonials...</p>
+      <!-- Featured Testimonial (injected by JS if exists) -->
+      <section class="tst-featured-section" id="featured-section" style="display:none;">
+        <div style="padding:0 1.5rem;">
+          <div id="featured-testimonial"></div>
+        </div>
+      </section>
+
+      <!-- Testimonial Grid -->
+      <section class="tst-grid-section">
+        <div class="tst-grid-inner">
+          <div class="tst-grid" id="testimonials-grid">
+            <p class="tst-loading">Loading testimonials...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Submit Testimonial -->
+      <section class="tst-submit-section">
+        <div class="tst-submit-inner">
+          <h2 class="tst-submit-heading">Share Your Experience</h2>
+          <p class="tst-submit-sub">Worked with us? We'd love to hear your feedback.</p>
+
+          <form id="testimonial-form">
+            <div class="tst-form-row">
+              <input type="text" name="client_name" placeholder="Your name" required class="tst-input"/>
+              <input type="email" name="client_email" placeholder="Email address" required class="tst-input"/>
             </div>
-          </div>
-        </div>
-      </section>
+            <div class="tst-form-row">
+              <input type="text" name="client_role" placeholder="Your role (e.g. CEO)" class="tst-input"/>
+              <input type="text" name="company" placeholder="Company name" class="tst-input"/>
+            </div>
+            <textarea name="content" placeholder="Tell us about your experience working with Oli &amp; Hue..." required rows="4" class="tst-textarea"></textarea>
 
-      <!-- Submit Testimonial Form -->
-      <section style="background:#f5f3f0;padding:4rem 0;">
-        <div class="padding-global">
-          <div class="container-small" style="max-width:600px;margin:0 auto;">
-            <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:0.5rem;text-align:center;">Share Your Experience</h2>
-            <p style="color:#666;font-size:0.9rem;text-align:center;margin-bottom:2rem;">Worked with us? We'd love to hear your feedback.</p>
+            <div class="tst-form-rating-label">Rating</div>
+            <div class="tst-form-stars" id="star-rating"></div>
 
-            <form id="testimonial-form">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;">
-                <input type="text" name="client_name" placeholder="Your name" required style="width:100%;padding:0.7rem 0.9rem;border:1px solid #ddd;border-radius:0.5rem;font-size:0.85rem;font-family:inherit;outline:none;background:#fff;"/>
-                <input type="email" name="client_email" placeholder="Email address" required style="width:100%;padding:0.7rem 0.9rem;border:1px solid #ddd;border-radius:0.5rem;font-size:0.85rem;font-family:inherit;outline:none;background:#fff;"/>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;">
-                <input type="text" name="client_role" placeholder="Your role (e.g. CEO)" style="width:100%;padding:0.7rem 0.9rem;border:1px solid #ddd;border-radius:0.5rem;font-size:0.85rem;font-family:inherit;outline:none;background:#fff;"/>
-                <input type="text" name="company" placeholder="Company name" style="width:100%;padding:0.7rem 0.9rem;border:1px solid #ddd;border-radius:0.5rem;font-size:0.85rem;font-family:inherit;outline:none;background:#fff;"/>
-              </div>
-              <textarea name="content" placeholder="Tell us about your experience working with Oli &amp; Hue..." required rows="4" style="width:100%;padding:0.7rem 0.9rem;border:1px solid #ddd;border-radius:0.5rem;font-size:0.85rem;font-family:inherit;outline:none;background:#fff;margin-bottom:0.75rem;resize:vertical;"></textarea>
+            <button type="submit" class="tst-submit-btn">Submit Testimonial</button>
 
-              <!-- Star rating -->
-              <div style="margin-bottom:1rem;">
-                <label style="font-size:0.8rem;color:#666;display:block;margin-bottom:0.5rem;">Rating</label>
-                <div id="star-rating" style="display:flex;gap:0.25rem;">
-                  <!-- Stars built by JS -->
-                </div>
-              </div>
-
-              <button type="submit" style="width:100%;padding:0.8rem;background:#1a1a2e;color:#fff;border:none;border-radius:0.5rem;font-size:0.9rem;font-weight:600;cursor:pointer;transition:opacity 0.2s;">Submit Testimonial</button>
-              <div id="form-success" style="display:none;text-align:center;padding:1.5rem;color:#1a1a2e;">
-                <strong>Thank you!</strong><br/>Your testimonial has been submitted for review.
-              </div>
-              <div id="form-error" style="display:none;text-align:center;padding:0.75rem;color:#e74c3c;font-size:0.85rem;">Something went wrong. Please try again.</div>
-            </form>
-          </div>
+            <div class="tst-form-success" id="form-success">
+              <strong>Thank you!</strong>
+              Your testimonial has been submitted for review.
+            </div>
+            <div class="tst-form-error" id="form-error">Something went wrong. Please try again.</div>
+          </form>
         </div>
       </section>
 
@@ -415,75 +815,139 @@
       return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
+    function buildStars(rating, cssPrefix) {
+      var html = '';
+      for (var i = 0; i < 5; i++) {
+        html += '<span class="tst-star ' + (i < rating ? 'tst-star-filled' : 'tst-star-empty') + '">&#9733;</span>';
+      }
+      return html;
+    }
+
+    function buildAvatar(t, size) {
+      var cls = size === 'large' ? 'tst-featured' : 'tst-card';
+      if (t.avatar_url) {
+        return '<img src="' + escapeHtml(t.avatar_url) + '" alt="" class="' + cls + '-avatar"/>';
+      }
+      var initial = t.client_name ? t.client_name[0].toUpperCase() : '?';
+      return '<div class="' + cls + '-avatar-placeholder">' + initial + '</div>';
+    }
+
+    function buildRole(t) {
+      return [t.client_role, t.company].filter(Boolean).map(escapeHtml).join(', ');
+    }
+
+    function buildLogo(t) {
+      if (!t.company_logo_url) return '';
+      return '<img src="' + escapeHtml(t.company_logo_url) + '" alt="" class="tst-card-logo"/>';
+    }
+
     // ---- 1. Fetch and render testimonials ----
     fetch('/api/testimonials')
       .then(function(r) { return r.json(); })
       .then(function(data) {
         var grid = document.getElementById('testimonials-grid');
+        var featuredSection = document.getElementById('featured-section');
+        var featuredContainer = document.getElementById('featured-testimonial');
+
         if (!data || data.length === 0) {
-          grid.innerHTML = '<p style="color:rgba(255,255,255,0.4);text-align:center;grid-column:1/-1;">No testimonials yet. Be the first to share your experience!</p>';
+          grid.innerHTML = '<p class="tst-empty">No testimonials yet. Be the first to share your experience!</p>';
           return;
         }
-        grid.innerHTML = data.map(function(t) {
-          // Stars
-          var stars = '';
-          for (var i = 0; i < 5; i++) {
-            stars += '<span style="color:' + (i < t.rating ? '#f5a623' : '#333') + ';font-size:1rem;">&#9733;</span>';
-          }
-          // Avatar
-          var avatar = t.avatar_url
-            ? '<img src="' + escapeHtml(t.avatar_url) + '" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" alt=""/>'
-            : '<div style="width:40px;height:40px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.8rem;font-weight:600;">' + (t.client_name ? t.client_name[0].toUpperCase() : '?') + '</div>';
-          // Border for featured
-          var border = t.is_featured ? 'border-color:rgba(245,166,35,0.3);' : '';
-          // Role line
-          var role = [t.client_role, t.company].filter(Boolean).join(', ');
 
-          return '<div style="background:#161616;border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:1.75rem;display:flex;flex-direction:column;' + border + '">'
-            + '<div style="display:flex;gap:2px;margin-bottom:1rem;">' + stars + '</div>'
-            + '<p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;flex:1;margin-bottom:1.5rem;">&ldquo;' + escapeHtml(t.content) + '&rdquo;</p>'
-            + '<div style="display:flex;align-items:center;gap:0.75rem;">'
-              + avatar
+        // Separate featured
+        var featured = [];
+        var regular = [];
+        data.forEach(function(t) {
+          if (t.is_featured) {
+            featured.push(t);
+          } else {
+            regular.push(t);
+          }
+        });
+
+        // Render featured testimonial(s)
+        if (featured.length > 0) {
+          var ft = featured[0]; // Show first featured
+          var role = buildRole(ft);
+          featuredContainer.innerHTML =
+            '<div class="tst-featured-card">'
+            + '<div class="tst-featured-quote-mark">\u201C</div>'
+            + '<p class="tst-featured-text">' + escapeHtml(ft.content) + '</p>'
+            + '<div class="tst-featured-author">'
+              + buildAvatar(ft, 'large')
               + '<div>'
-                + '<div style="color:#fff;font-size:0.85rem;font-weight:600;">' + escapeHtml(t.client_name) + '</div>'
-                + (role ? '<div style="color:rgba(255,255,255,0.4);font-size:0.75rem;">' + escapeHtml(role) + '</div>' : '')
+                + '<div class="tst-featured-name">' + escapeHtml(ft.client_name) + '</div>'
+                + (role ? '<div class="tst-featured-role">' + role + '</div>' : '')
+              + '</div>'
+            + '</div>'
+            + '</div>';
+          featuredSection.style.display = '';
+          // Put remaining featured items back into regular list
+          for (var fi = 1; fi < featured.length; fi++) {
+            regular.unshift(featured[fi]);
+          }
+        }
+
+        // Render grid cards
+        if (regular.length === 0) {
+          grid.innerHTML = '';
+          return;
+        }
+
+        grid.innerHTML = regular.map(function(t, idx) {
+          var role = buildRole(t);
+          var delay = (idx * 0.08).toFixed(2);
+
+          return '<div class="tst-card" style="animation-delay:' + delay + 's;">'
+            + '<div class="tst-card-stars">' + buildStars(t.rating) + '</div>'
+            + '<div class="tst-card-quote">'
+              + '<span class="tst-card-quote-mark">\u201C</span>'
+              + '<span class="tst-card-quote-text">' + escapeHtml(t.content) + '</span>'
+            + '</div>'
+            + '<div class="tst-card-author">'
+              + buildAvatar(t, 'small')
+              + '<div>'
+                + '<div class="tst-card-name">' + escapeHtml(t.client_name) + '</div>'
+                + (role ? '<div class="tst-card-role">' + role + '</div>' : '')
+                + buildLogo(t)
               + '</div>'
             + '</div>'
             + '</div>';
         }).join('');
       })
       .catch(function() {
-        document.getElementById('testimonials-grid').innerHTML = '<p style="color:rgba(255,255,255,0.4);text-align:center;grid-column:1/-1;">Failed to load testimonials.</p>';
+        document.getElementById('testimonials-grid').innerHTML = '<p class="tst-empty">Failed to load testimonials.</p>';
       });
 
     // ---- 2. Star rating interaction ----
     var selectedRating = 5;
     var starContainer = document.getElementById('star-rating');
 
-    function renderStars() {
+    function renderFormStars() {
       starContainer.innerHTML = '';
       for (var i = 1; i <= 5; i++) {
         (function(idx) {
           var btn = document.createElement('button');
           btn.type = 'button';
+          btn.className = 'tst-form-star-btn';
           btn.textContent = '\u2605';
-          btn.style.cssText = 'background:none;border:none;font-size:1.5rem;cursor:pointer;padding:0.1rem 0.15rem;color:' + (idx <= selectedRating ? '#f5a623' : '#ccc') + ';transition:color 0.15s;';
+          btn.style.color = idx <= selectedRating ? '#F5A623' : '#ddd';
           btn.setAttribute('aria-label', idx + ' star' + (idx > 1 ? 's' : ''));
           btn.addEventListener('click', function() {
             selectedRating = idx;
-            renderStars();
+            renderFormStars();
           });
           starContainer.appendChild(btn);
         })(i);
       }
     }
-    renderStars();
+    renderFormStars();
 
     // ---- 3. Form submission ----
     document.getElementById('testimonial-form').addEventListener('submit', function(e) {
       e.preventDefault();
       var form = e.target;
-      var btn = form.querySelector('button[type="submit"]');
+      var btn = form.querySelector('.tst-submit-btn');
       var errorEl = document.getElementById('form-error');
       errorEl.style.display = 'none';
       btn.disabled = true;
