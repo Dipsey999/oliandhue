@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block admin panel and API from crawlers
+Disallow: /admin/
+Disallow: /api/
+Disallow: /401.html
+Disallow: /template/
+
+# Sitemap
+Sitemap: https://www.oliandhue.com/sitemap.xml
