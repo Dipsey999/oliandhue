@@ -261,7 +261,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
     editorProps: {
       attributes: {
         class:
-          'prose prose-invert prose-sm max-w-none min-h-[400px] px-4 py-3 focus:outline-none text-neutral-200',
+          'prose prose-invert prose-sm max-w-none min-h-full px-4 py-3 focus:outline-none text-neutral-200',
       },
     },
     onUpdate({ editor }) {
@@ -278,9 +278,13 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
   }, [])
 
   return (
-    <div className="border border-neutral-700 rounded-lg overflow-hidden bg-neutral-800">
-      <Toolbar editor={editor} />
-      <EditorContent editor={editor} />
+    <div className="border border-neutral-700 rounded-lg overflow-hidden bg-neutral-800 flex flex-col" style={{ height: '500px' }}>
+      <div className="sticky top-0 z-10 flex-shrink-0">
+        <Toolbar editor={editor} />
+      </div>
+      <div className="flex-1 overflow-y-auto">
+        <EditorContent editor={editor} />
+      </div>
     </div>
   )
 }
