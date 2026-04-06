@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { RichTextEditor } from '@/components/admin/rich-text-editor'
 import type { PortfolioItem } from '@/lib/types/database'
 import { WORK_CATEGORIES, WORK_CATEGORY_LABELS } from '@/lib/constants'
 
@@ -29,6 +30,7 @@ export function PortfolioForm({ item }: PortfolioFormProps) {
   const [slug, setSlug] = useState(item?.slug ?? '')
   const [clientName, setClientName] = useState(item?.client_name ?? '')
   const [description, setDescription] = useState(item?.description ?? '')
+  const [content, setContent] = useState(item?.intro_text ?? '')
   const [coverImageUrl, setCoverImageUrl] = useState(item?.cover_image_url ?? '')
   const [brandColor, setBrandColor] = useState(item?.brand_color ?? '')
   const [externalLink, setExternalLink] = useState(item?.external_link ?? '')
@@ -80,6 +82,7 @@ export function PortfolioForm({ item }: PortfolioFormProps) {
       category: category || null,
       client_name: clientName.trim() || null,
       description: description.trim() || null,
+      intro_text: content || null,
       cover_image_url: coverImageUrl.trim() || null,
       brand_color: brandColor.trim() || null,
       external_link: externalLink.trim() || null,
@@ -209,6 +212,19 @@ export function PortfolioForm({ item }: PortfolioFormProps) {
           rows={3}
           placeholder="Brief project description..."
           className={`${inputClass} resize-none`}
+        />
+      </div>
+
+      {/* Content (Rich Text) */}
+      <div>
+        <label className="text-xs font-medium text-neutral-500 uppercase tracking-wider block mb-1.5">
+          Content
+        </label>
+        <p className="text-xs text-neutral-600 mb-2">Write about the project — overview, process, outcome, etc.</p>
+        <RichTextEditor
+          content={content}
+          onChange={setContent}
+          placeholder="Write about this project..."
         />
       </div>
 
