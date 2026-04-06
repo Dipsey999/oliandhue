@@ -7,5 +7,30 @@ Disallow: /api/
 Disallow: /401.html
 Disallow: /template/
 
-# Sitemap
+# Explicitly allow AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemap and LLMs
 Sitemap: https://www.oliandhue.com/sitemap.xml

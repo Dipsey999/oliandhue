@@ -1,0 +1,104 @@
+# Oli & Hue
+
+> Oli & Hue is a design and development studio for startups and growing businesses. We combine product design, software development, and marketing under one roof.
+
+## About
+
+- **Website**: https://www.oliandhue.com
+- **Founded**: 2024
+- **Location**: India (serving clients worldwide)
+- **Email**: hello@oliandhue.com
+- **Tagline**: Design & Dev Studio
+
+Oli & Hue is a design and development studio built for startups. We handle product design (UI/UX), website design, branding, software development, and AI-powered products. Our sister brand Bumbee.Studio handles marketing (social media, paid ads, funnels, analytics).
+
+We think like founders because we are founders. AI powers our workflow — from research to iteration to deployment — delivering agency-quality work at startup speed.
+
+## Services
+
+### 1. Product Design (UI/UX)
+- Mobile and web app design
+- User research and interaction design
+- Design systems and component libraries
+- Prototyping and user testing
+- Branding and visual identity
+
+### 2. Software Development
+- Full-stack web application development
+- AI-powered product development
+- Agentic AI integration — custom AI agents that plan, execute, use tools, and complete tasks autonomously
+- Custom AI agent development
+- SaaS product design and build
+- UX design for AI workflows
+
+### 3. Website Design
+- Marketing websites and landing pages
+- Conversion-focused design
+- Responsive and accessible design
+
+### 4. Branding
+- Logo design and brand guidelines
+- Typography and visual systems
+- Brand strategy and positioning
+
+### 5. Bumbee.Studio — Marketing (sister brand)
+- Social media management
+- Paid advertising (Meta, TikTok, Google)
+- Brand strategy and positioning
+- Marketing funnels and landing pages
+- Analytics and performance reporting
+- Content marketing
+- Website: https://bumbee.studio
+
+## Pricing
+
+### Design Partner (Monthly Subscription)
+Your dedicated design and development team on a monthly subscription.
+- **Starter**: From ₹75,000 / $899 per month — 1 dedicated designer, UI/UX, website design, branding basics
+- **Professional**: From ₹1,50,000 / $1,799 per month — Senior designer + team, design systems, UX research, strategy calls
+- **Enterprise**: Custom pricing — Full design team, multi-product support, custom SLA
+- Pause or cancel anytime, no lock-in
+
+### Design + Development Track
+- **Build**: From ₹2,00,000 / $2,399 per month — 1 designer + 1 developer, MVP builds
+- **Growth**: From ₹3,50,000 / $4,199 per month — Full design + dev team, AI integration, SaaS builds
+- **Scale**: Custom pricing — Enterprise builds, agentic AI, custom SLA
+
+### Project-Based (One-Time)
+One-time design or development projects with clear scope and delivery.
+- Fixed-scope for UI/UX, website, branding, or development projects
+- Structured deliverables and defined milestones
+- Dedicated project manager
+
+## Team
+- A strong team of experts with 12+ years combined experience
+- 2 Co-Founders
+- Dedicated design and development teams
+- Team members think like founders, not vendors
+
+## Portfolio
+Trusted by startups including:
+- Plutohive — Social media platform for students and young founders
+- Hatch — "Their design, they think like founders" (Founder & CEO)
+- CosmiKit
+- Foxpatch
+- UnQ SCS
+- Trafitizer
+
+## Differentiators
+1. **AI-Powered Workflow** — We use AI tools internally for faster turnarounds and smarter insights
+2. **Founder Mindset** — Our team operates with founder mentality, not vendor mentality
+3. **Full-Stack Capability** — Design, development, and marketing under one roof
+4. **Agentic AI Expertise** — We build intelligent software with custom AI agents
+5. **Flexibility** — Monthly retainer or project-based, pause or cancel anytime
+
+## Social Media
+- LinkedIn: https://www.linkedin.com/company/oliandhue/
+- Instagram: https://instagram.com/oliandhue
+- Twitter/X: https://x.com/oliandhue
+- Dribbble: https://dribbble.com/oliandhue
+
+## Contact
+- Website: https://www.oliandhue.com/contact/1.html
+- Email: hello@oliandhue.com
+- Bumbee.Studio (Marketing): https://bumbee.studio
