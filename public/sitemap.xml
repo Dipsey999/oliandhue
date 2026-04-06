@@ -40,7 +40,7 @@
 
   <!-- Work / Portfolio -->
   <url>
-    <loc>https://www.oliandhue.com/works/1.html</loc>
+    <loc>https://www.oliandhue.com/work.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -79,7 +79,7 @@
 
   <!-- Blog -->
   <url>
-    <loc>https://www.oliandhue.com/blog/1.html</loc>
+    <loc>https://www.oliandhue.com/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -113,7 +113,7 @@
 
   <!-- Contact -->
   <url>
-    <loc>https://www.oliandhue.com/contact/1.html</loc>
+    <loc>https://www.oliandhue.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -99,6 +99,6 @@ Trusted by startups including:
 - Dribbble: https://dribbble.com/oliandhue
 
 ## Contact
-- Website: https://www.oliandhue.com/contact/1.html
+- Website: https://www.oliandhue.com/contact.html
 - Email: hello@oliandhue.com
 - Bumbee.Studio (Marketing): https://bumbee.studio
