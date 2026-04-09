@@ -2787,6 +2787,132 @@
           data-w-id="0f16d970-3858-501c-35ad-50ff5a2db9ca"
           class="section_brands"
         >
+          <!-- Premium logo marquee -->
+          <style>
+            .section_brands { background: #faf9f7; }
+            .brands-marquee-section {
+              padding: 4rem 0;
+              overflow: hidden;
+            }
+            .brands-marquee-label {
+              text-align: center;
+              font-size: 0.7rem;
+              font-weight: 500;
+              text-transform: uppercase;
+              letter-spacing: 0.15em;
+              color: #999;
+              margin-bottom: 2.5rem;
+            }
+            .brands-marquee-track {
+              display: flex;
+              animation: brandScroll 25s linear infinite;
+              width: max-content;
+            }
+            .brands-marquee-track:hover {
+              animation-play-state: paused;
+            }
+            .brands-marquee-slide {
+              display: flex;
+              align-items: center;
+              gap: 5rem;
+              padding-right: 5rem;
+              flex-shrink: 0;
+            }
+            .brands-marquee-item {
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              white-space: nowrap;
+              opacity: 0.35;
+              transition: opacity 0.4s ease;
+              cursor: default;
+            }
+            .brands-marquee-item:hover {
+              opacity: 1;
+            }
+            .brands-marquee-logo {
+              width: 36px;
+              height: 36px;
+              object-fit: contain;
+              filter: grayscale(1);
+              transition: filter 0.4s ease;
+            }
+            .brands-marquee-item:hover .brands-marquee-logo {
+              filter: grayscale(0);
+            }
+            .brands-marquee-name {
+              font-size: 1.25rem;
+              font-weight: 600;
+              color: #1a1a2e;
+              letter-spacing: -0.01em;
+            }
+            @keyframes brandScroll {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            @media (max-width: 768px) {
+              .brands-marquee-slide { gap: 3rem; padding-right: 3rem; }
+              .brands-marquee-name { font-size: 1rem; }
+              .brands-marquee-logo { width: 28px; height: 28px; }
+            }
+          </style>
+          <div class="brands-marquee-section">
+            <p class="brands-marquee-label">Trusted by startups building the future</p>
+            <div class="brands-marquee-track">
+              <div class="brands-marquee-slide">
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212cdc907472533f493ed1_ffe7e35bb137a76a883bf2d6191249b4_Hatch.png" alt="Hatch" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">Hatch</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212d2ce84e31385955c8ad_b129f33e32911a97b2ecd9296fa96e77_Plutohive.png" alt="Plutohive" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">Plutohive</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/692c524cdd7c8c67057f69ed_100_2x.webp" alt="CosmiKit" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">CosmiKit</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212edbfc885193f56e51f9_UnQ.png" alt="UnQ" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">UnQ SCS</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212f19021cdb241ca3baa0_Trafitizer.png" alt="Trafitizer" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">Trafitizer</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212df404d51df591aad940_Foxpatch.png" alt="Foxpatch" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">Foxpatch</span>
+                </div>
+              </div>
+              <div class="brands-marquee-slide">
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212cdc907472533f493ed1_ffe7e35bb137a76a883bf2d6191249b4_Hatch.png" alt="Hatch" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">Hatch</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212d2ce84e31385955c8ad_b129f33e32911a97b2ecd9296fa96e77_Plutohive.png" alt="Plutohive" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">Plutohive</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/692c524cdd7c8c67057f69ed_100_2x.webp" alt="CosmiKit" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">CosmiKit</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212edbfc885193f56e51f9_UnQ.png" alt="UnQ" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">UnQ SCS</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212f19021cdb241ca3baa0_Trafitizer.png" alt="Trafitizer" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">Trafitizer</span>
+                </div>
+                <div class="brands-marquee-item">
+                  <img src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/69212df404d51df591aad940_Foxpatch.png" alt="Foxpatch" class="brands-marquee-logo"/>
+                  <span class="brands-marquee-name">Foxpatch</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="padding-section-medium"></div>
           <div class="padding-global">
             <div class="container-medium">
