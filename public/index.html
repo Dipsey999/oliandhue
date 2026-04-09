@@ -5451,10 +5451,10 @@
           scrollTrigger: {
             trigger: section,
             start: 'top top',
-            end: '+=' + (totalPanels * 100) + 'vh',
+            end: '+=' + (totalPanels * 150) + 'vh',
             pin: true,
             pinSpacing: true,
-            scrub: 1,
+            scrub: 1.5,
             anticipatePin: 1,
             onUpdate: function(self) {
               // Update scroll progress bar
@@ -5476,7 +5476,7 @@
         });
 
         // Hold first panel visible while user reads it
-        tl.to(panels[0], { duration: 1.5 });
+        tl.to(panels[0], { duration: 3 });
 
         // Build transitions for panel 2 and 3
         for (var i = 1; i < totalPanels; i++) {
@@ -5499,17 +5499,17 @@
           // Exit: previous panel fades out + slides up + scales down
           tl.to(prevPanel, {
             opacity: 0,
-            y: -60,
-            scale: 0.92,
-            duration: 0.8,
-            ease: 'power2.in'
+            y: -80,
+            scale: 0.9,
+            duration: 1.2,
+            ease: 'power2.inOut'
           });
 
           // Enter: current panel slides up from below
           tl.fromTo(currPanel,
-            { opacity: 0, y: 60 },
-            { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
-            '-=0.4'
+            { opacity: 0, y: 100 },
+            { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' },
+            '-=0.6'
           );
 
           // Staggered content reveal (using a label for parallel animation)
@@ -5524,7 +5524,7 @@
           tl.fromTo(text, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, label + '+=0.25');
 
           // Hold this panel visible while user reads
-          tl.to(currPanel, { duration: 1.5 });
+          tl.to(currPanel, { duration: 3 });
         }
       })();
     </script>
