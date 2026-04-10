@@ -94,16 +94,20 @@
 
 /* ═══ Grid Wrapper ═══ */
 .work-list_wrapper-v1 {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
 }
 
 /* ═══ Clean 3-Column Grid ═══ */
 .work-list_list {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 2rem 1.5rem !important;
+  flex-flow: unset !important;
+  align-items: unset !important;
+  grid-column-gap: unset !important;
+  grid-row-gap: unset !important;
 }
 
 .work-list_item {
@@ -117,14 +121,29 @@
   height: 100%;
 }
 
+/* Reset Webflow item styles */
+.work-list_item {
+  width: auto !important;
+  flex-flow: unset !important;
+  align-items: unset !important;
+}
+.work-list_block {
+  width: auto !important;
+  flex-flow: unset !important;
+  align-items: unset !important;
+  perspective: none !important;
+}
+
 /* ═══ Card Link — the image container ═══ */
 .work-list_link {
   display: block !important;
   position: relative;
-  overflow: hidden;
-  border-radius: 16px;
+  overflow: hidden !important;
+  border-radius: 16px !important;
   background: #f0eeeb;
   text-decoration: none;
+  height: auto !important;
+  aspect-ratio: unset !important;
 }
 
 /* ═══ Image ═══ */
