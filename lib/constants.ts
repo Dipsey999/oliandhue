@@ -73,7 +73,7 @@ export const WORK_CATEGORY_LABELS: Record<string, string> = {
   design_dev: 'Design & Dev',
 }
 
-// Maps DB category to the data-categories value used in work.html filter
+// Maps DB category to the data-categories value used in works.html filter
 export const WORK_CATEGORY_FILTER_MAP: Record<string, string> = {
   product_design: 'product-design',
   website: 'website',
