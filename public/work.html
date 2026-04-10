@@ -15,263 +15,173 @@
 <link href="css/footer-custom.css" rel="stylesheet" type="text/css"/>
 
 <style>
-/* ═══ Work Page — Premium Gallery Redesign ═══ */
+/* ═══ Work Page — Ragged Edge Redesign ═══ */
 
 /* Page background */
 .section_work-list {
-  background: #faf9f7;
+  background: #fff;
 }
 
-/* --- Header tweaks --- */
-.work-list_head {
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
+/* Hide old Webflow structural elements */
+.work-list_head { display: none !important; }
+.spacer-huge { display: none !important; }
+.section_work-list .padding-section-medium { padding: 0 !important; }
+.section_work-list .padding-global { padding: 0 !important; }
+.work-list_component { max-width: none; padding: 0; }
+.container-medium { max-width: none; padding: 0; }
+.hover_wrap { display: none !important; }
+
+/* ═══ Page Header ═══ */
+.work-page-header {
+  padding: 6rem 0 2rem;
 }
-.work-list_head .heading-style-display {
-  margin-bottom: 0.25rem !important;
+.work-page-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
-.work-list_head .text-size-small {
-  max-width: 420px;
-}
-/* hide the copyright decoration */
-.work-list_head > h2.heading-style-display.hide-tablet {
-  display: none !important;
-}
-/* hide the "Projects" label too */
-.work-list_head .text-style-label.hide-tablet {
-  display: none !important;
-}
-/* tighter section padding */
-.section_work-list .padding-section-medium {
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important;
-}
-.section_work-list .spacer-huge {
-  height: 1.5rem !important;
+.work-page-title {
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 700;
+  color: #0d0d0d;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
 }
 
-/* ═══ Filter Tabs ═══ */
+/* ═══ Filter Pills ═══ */
 .work-filter_bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
   display: flex;
+  gap: 2rem;
   flex-wrap: wrap;
-  gap: 0;
-  justify-content: center;
-  padding: 0 1.5rem;
-  margin-bottom: 0;
-  border-bottom: 1px solid rgba(26, 26, 46, 0.1);
-  padding-bottom: 0;
+  border: none;
 }
 
 .work-filter_pill {
-  padding: 0.6rem 1.25rem 0.75rem;
-  border-radius: 0;
-  border: none;
-  border-bottom: 2px solid transparent;
   background: none;
-  color: rgba(26, 26, 46, 0.4);
-  font-family: inherit;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  border: none;
+  padding: 0;
+  font-size: 0.9rem;
+  color: #999;
   cursor: pointer;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  font-family: inherit;
+  transition: color 0.3s;
   white-space: nowrap;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
-  position: relative;
-}
-
-.work-filter_pill:hover {
-  color: rgba(26, 26, 46, 0.75);
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 .work-filter_pill.is-active {
-  color: #1a1a2e;
-  border-bottom-color: #1a1a2e;
-  background: none;
+  color: #0d0d0d;
+  font-weight: 600;
 }
 
-/* ═══ Grid Wrapper ═══ */
+.work-filter_pill:hover {
+  color: #0d0d0d;
+}
+
+/* ═══ Work List Container ═══ */
 .work-list_wrapper-v1 {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 0 2rem !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
-
-/* ═══ Clean 3-Column Grid ═══ */
 .work-list_list {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 2rem 1.5rem !important;
-  flex-flow: unset !important;
-  align-items: unset !important;
-  grid-column-gap: unset !important;
-  grid-row-gap: unset !important;
+  display: block !important;
+  grid-template-columns: none !important;
+  gap: 0 !important;
 }
 
+/* ═══ Project Sections ═══ */
 .work-list_item {
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  width: auto !important;
+  transition: opacity 0.4s ease;
 }
 .work-list_item.is-filtered-out {
   display: none !important;
 }
 
-.work-list_block {
-  height: 100%;
-}
-
-/* Reset Webflow item styles */
-.work-list_item {
-  width: auto !important;
-  flex-flow: unset !important;
-  align-items: unset !important;
-}
-.work-list_block {
-  width: auto !important;
-  flex-flow: unset !important;
-  align-items: unset !important;
-  perspective: none !important;
-}
-
-/* ═══ Card Link — the image container ═══ */
-.work-list_link {
-  display: block !important;
-  position: relative;
-  overflow: hidden !important;
-  border-radius: 16px !important;
-  background: #f0eeeb;
-  text-decoration: none;
-  height: auto !important;
-  aspect-ratio: unset !important;
-}
-
-/* ═══ Image ═══ */
-.work-list_img {
-  width: 100% !important;
-  aspect-ratio: 4 / 3 !important;
-  object-fit: cover !important;
-  border-radius: 0 !important;
+.work-section-link {
   display: block;
-  background: #eae7e3;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.6s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
-/* ═══ Hover Overlay Gradient ═══ */
-.work-list_link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 1;
-  pointer-events: none;
-  border-radius: 0 0 16px 16px;
-}
-.work-list_link:hover::after {
-  opacity: 1;
+.work-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-/* ═══ Hover — Image zoom ═══ */
-.work-list_link:hover .work-list_img {
-  transform: scale(1.05);
+.work-section-line {
+  height: 1px;
+  background: #e0e0e0;
+  margin-bottom: 2.5rem;
 }
 
-/* ═══ Hover Info Overlay (title + subtitle inside card) ═══ */
-.work-list_info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem;
-  z-index: 2;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              opacity 0.4s ease;
-  pointer-events: none;
-}
-.work-list_link:hover .work-list_info {
-  transform: translateY(0);
-  opacity: 1;
+.work-section-content {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 3rem;
+  align-items: start;
+  padding-bottom: 4rem;
 }
 
-.work-list_info-title {
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-.work-list_info-sub {
-  color: rgba(255,255,255,0.7);
-  font-size: 0.8rem;
-  margin-top: 0.2rem;
-  font-weight: 400;
+.work-section-text {
+  padding-top: 0.5rem;
 }
 
-/* ═══ View Project Arrow ═══ */
-.work-list_info-arrow {
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  color: #fff;
+.work-section-name {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 700;
+  color: #0d0d0d;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+  transition: color 0.3s;
+}
+
+.work-section-link:hover .work-section-name {
+  color: #666;
+}
+
+.work-section-desc {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+  max-width: 380px;
+}
+
+.work-section-category {
   font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: opacity 0.4s ease 0.1s,
-              transform 0.4s ease 0.1s;
-  z-index: 2;
-  pointer-events: none;
-}
-.work-list_link:hover .work-list_info-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ═══ Static Title Below Card ═══ */
-.work-list_name {
-  padding: 0.75rem 0.25rem 0 !important;
-  position: static !important;
-  opacity: 1 !important;
-  transform: none !important;
-  background: none !important;
-  text-align: left;
-}
-
-.work-list_title {
-  font-size: 0.95rem !important;
-  font-weight: 500 !important;
-  color: #333 !important;
-  line-height: 1.3 !important;
-  margin: 0 !important;
-  transition: color 0.3s ease;
-}
-
-.work-list_link:hover ~ .work-list_name .work-list_title {
-  color: #1a1a2e !important;
-}
-
-.work-list_dot {
-  display: none !important;
-}
-
-.work-list_subtitle {
-  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: #aaa;
-  margin-top: 0.15rem;
-  font-weight: 400;
+  font-weight: 500;
+  margin: 0;
 }
 
-/* Hide hover pill overlay */
-.hover_wrap {
-  display: none !important;
+/* Image */
+.work-section-image {
+  overflow: hidden;
+}
+
+.work-section-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.work-section-link:hover .work-section-image img {
+  transform: scale(1.03);
 }
 
 /* Empty state */
@@ -281,79 +191,43 @@
   padding: 4rem 2rem;
   color: rgba(26, 26, 46, 0.35);
   font-size: 1rem;
-  grid-column: 1 / -1;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .work-filter_empty.is-visible {
   display: block;
 }
 
 /* ═══ Responsive ═══ */
-@media (max-width: 1200px) {
-  .work-list_list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-@media (max-width: 1024px) {
-  .work-list_list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-}
-@media (max-width: 767px) {
-  .work-list_list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.875rem;
-  }
-  .work-list_link {
-    border-radius: 12px;
-  }
-  .work-list_link::after {
-    border-radius: 0 0 12px 12px;
+@media (max-width: 768px) {
+  .work-page-header {
+    padding: 5rem 0 1.5rem;
   }
   .work-filter_bar {
-    gap: 0;
-    padding: 0 1rem;
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    gap: 1.25rem;
+    padding: 0 1.5rem 1.5rem;
   }
   .work-filter_pill {
-    padding: 0.5rem 0.875rem 0.6rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
-  .work-list_title {
-    font-size: 0.85rem !important;
+  .work-section {
+    padding: 0 1.5rem;
   }
-  .work-list_subtitle {
-    font-size: 0.7rem;
-  }
-  .work-list_name {
-    padding: 0.5rem 0.15rem 0 !important;
-  }
-  .work-list_info {
-    padding: 1rem;
-  }
-  .work-list_info-arrow {
-    bottom: 1rem;
-    right: 1rem;
-  }
-  .work-list_wrapper-v1 {
-    padding: 1.5rem 1rem 0;
-  }
-}
-@media (max-width: 480px) {
-  .work-list_list {
+  .work-section-content {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
-  .work-list_link {
-    border-radius: 10px;
+  .work-section-name {
+    font-size: 1.5rem;
   }
-  .work-list_link::after {
-    border-radius: 0 0 10px 10px;
+  .work-section-desc {
+    max-width: none;
   }
-  .work-list_img {
-    aspect-ratio: 4 / 3 !important;
+  .work-section-line {
+    margin-bottom: 1.5rem;
+  }
+  .work-section-content {
+    padding-bottom: 2.5rem;
   }
 }
 </style>
@@ -610,7 +484,86 @@
             <div class="navbar_line"></div>
           </div>
         </div>
-      </nav><div STYLE="--blur: 1rem; --ratio: 2;" class="progressive-blur_wrap"><div STYLE="--i: 6;" class="progressive-blur_panel is-1"></div><div STYLE="--i: 5;" class="progressive-blur_panel is-2"></div><div STYLE="--i: 4;" class="progressive-blur_panel is-3"></div><div STYLE="--i: 3;" class="progressive-blur_panel is-4"></div><div STYLE="--i: 2;" class="progressive-blur_panel is-5"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-6"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-7"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-8"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-9"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-10"></div></div><main class="main-wrapper"><section class="section_work-list"><div class="padding-global is-tiny"><div data-w-id="f8cd9a3a-3e01-4e7f-30db-ecd0dcc6e07a" class="line"></div></div><div class="padding-section-medium"></div><div class="padding-global"><div class="work-list_component"><div class="container-medium"><div class="work-list_head"><h1 data-w-id="cb3ed43d-4fec-c076-6ad9-ca979cbce945" class="heading-style-display">Work.</h1><div id="w-node-b6de4e29-e0e7-22f5-a3fb-f6f4ae8848d0-348fc759" class="work-list_head-texts"><div data-w-id="2d1acec6-4c9c-26ee-8926-bff6869d7e09" class="text-size-grey-400"><p class="text-size-small">Selected projects and case studies.</p></div></div></div></div><div class="spacer-huge"></div><div class="work-filter_bar"><button class="work-filter_pill is-active" data-filter="all">All Projects</button><button class="work-filter_pill" data-filter="case-study">Case Studies</button><button class="work-filter_pill" data-filter="product-design">Product Design</button><button class="work-filter_pill" data-filter="website">Websites</button><button class="work-filter_pill" data-filter="branding">Branding</button><button class="work-filter_pill" data-filter="design-dev">Design &amp; Dev</button></div><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f98" class="hover_wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f99" class="hover_pill"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9a" class="hover_text-wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9b" class="hover_text">View work</div></div></div></div><div class="work-list_wrapper-v1 w-dyn-list"><div role="list" class="work-list_list w-dyn-items"><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div class="work-list_block"><a aria-label="link to work page" href="work-detail.html?slug=hatch" class="work-list_link"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69216eaec07c01a5612f05da_Cover%20Image.png" alt="Hatch" class="work-list_img"/><div class="work-list_info"><div class="work-list_info-title">Hatch</div><div class="work-list_info-sub">Product Design</div></div><span class="work-list_info-arrow">View Project &rarr;</span></a><div class="work-list_name"><h2 class="work-list_title">Hatch</h2><p class="work-list_subtitle">Product Design</p></div></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="branding website design-dev"><div class="work-list_block"><a aria-label="link to work page" href="work-detail.html?slug=plutohive" class="work-list_link"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69325b16f1e37b182930332c_Plutohive.png" alt="Plutohive" class="work-list_img"/><div class="work-list_info"><div class="work-list_info-title">Plutohive</div><div class="work-list_info-sub">Branding &amp; Development</div></div><span class="work-list_info-arrow">View Project &rarr;</span></a><div class="work-list_name"><h2 class="work-list_title">Plutohive</h2><p class="work-list_subtitle">Branding &amp; Development</p></div></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div class="work-list_block"><a aria-label="link to work page" href="work-detail.html?slug=cosmikit" class="work-list_link"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/692c524cdd7c8c67057f69ed_100_2x.webp" alt="CosmiKit" class="work-list_img"/><div class="work-list_info"><div class="work-list_info-title">CosmiKit</div><div class="work-list_info-sub">Product Design</div></div><span class="work-list_info-arrow">View Project &rarr;</span></a><div class="work-list_name"><h2 class="work-list_title">CosmiKit</h2><p class="work-list_subtitle">Product Design</p></div></div></div></div></div><div class="work-filter_empty">No projects in this category yet — more coming soon.</div></div></div><div class="padding-section-medium"></div></section><section class="section_cta"><div class="padding-global is-tiny"><div class="cta_component"><div class="padding-section-medium"></div><div class="padding-global"><div class="cta_content"><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a680f" class="text-align-center"><div class="text-color-white"><h2 class="heading-style-h1 font-weight-medium">From brand to product <br/>to growth</h2></div></div><div class="spacer-large"></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6814" class="fade-in"><a href="pricing/plans.html" data-wf--button--variant="white" data-w-id="059e00b0-f64e-1901-eae8-f1971aea4566" class="button-secondary w-variant-084c35ac-0c40-f906-a9cd-0d43386a2d5d w-inline-block"><div class="button_texts"><div class="button_text _1">Let&#x27;s Get Started</div><div class="button_text _2">Let&#x27;s Get Started</div></div><div class="button-line_space blue-dark-36"></div><div class="button-line_dot blue-dark-37"><div class="button_dot"></div><div class="button_dot-scale"></div></div></a></div></div></div><div class="padding-section-medium"></div><div class="interaction_visual_wrap"><div class="interaction_template"><div class="interaction_img_wrap"><img alt="" src="https://cdn.prod.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" class="interaction_img"/></div></div></div><div class="interaction_cms_wrap"><div class="interaction_cms_list"><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84d_Smartwatch%20Close-Up%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84e_001_copy_3-1170x780%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84f_Dynamic%20Motion%20Blur.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc850_Presentation_Hall_Mockup-1170x780.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc851_Image002-1170x780.webp" class="interaction_cms-img_img"/></div></div></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6828" class="cta_note"><div class="note-marquee_component"><div class="note-marquee_in"><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div></div></div></div></div></div></section></main><footer class="footer">
+      </nav><div STYLE="--blur: 1rem; --ratio: 2;" class="progressive-blur_wrap"><div STYLE="--i: 6;" class="progressive-blur_panel is-1"></div><div STYLE="--i: 5;" class="progressive-blur_panel is-2"></div><div STYLE="--i: 4;" class="progressive-blur_panel is-3"></div><div STYLE="--i: 3;" class="progressive-blur_panel is-4"></div><div STYLE="--i: 2;" class="progressive-blur_panel is-5"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-6"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-7"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-8"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-9"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-10"></div></div><main class="main-wrapper"><section class="section_work-list">
+
+<div class="work-page-header">
+  <div class="work-page-header-inner">
+    <h1 class="work-page-title">Work.</h1>
+  </div>
+</div>
+
+<div class="work-filter_bar">
+  <button class="work-filter_pill is-active" data-filter="all">All Projects</button>
+  <button class="work-filter_pill" data-filter="case-study">Case Studies</button>
+  <button class="work-filter_pill" data-filter="product-design">Product Design</button>
+  <button class="work-filter_pill" data-filter="website">Websites</button>
+  <button class="work-filter_pill" data-filter="branding">Branding</button>
+  <button class="work-filter_pill" data-filter="design-dev">Design &amp; Dev</button>
+</div>
+
+<div class="work-list_wrapper-v1">
+  <div class="work-list_list">
+
+    <div class="work-list_item" data-categories="product-design case-study">
+      <a href="work-detail.html?slug=hatch" class="work-section-link">
+        <div class="work-section">
+          <div class="work-section-line"></div>
+          <div class="work-section-content">
+            <div class="work-section-text">
+              <h2 class="work-section-name">Hatch</h2>
+              <p class="work-section-desc">A modern social platform for professionals and founders.</p>
+              <p class="work-section-category">Product Design</p>
+            </div>
+            <div class="work-section-image">
+              <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69216eaec07c01a5612f05da_Cover%20Image.png" alt="Hatch" loading="eager"/>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="work-list_item" data-categories="branding website design-dev">
+      <a href="work-detail.html?slug=plutohive" class="work-section-link">
+        <div class="work-section">
+          <div class="work-section-line"></div>
+          <div class="work-section-content">
+            <div class="work-section-text">
+              <h2 class="work-section-name">Plutohive</h2>
+              <p class="work-section-desc">Branding &amp; ecommerce experience for a modern pet-care store.</p>
+              <p class="work-section-category">Branding &amp; Development</p>
+            </div>
+            <div class="work-section-image">
+              <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69325b16f1e37b182930332c_Plutohive.png" alt="Plutohive" loading="eager"/>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="work-list_item" data-categories="product-design case-study">
+      <a href="work-detail.html?slug=cosmikit" class="work-section-link">
+        <div class="work-section">
+          <div class="work-section-line"></div>
+          <div class="work-section-content">
+            <div class="work-section-text">
+              <h2 class="work-section-name">CosmiKit</h2>
+              <p class="work-section-desc">A new era of design system automation.</p>
+              <p class="work-section-category">Product Design</p>
+            </div>
+            <div class="work-section-image">
+              <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/692c524cdd7c8c67057f69ed_100_2x.webp" alt="CosmiKit" loading="eager"/>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<div class="work-filter_empty">No projects in this category yet — more coming soon.</div>
+
+</section><section class="section_cta"><div class="padding-global is-tiny"><div class="cta_component"><div class="padding-section-medium"></div><div class="padding-global"><div class="cta_content"><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a680f" class="text-align-center"><div class="text-color-white"><h2 class="heading-style-h1 font-weight-medium">From brand to product <br/>to growth</h2></div></div><div class="spacer-large"></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6814" class="fade-in"><a href="pricing/plans.html" data-wf--button--variant="white" data-w-id="059e00b0-f64e-1901-eae8-f1971aea4566" class="button-secondary w-variant-084c35ac-0c40-f906-a9cd-0d43386a2d5d w-inline-block"><div class="button_texts"><div class="button_text _1">Let&#x27;s Get Started</div><div class="button_text _2">Let&#x27;s Get Started</div></div><div class="button-line_space blue-dark-36"></div><div class="button-line_dot blue-dark-37"><div class="button_dot"></div><div class="button_dot-scale"></div></div></a></div></div></div><div class="padding-section-medium"></div><div class="interaction_visual_wrap"><div class="interaction_template"><div class="interaction_img_wrap"><img alt="" src="https://cdn.prod.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" class="interaction_img"/></div></div></div><div class="interaction_cms_wrap"><div class="interaction_cms_list"><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84d_Smartwatch%20Close-Up%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84e_001_copy_3-1170x780%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84f_Dynamic%20Motion%20Blur.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc850_Presentation_Hall_Mockup-1170x780.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc851_Image002-1170x780.webp" class="interaction_cms-img_img"/></div></div></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6828" class="cta_note"><div class="note-marquee_component"><div class="note-marquee_in"><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div></div></div></div></div></div></section></main><footer class="footer">
         <div class="padding-global is-tiny">
           <div class="footer_wrap">
             <div class="footer_component">
@@ -986,61 +939,30 @@ requestAnimationFrame(raf);
         if (STATIC_SLUGS.indexOf(item.slug) !== -1) return;
         var filterValue = item.category ? (CATEGORY_MAP[item.category] || '') : '';
         var categoryLabel = CATEGORY_LABELS[item.category] || item.category || '';
-        var href = 'work-detail.html?slug=' + encodeURIComponent(item.slug);
 
-        var wrapper = document.createElement('div');
-        wrapper.setAttribute('role', 'listitem');
-        wrapper.className = 'work-list_item w-dyn-item';
+        var section = document.createElement('div');
+        section.className = 'work-list_item';
         if (filterValue) {
-          wrapper.setAttribute('data-categories', filterValue);
+          section.setAttribute('data-categories', filterValue);
         }
 
-        var block = document.createElement('div');
-        block.className = 'work-list_block';
+        section.innerHTML = '<a href="work-detail.html?slug=' + escapeHtml(item.slug) + '" class="work-section-link">'
+          + '<div class="work-section">'
+          + '<div class="work-section-line"></div>'
+          + '<div class="work-section-content">'
+          + '<div class="work-section-text">'
+          + '<h2 class="work-section-name">' + escapeHtml(item.name) + '</h2>'
+          + '<p class="work-section-desc">' + escapeHtml(item.description || '') + '</p>'
+          + '<p class="work-section-category">' + escapeHtml(categoryLabel) + '</p>'
+          + '</div>'
+          + '<div class="work-section-image">'
+          + '<img src="' + escapeHtml(item.cover_image_url || '') + '" alt="' + escapeHtml(item.name) + '" loading="lazy"/>'
+          + '</div>'
+          + '</div>'
+          + '</div>'
+          + '</a>';
 
-        var link = document.createElement('a');
-        link.setAttribute('aria-label', 'link to work page');
-        link.href = href;
-        link.className = 'work-list_link';
-
-        var img = document.createElement('img');
-        img.loading = 'lazy';
-        img.src = item.cover_image_url || '';
-        img.alt = item.name || '';
-        img.className = 'work-list_img';
-
-        // Hover info overlay inside the link
-        var info = document.createElement('div');
-        info.className = 'work-list_info';
-        info.innerHTML = '<div class="work-list_info-title">' + escapeHtml(item.name) + '</div>'
-          + '<div class="work-list_info-sub">' + escapeHtml(categoryLabel) + '</div>';
-
-        var arrow = document.createElement('span');
-        arrow.className = 'work-list_info-arrow';
-        arrow.innerHTML = 'View Project &rarr;';
-
-        link.appendChild(img);
-        link.appendChild(info);
-        link.appendChild(arrow);
-
-        // Static name below card
-        var nameDiv = document.createElement('div');
-        nameDiv.className = 'work-list_name';
-
-        var title = document.createElement('h2');
-        title.className = 'work-list_title';
-        title.textContent = item.name || '';
-
-        var subtitle = document.createElement('p');
-        subtitle.className = 'work-list_subtitle';
-        subtitle.textContent = categoryLabel;
-
-        nameDiv.appendChild(title);
-        nameDiv.appendChild(subtitle);
-        block.appendChild(link);
-        block.appendChild(nameDiv);
-        wrapper.appendChild(block);
-        list.appendChild(wrapper);
+        list.appendChild(section);
       });
 
       // Re-query items so the filter system picks up the new cards
