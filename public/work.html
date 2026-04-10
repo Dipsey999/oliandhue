@@ -15,246 +15,260 @@
 <link href="css/footer-custom.css" rel="stylesheet" type="text/css"/>
 
 <style>
-/* ═══ Work Page — Ragged Edge Redesign ═══ */
+/* ═══ Work Page — Cursor-Reveal Gallery ═══ */
 
-/* Page background */
 .section_work-list {
-  background: #fff;
+  --pad: clamp(32px, 5vw, 80px);
+  background: #0d0d0d;
+  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
 }
 
-/* Reset all Webflow structural containers */
-.work-list_head { display: none !important; }
-.spacer-huge { display: none !important; }
-.section_work-list .padding-section-medium { padding: 0 !important; }
-.section_work-list .padding-global { padding: 0 !important; width: 100% !important; max-width: none !important; }
-.work-list_component { max-width: none !important; padding: 0 !important; width: 100% !important; }
-.section_work-list .container-medium { max-width: none !important; padding: 0 !important; width: 100% !important; }
-.hover_wrap { display: none !important; }
-.work-list_wrapper-v1 { max-width: none !important; padding: 0 !important; width: 100% !important; }
+/* ─── Reset Webflow ─── */
+.work-list_head,.spacer-huge,.hover_wrap { display:none!important; }
+.section_work-list .padding-section-medium { padding:0!important; }
+.section_work-list .padding-global { padding:0!important;width:100%!important;max-width:none!important; }
+.work-list_component,.section_work-list .container-medium { max-width:none!important;padding:0!important;width:100%!important; }
 
-/* ═══ Page Header ═══ */
-.work-page-header {
-  padding: 6rem 0 2rem;
-}
-.work-page-header-inner {
-  padding: 0 40px;
-}
+/* ─── Header ─── */
+.work-page-header { padding: 8rem var(--pad) 1rem; }
+.work-page-header-inner { padding: 0; }
 .work-page-title {
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 700;
-  color: #0d0d0d;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  margin: 0 0 0.5rem;
+}
+.work-page-subtitle {
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  color: rgba(255,255,255,0.35);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   margin: 0;
 }
 
-/* ═══ Filter Pills ═══ */
+/* ─── Filter Pills ─── */
 .work-filter_bar {
-  padding: 0 40px 2rem;
+  padding: 2rem var(--pad) 3rem;
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
   border: none;
 }
-
 .work-filter_pill {
   background: none;
-  border: none;
-  padding: 0;
-  font-size: 0.9rem;
-  color: #999;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
   cursor: pointer;
   font-family: inherit;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
   white-space: nowrap;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-
 .work-filter_pill.is-active {
   color: #0d0d0d;
-  font-weight: 600;
+  background: #fff;
+  border-color: #fff;
+  font-weight: 500;
 }
-
 .work-filter_pill:hover {
-  color: #0d0d0d;
+  color: #fff;
+  border-color: rgba(255,255,255,0.5);
 }
+.work-filter_pill::after { display: none; }
 
-/* ═══ Work List Container ═══ */
+/* ─── List ─── */
 .work-list_wrapper-v1 {
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  max-width:none!important;margin:0!important;padding:0 var(--pad)!important;width:100%!important;
 }
 .work-list_list {
-  display: block !important;
-  grid-template-columns: none !important;
-  gap: 0 !important;
+  display:block!important;grid-template-columns:none!important;gap:0!important;
+  grid-column-gap:0!important;grid-row-gap:0!important;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* ═══ Project Sections ═══ */
+/* ─── Each project row ─── */
 .work-list_item {
-  width: auto !important;
+  width:100%!important;display:block!important;
+  flex-flow:unset!important;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   transition: opacity 0.4s ease;
 }
-.work-list_item.is-filtered-out {
-  display: none !important;
-}
+.work-list_item.is-filtered-out { display:none!important; }
 
 .work-section-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
+  display:flex!important;align-items:center!important;
+  text-decoration:none!important;color:inherit!important;
+  height:auto!important;aspect-ratio:unset!important;
+  padding: 2rem 0;
+  gap: 1.5rem;
+  position: relative;
+  cursor: pointer;
 }
 
-.work-section {
+.work-section { display:contents; }
+.work-section-line { display:none; }
+.work-section-image { display:none; }
+
+/* The row layout: number — name — spacer — category — arrow */
+.work-section-content {
+  display:flex!important;align-items:center!important;
+  gap:0!important;width:100%!important;
+  grid-template-columns:none!important;
+  min-height:auto!important;max-width:none!important;
+  margin:0!important;padding:0!important;
+  height:auto!important;aspect-ratio:unset!important;flex-flow:row nowrap!important;
+}
+.work-section-text {
+  display:flex;align-items:center;
+  gap: 2rem;
+  padding:0;min-height:auto;
+  width: 100%;
+  position: relative;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.work-section-top {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  flex: 1;
+  margin: 0;
   padding: 0;
 }
-
-.work-section-line {
-  height: 1px;
-  background: #ddd;
-  margin: 0 40px 0;
+.work-section-number {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.25);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  margin: 0;
+  display: block;
+  min-width: 24px;
 }
-
-.work-section-content {
-  display: grid;
-  grid-template-columns: 35% 1fr;
-  gap: 0;
-  align-items: stretch;
-  min-height: 500px;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin-left: calc(-50vw + 50%) !important;
-}
-
-.work-section-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem 2.5rem 2.5rem 40px;
-}
-
-.work-section-top {}
-
 .work-section-name {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
-  color: #0d0d0d;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.03em;
   margin: 0;
   font-style: italic;
   font-family: Georgia, 'Times New Roman', serif;
-  transition: color 0.3s;
+  transition: color 0.4s ease, transform 0.4s ease;
+  white-space: nowrap;
 }
-
-.work-section-link:hover .work-section-name {
-  color: #666;
-}
-
-.work-section-bottom {}
-
-.work-section-desc {
-  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
-  color: #1a1a1a;
-  line-height: 1.5;
-  margin: 0 0 1.25rem;
-  max-width: 380px;
-  font-weight: 700;
-}
-
 .work-section-category {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #999;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.3);
   font-weight: 400;
-  margin: 0;
+  margin: 0 0 0 auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+.work-section-bottom { display:contents; }
+.work-section-desc { display:none; }
+
+/* CTA arrow — hidden by default, visible on hover */
+.work-section-cta {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 1.5rem;
+  flex-shrink: 0;
+  color: rgba(255,255,255,0);
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+.work-section-cta svg {
+  width: 22px;
+  height: 22px;
 }
 
-/* Image — fills right column, no padding on right */
-.work-section-image {
+/* ─── Hover states ─── */
+.work-section-link:hover .work-section-name {
+  color: rgba(255,255,255,0.5);
+  transform: translateX(8px);
+}
+.work-section-link:hover .work-section-category { color: rgba(255,255,255,0.5); }
+.work-section-link:hover .work-section-cta {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* Other items fade when one is hovered */
+.work-list_list:hover .work-list_item { opacity: 0.35; }
+.work-list_list:hover .work-list_item:hover { opacity: 1; }
+
+/* ─── Floating cursor image preview ─── */
+.work-cursor-img {
+  position: fixed;
+  width: 380px;
+  height: 260px;
+  border-radius: 12px;
   overflow: hidden;
-  position: relative;
-  padding: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
-
-.work-section-image img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  display: block !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.work-cursor-img.is-visible {
+  opacity: 1;
+  transform: scale(1);
 }
-
-.work-section-link:hover .work-section-image img {
-  transform: scale(1.03);
-}
-
-/* Empty state */
-.work-filter_empty {
-  display: none;
-  text-align: center;
-  padding: 4rem 2rem;
-  color: rgba(26, 26, 46, 0.35);
-  font-size: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.work-filter_empty.is-visible {
+.work-cursor-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-/* ═══ Responsive ═══ */
-@media (max-width: 768px) {
-  .work-page-header {
-    padding: 5rem 0 1.5rem;
-  }
-  .work-filter_bar {
-    gap: 1.25rem;
-    padding: 0 1.5rem 1.5rem;
-  }
-  .work-filter_pill {
-    font-size: 0.8rem;
-  }
-  .work-section-line {
-    margin: 0 1rem;
-  }
-  .work-section-content {
-    grid-template-columns: 1fr;
-    gap: 0;
-    min-height: auto;
-  }
-  .work-section-text {
-    padding: 1.5rem 1rem 1.5rem;
-  }
-  .work-section-image {
-    aspect-ratio: 4/3;
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-  .work-section-name {
-    font-size: 2rem;
-  }
-  .work-section-desc {
-    max-width: none;
-    font-size: 1rem;
-  }
-  .work-section-line {
-    margin-bottom: 1.5rem;
-  }
-  .work-section-content {
-    padding-bottom: 2.5rem;
-  }
+/* ─── Empty ─── */
+.work-filter_empty {
+  display:none;text-align:center;padding:4rem 2rem;
+  color:rgba(255,255,255,0.3);font-size:0.9rem;
+}
+.work-filter_empty.is-visible { display:block; }
+
+/* ═══ Tablet ═══ */
+@media (max-width:991px) {
+  .section_work-list { --pad: clamp(24px,4vw,48px); }
+  .work-section-name { font-size: clamp(1.6rem,4vw,2.8rem); }
+  .work-cursor-img { width: 280px; height: 190px; }
+}
+
+/* ═══ Mobile ═══ */
+@media (max-width:768px) {
+  .section_work-list { --pad: 20px; }
+  .work-page-header { padding: 5.5rem var(--pad) 0.5rem; }
+  .work-page-title { font-size: clamp(2.2rem,9vw,3rem); margin-bottom:0.4rem; }
+  .work-filter_bar { padding: 1.5rem var(--pad) 2rem; gap:0.75rem; }
+  .work-filter_pill { font-size:0.65rem; padding:0.35rem 0.9rem; }
+  .work-section-link { padding:1.25rem 0; flex-wrap:wrap; }
+  .work-section-top { flex-wrap:wrap; gap:0.5rem 1rem; }
+  .work-section-name { font-size:1.5rem; white-space:normal; }
+  .work-section-number { min-width:auto; }
+  .work-section-category { margin-left:0; width:100%; margin-top:0.25rem; }
+  .work-section-cta { margin-left:auto; }
+  .work-section-cta svg { width:16px; height:16px; }
+  .work-cursor-img { display:none; }
 }
 </style>
 </head><body><div class="page-wrapper"><nav class="navbar">
@@ -515,6 +529,7 @@
 <div class="work-page-header">
   <div class="work-page-header-inner">
     <h1 class="work-page-title">Work.</h1>
+    <p class="work-page-subtitle">Selected projects &amp; case studies</p>
   </div>
 </div>
 
@@ -535,7 +550,7 @@
         <div class="work-section">
           <div class="work-section-line"></div>
           <div class="work-section-content">
-            <div class="work-section-text"><div class="work-section-top"><h2 class="work-section-name">Hatch</h2></div><div class="work-section-bottom"><p class="work-section-desc">A modern social platform for professionals and founders.</p><p class="work-section-category">Product Design</p></div></div>
+            <div class="work-section-text"><div class="work-section-top"><span class="work-section-number">01</span><h2 class="work-section-name">Hatch</h2><p class="work-section-category">Product Design</p></div><div class="work-section-bottom"><p class="work-section-desc">A modern social platform for professionals and founders.</p><span class="work-section-cta">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></div>
             <div class="work-section-image">
               <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69216eaec07c01a5612f05da_Cover%20Image.png" alt="Hatch" loading="eager"/>
             </div>
@@ -549,7 +564,7 @@
         <div class="work-section">
           <div class="work-section-line"></div>
           <div class="work-section-content">
-            <div class="work-section-text"><div class="work-section-top"><h2 class="work-section-name">Plutohive</h2></div><div class="work-section-bottom"><p class="work-section-desc">Branding &amp; ecommerce experience for a modern pet-care store.</p><p class="work-section-category">Branding &amp; Development</p></div></div>
+            <div class="work-section-text"><div class="work-section-top"><span class="work-section-number">02</span><h2 class="work-section-name">Plutohive</h2><p class="work-section-category">Branding &amp; Development</p></div><div class="work-section-bottom"><p class="work-section-desc">Branding &amp; ecommerce experience for a modern pet-care store.</p><span class="work-section-cta">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></div>
             <div class="work-section-image">
               <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69325b16f1e37b182930332c_Plutohive.png" alt="Plutohive" loading="eager"/>
             </div>
@@ -563,7 +578,7 @@
         <div class="work-section">
           <div class="work-section-line"></div>
           <div class="work-section-content">
-            <div class="work-section-text"><div class="work-section-top"><h2 class="work-section-name">CosmiKit</h2></div><div class="work-section-bottom"><p class="work-section-desc">A new era of design system automation.</p><p class="work-section-category">Product Design</p></div></div>
+            <div class="work-section-text"><div class="work-section-top"><span class="work-section-number">03</span><h2 class="work-section-name">CosmiKit</h2><p class="work-section-category">Product Design</p></div><div class="work-section-bottom"><p class="work-section-desc">A new era of design system automation.</p><span class="work-section-cta">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></div>
             <div class="work-section-image">
               <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/692c524cdd7c8c67057f69ed_100_2x.webp" alt="CosmiKit" loading="eager"/>
             </div>
@@ -576,6 +591,11 @@
 </div>
 
 <div class="work-filter_empty">No projects in this category yet — more coming soon.</div>
+
+<!-- Floating cursor-follow image preview -->
+<div class="work-cursor-img" id="workCursorImg">
+  <img src="" alt="" />
+</div>
 
 </section><section class="section_cta"><div class="padding-global is-tiny"><div class="cta_component"><div class="padding-section-medium"></div><div class="padding-global"><div class="cta_content"><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a680f" class="text-align-center"><div class="text-color-white"><h2 class="heading-style-h1 font-weight-medium">From brand to product <br/>to growth</h2></div></div><div class="spacer-large"></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6814" class="fade-in"><a href="pricing/plans.html" data-wf--button--variant="white" data-w-id="059e00b0-f64e-1901-eae8-f1971aea4566" class="button-secondary w-variant-084c35ac-0c40-f906-a9cd-0d43386a2d5d w-inline-block"><div class="button_texts"><div class="button_text _1">Let&#x27;s Get Started</div><div class="button_text _2">Let&#x27;s Get Started</div></div><div class="button-line_space blue-dark-36"></div><div class="button-line_dot blue-dark-37"><div class="button_dot"></div><div class="button_dot-scale"></div></div></a></div></div></div><div class="padding-section-medium"></div><div class="interaction_visual_wrap"><div class="interaction_template"><div class="interaction_img_wrap"><img alt="" src="https://cdn.prod.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" class="interaction_img"/></div></div></div><div class="interaction_cms_wrap"><div class="interaction_cms_list"><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84d_Smartwatch%20Close-Up%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84e_001_copy_3-1170x780%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84f_Dynamic%20Motion%20Blur.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc850_Presentation_Hall_Mockup-1170x780.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc851_Image002-1170x780.webp" class="interaction_cms-img_img"/></div></div></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6828" class="cta_note"><div class="note-marquee_component"><div class="note-marquee_in"><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div></div></div></div></div></div></section></main><footer class="footer">
         <div class="padding-global is-tiny">
@@ -912,6 +932,75 @@ requestAnimationFrame(raf);
   runFilter();
 })();
 </script>
+<script>
+/* ═══ Cursor-Follow Image Preview ═══ */
+(function() {
+  var cursor = document.getElementById('workCursorImg');
+  if (!cursor) return;
+  var cursorImg = cursor.querySelector('img');
+  var items = document.querySelectorAll('.work-list_item');
+  var mouseX = 0, mouseY = 0, curX = 0, curY = 0;
+  var isVisible = false;
+  var rafId = null;
+
+  function lerp(a, b, n) { return a + (b - a) * n; }
+
+  function animate() {
+    curX = lerp(curX, mouseX, 0.12);
+    curY = lerp(curY, mouseY, 0.12);
+    cursor.style.left = curX + 'px';
+    cursor.style.top = curY + 'px';
+    if (isVisible) rafId = requestAnimationFrame(animate);
+  }
+
+  function showCursor(imgSrc) {
+    cursorImg.src = imgSrc;
+    cursor.classList.add('is-visible');
+    if (!isVisible) {
+      isVisible = true;
+      curX = mouseX; curY = mouseY;
+      animate();
+    }
+  }
+
+  function hideCursor() {
+    cursor.classList.remove('is-visible');
+    isVisible = false;
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX - 190;
+    mouseY = e.clientY - 130;
+  });
+
+  items.forEach(function(item) {
+    var img = item.querySelector('.work-section-image img');
+    if (!img) return;
+    var src = img.getAttribute('src');
+
+    item.addEventListener('mouseenter', function() { showCursor(src); });
+    item.addEventListener('mouseleave', function() { hideCursor(); });
+  });
+
+  // Also attach to dynamically added items
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1 && node.classList && node.classList.contains('work-list_item')) {
+          var img = node.querySelector('.work-section-image img');
+          if (!img) return;
+          var src = img.getAttribute('src');
+          node.addEventListener('mouseenter', function() { showCursor(src); });
+          node.addEventListener('mouseleave', function() { hideCursor(); });
+        }
+      });
+    });
+  });
+  var list = document.querySelector('.work-list_list');
+  if (list) observer.observe(list, { childList: true });
+})();
+</script>
 <script src="js/form-handler.js"></script>
 <script src="js/bumblebee.js"></script>
 <script>
@@ -948,9 +1037,15 @@ requestAnimationFrame(raf);
     .then(function(items) {
       if (!Array.isArray(items) || items.length === 0) return;
 
+      // Count existing static items for numbering
+      var existingCount = document.querySelectorAll('.work-list_item').length;
+      var dynamicIndex = 0;
+
       items.forEach(function(item) {
         // Skip items that are already in the static HTML
         if (STATIC_SLUGS.indexOf(item.slug) !== -1) return;
+        dynamicIndex++;
+        var num = String(existingCount + dynamicIndex).padStart(2, '0');
         var filterValue = item.category ? (CATEGORY_MAP[item.category] || '') : '';
         var categoryLabel = CATEGORY_LABELS[item.category] || item.category || '';
 
@@ -965,9 +1060,10 @@ requestAnimationFrame(raf);
           + '<div class="work-section-line"></div>'
           + '<div class="work-section-content">'
           + '<div class="work-section-text">'
-          + '<div class="work-section-top"><h2 class="work-section-name">' + escapeHtml(item.name) + '</h2></div>'
-          + '<div class="work-section-bottom"><p class="work-section-desc">' + escapeHtml(item.description || '') + '</p>'
+          + '<div class="work-section-top"><span class="work-section-number">' + num + '</span><h2 class="work-section-name">' + escapeHtml(item.name) + '</h2>'
           + '<p class="work-section-category">' + escapeHtml(categoryLabel) + '</p></div>'
+          + '<div class="work-section-bottom"><p class="work-section-desc">' + escapeHtml(item.description || '') + '</p>'
+          + '<span class="work-section-cta">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>'
           + '</div>'
           + '<div class="work-section-image">'
           + '<img src="' + escapeHtml(item.cover_image_url || '') + '" alt="' + escapeHtml(item.name) + '" loading="lazy"/>'
