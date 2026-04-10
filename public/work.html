@@ -59,15 +59,80 @@
               0 1px 4px rgba(26, 26, 46, 0.1);
 }
 
-/* Item transition */
+/* ═══ 4-Column Grid Layout (Reference Style) ═══ */
+.work-list_list {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem 1.5rem;
+}
+
 .work-list_item {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
-
 .work-list_item.is-filtered-out {
   opacity: 0;
   transform: scale(0.96) translateY(8px);
   pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+.work-list_block {
+  height: 100%;
+}
+
+.work-list_link {
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+}
+
+.work-list_img {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+  background: #f0eeeb;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.work-list_link:hover .work-list_img {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.work-list_name {
+  padding: 0.75rem 0 0 !important;
+  position: static !important;
+  opacity: 1 !important;
+  transform: none !important;
+  background: none !important;
+}
+
+.work-list_title {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: #1a1a2e !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+}
+
+.work-list_dot {
+  display: none !important;
+}
+
+/* Category subtitle */
+.work-list_subtitle {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+/* Hide hover pill overlay */
+.hover_wrap {
+  display: none !important;
 }
 
 /* Empty state */
@@ -77,25 +142,25 @@
   padding: 4rem 2rem;
   color: rgba(26, 26, 46, 0.35);
   font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.01em;
+  grid-column: 1 / -1;
 }
-
 .work-filter_empty.is-visible {
   display: block;
 }
 
-/* Mobile tweaks */
+/* ═══ Responsive ═══ */
+@media (max-width: 1024px) {
+  .work-list_list { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 767px) {
-  .work-filter_bar {
-    gap: 0.375rem;
-    padding: 0 1rem;
-    margin-bottom: 2rem;
-  }
-  .work-filter_pill {
-    padding: 0.4rem 1rem;
-    font-size: 0.75rem;
-  }
+  .work-list_list { grid-template-columns: repeat(2, 1fr); gap: 1.25rem 1rem; }
+  .work-filter_bar { gap: 0.375rem; padding: 0 1rem; margin-bottom: 2rem; }
+  .work-filter_pill { padding: 0.4rem 1rem; font-size: 0.75rem; }
+  .work-list_title { font-size: 0.875rem !important; }
+  .work-list_subtitle { font-size: 0.7rem; }
+}
+@media (max-width: 480px) {
+  .work-list_list { grid-template-columns: 1fr 1fr; gap: 1rem 0.75rem; }
 }
 </style>
 </head><body><div class="page-wrapper"><nav class="navbar">
@@ -351,7 +416,7 @@
             <div class="navbar_line"></div>
           </div>
         </div>
-      </nav><div STYLE="--blur: 1rem; --ratio: 2;" class="progressive-blur_wrap"><div STYLE="--i: 6;" class="progressive-blur_panel is-1"></div><div STYLE="--i: 5;" class="progressive-blur_panel is-2"></div><div STYLE="--i: 4;" class="progressive-blur_panel is-3"></div><div STYLE="--i: 3;" class="progressive-blur_panel is-4"></div><div STYLE="--i: 2;" class="progressive-blur_panel is-5"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-6"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-7"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-8"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-9"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-10"></div></div><main class="main-wrapper"><section class="section_work-list"><div class="padding-global is-tiny"><div data-w-id="f8cd9a3a-3e01-4e7f-30db-ecd0dcc6e07a" class="line"></div></div><div class="padding-section-medium"></div><div class="padding-global"><div class="work-list_component"><div class="container-medium"><div class="work-list_head"><h1 data-w-id="cb3ed43d-4fec-c076-6ad9-ca979cbce945" class="heading-style-display">Work.</h1><div id="w-node-b6de4e29-e0e7-22f5-a3fb-f6f4ae8848d0-348fc759" class="work-list_head-texts"><h2 data-w-id="3cde3e8e-9cf9-f0b1-0571-18bb109027d6" class="text-style-label hide-tablet">Projects</h2><div data-w-id="2d1acec6-4c9c-26ee-8926-bff6869d7e09" class="text-size-grey-400"><p class="text-size-small">Every project starts with a founder with a vision. Here&#x27;s what we built together.<br/></p></div></div><h2 id="w-node-fd189f4e-bb1d-3d0d-a032-00be0c82ab01-348fc759" data-w-id="fd189f4e-bb1d-3d0d-a032-00be0c82ab01" class="heading-style-display hide-tablet">©26</h2></div></div><div class="spacer-huge"></div><div class="work-filter_bar"><button class="work-filter_pill is-active" data-filter="all">All Projects</button><button class="work-filter_pill" data-filter="case-study">Case Studies</button><button class="work-filter_pill" data-filter="product-design">Product Design</button><button class="work-filter_pill" data-filter="website">Websites</button><button class="work-filter_pill" data-filter="branding">Branding</button><button class="work-filter_pill" data-filter="design-dev">Design &amp; Dev</button></div><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f98" class="hover_wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f99" class="hover_pill"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9a" class="hover_text-wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9b" class="hover_text">View work</div></div></div></div><div class="work-list_wrapper-v1 w-dyn-list"><div role="list" class="work-list_list w-dyn-items"><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=hatch" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69216eaec07c01a5612f05da_Cover%20Image.png" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">Hatch</h2></div></a></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="branding website design-dev"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=plutohive" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69325b16f1e37b182930332c_Plutohive.png" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">Plutohive</h2></div></a></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=cosmikit" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/692c524cdd7c8c67057f69ed_100_2x.webp" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">CosmiKit</h2></div></a></div></div></div></div><div class="work-filter_empty">No projects in this category yet — more coming soon.</div></div></div><div class="padding-section-medium"></div></section><section class="section_cta"><div class="padding-global is-tiny"><div class="cta_component"><div class="padding-section-medium"></div><div class="padding-global"><div class="cta_content"><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a680f" class="text-align-center"><div class="text-color-white"><h2 class="heading-style-h1 font-weight-medium">From brand to product <br/>to growth</h2></div></div><div class="spacer-large"></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6814" class="fade-in"><a href="pricing/plans.html" data-wf--button--variant="white" data-w-id="059e00b0-f64e-1901-eae8-f1971aea4566" class="button-secondary w-variant-084c35ac-0c40-f906-a9cd-0d43386a2d5d w-inline-block"><div class="button_texts"><div class="button_text _1">Let&#x27;s Get Started</div><div class="button_text _2">Let&#x27;s Get Started</div></div><div class="button-line_space blue-dark-36"></div><div class="button-line_dot blue-dark-37"><div class="button_dot"></div><div class="button_dot-scale"></div></div></a></div></div></div><div class="padding-section-medium"></div><div class="interaction_visual_wrap"><div class="interaction_template"><div class="interaction_img_wrap"><img alt="" src="https://cdn.prod.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" class="interaction_img"/></div></div></div><div class="interaction_cms_wrap"><div class="interaction_cms_list"><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84d_Smartwatch%20Close-Up%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84e_001_copy_3-1170x780%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84f_Dynamic%20Motion%20Blur.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc850_Presentation_Hall_Mockup-1170x780.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc851_Image002-1170x780.webp" class="interaction_cms-img_img"/></div></div></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6828" class="cta_note"><div class="note-marquee_component"><div class="note-marquee_in"><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div></div></div></div></div></div></section></main><footer class="footer">
+      </nav><div STYLE="--blur: 1rem; --ratio: 2;" class="progressive-blur_wrap"><div STYLE="--i: 6;" class="progressive-blur_panel is-1"></div><div STYLE="--i: 5;" class="progressive-blur_panel is-2"></div><div STYLE="--i: 4;" class="progressive-blur_panel is-3"></div><div STYLE="--i: 3;" class="progressive-blur_panel is-4"></div><div STYLE="--i: 2;" class="progressive-blur_panel is-5"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-6"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-7"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-8"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-9"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-10"></div></div><main class="main-wrapper"><section class="section_work-list"><div class="padding-global is-tiny"><div data-w-id="f8cd9a3a-3e01-4e7f-30db-ecd0dcc6e07a" class="line"></div></div><div class="padding-section-medium"></div><div class="padding-global"><div class="work-list_component"><div class="container-medium"><div class="work-list_head"><h1 data-w-id="cb3ed43d-4fec-c076-6ad9-ca979cbce945" class="heading-style-display">Work.</h1><div id="w-node-b6de4e29-e0e7-22f5-a3fb-f6f4ae8848d0-348fc759" class="work-list_head-texts"><h2 data-w-id="3cde3e8e-9cf9-f0b1-0571-18bb109027d6" class="text-style-label hide-tablet">Projects</h2><div data-w-id="2d1acec6-4c9c-26ee-8926-bff6869d7e09" class="text-size-grey-400"><p class="text-size-small">Every project starts with a founder with a vision. Here&#x27;s what we built together.<br/></p></div></div><h2 id="w-node-fd189f4e-bb1d-3d0d-a032-00be0c82ab01-348fc759" data-w-id="fd189f4e-bb1d-3d0d-a032-00be0c82ab01" class="heading-style-display hide-tablet">©26</h2></div></div><div class="spacer-huge"></div><div class="work-filter_bar"><button class="work-filter_pill is-active" data-filter="all">All Projects</button><button class="work-filter_pill" data-filter="case-study">Case Studies</button><button class="work-filter_pill" data-filter="product-design">Product Design</button><button class="work-filter_pill" data-filter="website">Websites</button><button class="work-filter_pill" data-filter="branding">Branding</button><button class="work-filter_pill" data-filter="design-dev">Design &amp; Dev</button></div><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f98" class="hover_wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f99" class="hover_pill"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9a" class="hover_text-wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9b" class="hover_text">View work</div></div></div></div><div class="work-list_wrapper-v1 w-dyn-list"><div role="list" class="work-list_list w-dyn-items"><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=hatch" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69216eaec07c01a5612f05da_Cover%20Image.png" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">Hatch</h2><p class="work-list_subtitle">Product Design</p></div></a></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="branding website design-dev"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=plutohive" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69325b16f1e37b182930332c_Plutohive.png" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">Plutohive</h2><p class="work-list_subtitle">Branding & Development</p></div></a></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=cosmikit" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/692c524cdd7c8c67057f69ed_100_2x.webp" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">CosmiKit</h2><p class="work-list_subtitle">Product Design</p></div></a></div></div></div></div><div class="work-filter_empty">No projects in this category yet — more coming soon.</div></div></div><div class="padding-section-medium"></div></section><section class="section_cta"><div class="padding-global is-tiny"><div class="cta_component"><div class="padding-section-medium"></div><div class="padding-global"><div class="cta_content"><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a680f" class="text-align-center"><div class="text-color-white"><h2 class="heading-style-h1 font-weight-medium">From brand to product <br/>to growth</h2></div></div><div class="spacer-large"></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6814" class="fade-in"><a href="pricing/plans.html" data-wf--button--variant="white" data-w-id="059e00b0-f64e-1901-eae8-f1971aea4566" class="button-secondary w-variant-084c35ac-0c40-f906-a9cd-0d43386a2d5d w-inline-block"><div class="button_texts"><div class="button_text _1">Let&#x27;s Get Started</div><div class="button_text _2">Let&#x27;s Get Started</div></div><div class="button-line_space blue-dark-36"></div><div class="button-line_dot blue-dark-37"><div class="button_dot"></div><div class="button_dot-scale"></div></div></a></div></div></div><div class="padding-section-medium"></div><div class="interaction_visual_wrap"><div class="interaction_template"><div class="interaction_img_wrap"><img alt="" src="https://cdn.prod.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" class="interaction_img"/></div></div></div><div class="interaction_cms_wrap"><div class="interaction_cms_list"><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84d_Smartwatch%20Close-Up%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84e_001_copy_3-1170x780%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84f_Dynamic%20Motion%20Blur.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc850_Presentation_Hall_Mockup-1170x780.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc851_Image002-1170x780.webp" class="interaction_cms-img_img"/></div></div></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6828" class="cta_note"><div class="note-marquee_component"><div class="note-marquee_in"><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div></div></div></div></div></div></section></main><footer class="footer">
         <div class="padding-global is-tiny">
           <div class="footer_wrap">
             <div class="footer_component">
@@ -698,6 +763,12 @@ requestAnimationFrame(raf);
     branding: 'branding',
     design_dev: 'design-dev'
   };
+  var CATEGORY_LABELS = {
+    product_design: 'Product Design',
+    website: 'Website',
+    branding: 'Branding',
+    design_dev: 'Design & Dev'
+  };
 
   var list = document.querySelector('.work-list_list');
   if (!list) return;
@@ -727,7 +798,7 @@ requestAnimationFrame(raf);
         link.className = 'work-list_link w-inline-block';
 
         var img = document.createElement('img');
-        img.loading = 'eager';
+        img.loading = 'lazy';
         img.src = item.cover_image_url || '';
         img.alt = item.name || '';
         img.className = 'work-list_img';
@@ -742,8 +813,12 @@ requestAnimationFrame(raf);
         title.className = 'work-list_title';
         title.textContent = item.name || '';
 
-        nameDiv.appendChild(dot);
+        var subtitle = document.createElement('p');
+        subtitle.className = 'work-list_subtitle';
+        subtitle.textContent = CATEGORY_LABELS[item.category] || item.category || '';
+
         nameDiv.appendChild(title);
+        nameDiv.appendChild(subtitle);
         link.appendChild(img);
         link.appendChild(nameDiv);
         block.appendChild(link);
