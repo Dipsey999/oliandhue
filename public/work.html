@@ -114,31 +114,31 @@
 }
 
 .work-section {
-  max-width: none;
-  margin: 0;
-  padding: 0;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .work-section-line {
   height: 1px;
   background: #e0e0e0;
-  margin: 0 2rem 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .work-section-content {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
-  gap: 0;
+  gap: 3rem;
   align-items: stretch;
-  padding-bottom: 0;
-  min-height: 520px;
+  padding-bottom: 3rem;
+  min-height: 480px;
 }
 
 .work-section-text {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.5rem 3rem 2.5rem 2rem;
+  padding: 0.5rem 0 1rem;
 }
 
 .work-section-top {}
@@ -226,21 +226,18 @@
   .work-filter_pill {
     font-size: 0.8rem;
   }
-  .work-section-line {
-    margin: 0 1.5rem 1.5rem;
+  .work-section {
+    padding: 0 1.5rem;
   }
   .work-section-content {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 1.5rem;
     min-height: auto;
-  }
-  .work-section-text {
-    padding: 0 1.5rem 1.5rem;
+    padding-bottom: 2rem;
   }
   .work-section-image {
     aspect-ratio: 4/3;
     position: relative;
-    margin-bottom: 2rem;
   }
   .work-section-name {
     font-size: 2rem;
