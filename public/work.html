@@ -127,23 +127,29 @@
 
 .work-section-content {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
+  grid-template-columns: 1fr 1.3fr;
   gap: 3rem;
-  align-items: start;
+  align-items: stretch;
   padding-bottom: 4rem;
+  min-height: 500px;
 }
 
 .work-section-text {
-  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem 0;
 }
 
+.work-section-top {}
+
 .work-section-name {
-  font-size: clamp(1.75rem, 3vw, 2.75rem);
-  font-weight: 700;
+  font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+  font-weight: 800;
   color: #0d0d0d;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin: 0 0 1.5rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
   transition: color 0.3s;
 }
 
@@ -151,19 +157,22 @@
   color: #666;
 }
 
+.work-section-bottom {}
+
 .work-section-desc {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.6;
-  margin: 0 0 2rem;
-  max-width: 380px;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: #222;
+  line-height: 1.45;
+  margin: 0 0 1.75rem;
+  max-width: 420px;
+  font-weight: 600;
 }
 
 .work-section-category {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #aaa;
+  letter-spacing: 0.12em;
+  color: #bbb;
   font-weight: 500;
   margin: 0;
 }
@@ -171,12 +180,18 @@
 /* Image */
 .work-section-image {
   overflow: hidden;
+  border-radius: 0;
+  position: relative;
 }
 
 .work-section-image img {
-  width: 100%;
-  height: auto;
-  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  position: absolute;
+  top: 0;
+  left: 0;
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -216,12 +231,18 @@
   .work-section-content {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    min-height: auto;
+  }
+  .work-section-image {
+    aspect-ratio: 4/3;
+    position: relative;
   }
   .work-section-name {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .work-section-desc {
     max-width: none;
+    font-size: 1rem;
   }
   .work-section-line {
     margin-bottom: 1.5rem;
@@ -509,11 +530,7 @@
         <div class="work-section">
           <div class="work-section-line"></div>
           <div class="work-section-content">
-            <div class="work-section-text">
-              <h2 class="work-section-name">Hatch</h2>
-              <p class="work-section-desc">A modern social platform for professionals and founders.</p>
-              <p class="work-section-category">Product Design</p>
-            </div>
+            <div class="work-section-text"><div class="work-section-top"><h2 class="work-section-name">Hatch</h2></div><div class="work-section-bottom"><p class="work-section-desc">A modern social platform for professionals and founders.</p><p class="work-section-category">Product Design</p></div></div>
             <div class="work-section-image">
               <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69216eaec07c01a5612f05da_Cover%20Image.png" alt="Hatch" loading="eager"/>
             </div>
@@ -527,11 +544,7 @@
         <div class="work-section">
           <div class="work-section-line"></div>
           <div class="work-section-content">
-            <div class="work-section-text">
-              <h2 class="work-section-name">Plutohive</h2>
-              <p class="work-section-desc">Branding &amp; ecommerce experience for a modern pet-care store.</p>
-              <p class="work-section-category">Branding &amp; Development</p>
-            </div>
+            <div class="work-section-text"><div class="work-section-top"><h2 class="work-section-name">Plutohive</h2></div><div class="work-section-bottom"><p class="work-section-desc">Branding &amp; ecommerce experience for a modern pet-care store.</p><p class="work-section-category">Branding &amp; Development</p></div></div>
             <div class="work-section-image">
               <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69325b16f1e37b182930332c_Plutohive.png" alt="Plutohive" loading="eager"/>
             </div>
@@ -545,11 +558,7 @@
         <div class="work-section">
           <div class="work-section-line"></div>
           <div class="work-section-content">
-            <div class="work-section-text">
-              <h2 class="work-section-name">CosmiKit</h2>
-              <p class="work-section-desc">A new era of design system automation.</p>
-              <p class="work-section-category">Product Design</p>
-            </div>
+            <div class="work-section-text"><div class="work-section-top"><h2 class="work-section-name">CosmiKit</h2></div><div class="work-section-bottom"><p class="work-section-desc">A new era of design system automation.</p><p class="work-section-category">Product Design</p></div></div>
             <div class="work-section-image">
               <img src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/692c524cdd7c8c67057f69ed_100_2x.webp" alt="CosmiKit" loading="eager"/>
             </div>
@@ -951,9 +960,9 @@ requestAnimationFrame(raf);
           + '<div class="work-section-line"></div>'
           + '<div class="work-section-content">'
           + '<div class="work-section-text">'
-          + '<h2 class="work-section-name">' + escapeHtml(item.name) + '</h2>'
-          + '<p class="work-section-desc">' + escapeHtml(item.description || '') + '</p>'
-          + '<p class="work-section-category">' + escapeHtml(categoryLabel) + '</p>'
+          + '<div class="work-section-top"><h2 class="work-section-name">' + escapeHtml(item.name) + '</h2></div>'
+          + '<div class="work-section-bottom"><p class="work-section-desc">' + escapeHtml(item.description || '') + '</p>'
+          + '<p class="work-section-category">' + escapeHtml(categoryLabel) + '</p></div>'
           + '</div>'
           + '<div class="work-section-image">'
           + '<img src="' + escapeHtml(item.cover_image_url || '') + '" alt="' + escapeHtml(item.name) + '" loading="lazy"/>'
