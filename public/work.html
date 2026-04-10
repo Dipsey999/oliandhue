@@ -15,137 +15,248 @@
 <link href="css/footer-custom.css" rel="stylesheet" type="text/css"/>
 
 <style>
-/* ═══ Work Page Filter Pills ═══ */
+/* ═══ Work Page — Premium Gallery Redesign ═══ */
+
+/* Page background */
+.section_work-list {
+  background: #faf9f7;
+}
+
+/* --- Header tweaks --- */
+.work-list_head {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+.work-list_head .heading-style-display {
+  margin-bottom: 0.25rem !important;
+}
+.work-list_head .text-size-small {
+  max-width: 420px;
+}
+/* hide the copyright decoration */
+.work-list_head > h2.heading-style-display.hide-tablet {
+  display: none !important;
+}
+/* hide the "Projects" label too */
+.work-list_head .text-style-label.hide-tablet {
+  display: none !important;
+}
+/* tighter section padding */
+.section_work-list .padding-section-medium {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+.section_work-list .spacer-huge {
+  height: 1.5rem !important;
+}
+
+/* ═══ Filter Tabs ═══ */
 .work-filter_bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0;
   justify-content: center;
   padding: 0 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(26, 26, 46, 0.1);
+  padding-bottom: 0;
 }
 
 .work-filter_pill {
-  padding: 0.5rem 1.25rem;
-  border-radius: 100px;
-  border: 1px solid rgba(26, 26, 46, 0.08);
-  background: rgba(26, 26, 46, 0.03);
-  color: rgba(26, 26, 46, 0.45);
+  padding: 0.6rem 1.25rem 0.75rem;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: rgba(26, 26, 46, 0.4);
   font-family: inherit;
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  transition: color 0.3s ease, border-color 0.3s ease;
   white-space: nowrap;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
+  position: relative;
 }
 
 .work-filter_pill:hover {
-  background: rgba(168, 130, 255, 0.1);
-  border-color: rgba(168, 130, 255, 0.3);
-  color: rgba(26, 26, 46, 0.8);
+  color: rgba(26, 26, 46, 0.75);
 }
 
 .work-filter_pill.is-active {
-  background: rgba(26, 26, 46, 0.9);
-  border-color: rgba(26, 26, 46, 0.95);
-  color: #fff;
-  box-shadow: 0 2px 16px rgba(26, 26, 46, 0.15),
-              0 1px 4px rgba(26, 26, 46, 0.1);
+  color: #1a1a2e;
+  border-bottom-color: #1a1a2e;
+  background: none;
 }
 
-/* ═══ Analogue Agency Style — 4-Column Grid ═══ */
+/* ═══ Grid Wrapper ═══ */
 .work-list_wrapper-v1 {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 2.5rem 1.5rem 0;
 }
+
+/* ═══ Masonry-Inspired 4-Column Grid ═══ */
 .work-list_list {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2.5rem 1.75rem;
+  gap: 1.25rem;
+}
+
+/* Every 1st in a group of 5 spans 2 columns */
+.work-list_item:nth-child(5n+1) {
+  grid-column: span 2;
 }
 
 .work-list_item {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 .work-list_item.is-filtered-out {
-  opacity: 0;
-  transform: scale(0.95) translateY(12px);
-  pointer-events: none;
-  position: absolute;
-  visibility: hidden;
+  display: none !important;
 }
 
 .work-list_block {
   height: 100%;
 }
 
+/* ═══ Card Link — the image container ═══ */
 .work-list_link {
-  display: flex !important;
-  flex-direction: column;
-  height: 100%;
-  text-decoration: none;
+  display: block !important;
   position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f0eeeb;
+  text-decoration: none;
 }
 
-/* Image — large rounded square */
+/* ═══ Image ═══ */
 .work-list_img {
   width: 100% !important;
-  aspect-ratio: 1 / 1 !important;
+  aspect-ratio: 4 / 3 !important;
   object-fit: cover !important;
-  border-radius: 20px !important;
-  background: #f0eeeb;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.5s ease,
-              border-radius 0.5s ease;
+  border-radius: 0 !important;
+  display: block;
+  background: #eae7e3;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.6s ease;
 }
 
-/* Hover: scale up, deeper shadow, slightly less rounded */
+/* Large cards get wider aspect ratio */
+.work-list_item:nth-child(5n+1) .work-list_img {
+  aspect-ratio: 16 / 9 !important;
+}
+
+/* ═══ Hover Overlay Gradient ═══ */
+.work-list_link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 0 0 16px 16px;
+}
+.work-list_link:hover::after {
+  opacity: 1;
+}
+
+/* ═══ Hover — Image zoom ═══ */
 .work-list_link:hover .work-list_img {
-  transform: scale(1.03);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
-  border-radius: 16px !important;
+  transform: scale(1.05);
 }
 
-/* Hover: title color shift */
-.work-list_link:hover .work-list_title {
-  color: #8b5cf6 !important;
+/* ═══ Hover Info Overlay (title + subtitle inside card) ═══ */
+.work-list_info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  z-index: 2;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.4s ease;
+  pointer-events: none;
+}
+.work-list_link:hover .work-list_info {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-/* Text below image */
+.work-list_info-title {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.work-list_info-sub {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+/* ═══ View Project Arrow ═══ */
+.work-list_info-arrow {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.4s ease 0.1s,
+              transform 0.4s ease 0.1s;
+  z-index: 2;
+  pointer-events: none;
+}
+.work-list_link:hover .work-list_info-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ═══ Static Title Below Card ═══ */
 .work-list_name {
-  padding: 1rem 0 0 !important;
+  padding: 0.75rem 0.25rem 0 !important;
   position: static !important;
   opacity: 1 !important;
   transform: none !important;
   background: none !important;
-  text-align: center;
+  text-align: left;
 }
 
 .work-list_title {
-  font-size: 1.05rem !important;
-  font-weight: 600 !important;
-  color: #1a1a2e !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: #333 !important;
   line-height: 1.3 !important;
   margin: 0 !important;
   transition: color 0.3s ease;
+}
+
+.work-list_link:hover ~ .work-list_name .work-list_title {
+  color: #1a1a2e !important;
 }
 
 .work-list_dot {
   display: none !important;
 }
 
-/* Category subtitle */
 .work-list_subtitle {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #aaa;
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
   font-weight: 400;
 }
 
@@ -168,21 +279,80 @@
 }
 
 /* ═══ Responsive ═══ */
+@media (max-width: 1200px) {
+  .work-list_list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 @media (max-width: 1024px) {
-  .work-list_list { grid-template-columns: repeat(3, 1fr); gap: 2rem 1.5rem; }
+  .work-list_list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  /* Disable span-2 pattern on tablet */
+  .work-list_item:nth-child(5n+1) {
+    grid-column: span 1;
+  }
+  .work-list_item:nth-child(5n+1) .work-list_img {
+    aspect-ratio: 4 / 3 !important;
+  }
 }
 @media (max-width: 767px) {
-  .work-list_list { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
-  .work-list_img { border-radius: 14px !important; }
-  .work-filter_bar { gap: 0.375rem; padding: 0 1rem; margin-bottom: 2rem; }
-  .work-filter_pill { padding: 0.4rem 1rem; font-size: 0.75rem; }
-  .work-list_title { font-size: 0.9rem !important; }
-  .work-list_subtitle { font-size: 0.7rem; }
-  .work-list_name { padding: 0.6rem 0 0 !important; }
+  .work-list_list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.875rem;
+  }
+  .work-list_link {
+    border-radius: 12px;
+  }
+  .work-list_link::after {
+    border-radius: 0 0 12px 12px;
+  }
+  .work-filter_bar {
+    gap: 0;
+    padding: 0 1rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .work-filter_pill {
+    padding: 0.5rem 0.875rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  .work-list_title {
+    font-size: 0.85rem !important;
+  }
+  .work-list_subtitle {
+    font-size: 0.7rem;
+  }
+  .work-list_name {
+    padding: 0.5rem 0.15rem 0 !important;
+  }
+  .work-list_info {
+    padding: 1rem;
+  }
+  .work-list_info-arrow {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .work-list_wrapper-v1 {
+    padding: 1.5rem 1rem 0;
+  }
 }
 @media (max-width: 480px) {
-  .work-list_list { grid-template-columns: 1fr 1fr; gap: 1.25rem 0.75rem; }
-  .work-list_img { border-radius: 12px !important; }
+  .work-list_list {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .work-list_link {
+    border-radius: 10px;
+  }
+  .work-list_link::after {
+    border-radius: 0 0 10px 10px;
+  }
+  .work-list_img {
+    aspect-ratio: 4 / 3 !important;
+  }
 }
 </style>
 </head><body><div class="page-wrapper"><nav class="navbar">
@@ -438,7 +608,7 @@
             <div class="navbar_line"></div>
           </div>
         </div>
-      </nav><div STYLE="--blur: 1rem; --ratio: 2;" class="progressive-blur_wrap"><div STYLE="--i: 6;" class="progressive-blur_panel is-1"></div><div STYLE="--i: 5;" class="progressive-blur_panel is-2"></div><div STYLE="--i: 4;" class="progressive-blur_panel is-3"></div><div STYLE="--i: 3;" class="progressive-blur_panel is-4"></div><div STYLE="--i: 2;" class="progressive-blur_panel is-5"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-6"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-7"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-8"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-9"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-10"></div></div><main class="main-wrapper"><section class="section_work-list"><div class="padding-global is-tiny"><div data-w-id="f8cd9a3a-3e01-4e7f-30db-ecd0dcc6e07a" class="line"></div></div><div class="padding-section-medium"></div><div class="padding-global"><div class="work-list_component"><div class="container-medium"><div class="work-list_head"><h1 data-w-id="cb3ed43d-4fec-c076-6ad9-ca979cbce945" class="heading-style-display">Work.</h1><div id="w-node-b6de4e29-e0e7-22f5-a3fb-f6f4ae8848d0-348fc759" class="work-list_head-texts"><h2 data-w-id="3cde3e8e-9cf9-f0b1-0571-18bb109027d6" class="text-style-label hide-tablet">Projects</h2><div data-w-id="2d1acec6-4c9c-26ee-8926-bff6869d7e09" class="text-size-grey-400"><p class="text-size-small">Every project starts with a founder with a vision. Here&#x27;s what we built together.<br/></p></div></div><h2 id="w-node-fd189f4e-bb1d-3d0d-a032-00be0c82ab01-348fc759" data-w-id="fd189f4e-bb1d-3d0d-a032-00be0c82ab01" class="heading-style-display hide-tablet">©26</h2></div></div><div class="spacer-huge"></div><div class="work-filter_bar"><button class="work-filter_pill is-active" data-filter="all">All Projects</button><button class="work-filter_pill" data-filter="case-study">Case Studies</button><button class="work-filter_pill" data-filter="product-design">Product Design</button><button class="work-filter_pill" data-filter="website">Websites</button><button class="work-filter_pill" data-filter="branding">Branding</button><button class="work-filter_pill" data-filter="design-dev">Design &amp; Dev</button></div><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f98" class="hover_wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f99" class="hover_pill"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9a" class="hover_text-wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9b" class="hover_text">View work</div></div></div></div><div class="work-list_wrapper-v1 w-dyn-list"><div role="list" class="work-list_list w-dyn-items"><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=hatch" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69216eaec07c01a5612f05da_Cover%20Image.png" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">Hatch</h2><p class="work-list_subtitle">Product Design</p></div></a></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="branding website design-dev"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=plutohive" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69325b16f1e37b182930332c_Plutohive.png" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">Plutohive</h2><p class="work-list_subtitle">Branding & Development</p></div></a></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div data-w-id="488e7777-71b2-7e36-4789-2206a7bd01df" class="work-list_block"><a aria-label="link to work page" data-w-id="488e7777-71b2-7e36-4789-2206a7bd01e0" href="work-detail.html?slug=cosmikit" class="work-list_link w-inline-block"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/692c524cdd7c8c67057f69ed_100_2x.webp" alt="" class="work-list_img"/><div class="work-list_name"><div class="work-list_dot"></div><h2 class="work-list_title">CosmiKit</h2><p class="work-list_subtitle">Product Design</p></div></a></div></div></div></div><div class="work-filter_empty">No projects in this category yet — more coming soon.</div></div></div><div class="padding-section-medium"></div></section><section class="section_cta"><div class="padding-global is-tiny"><div class="cta_component"><div class="padding-section-medium"></div><div class="padding-global"><div class="cta_content"><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a680f" class="text-align-center"><div class="text-color-white"><h2 class="heading-style-h1 font-weight-medium">From brand to product <br/>to growth</h2></div></div><div class="spacer-large"></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6814" class="fade-in"><a href="pricing/plans.html" data-wf--button--variant="white" data-w-id="059e00b0-f64e-1901-eae8-f1971aea4566" class="button-secondary w-variant-084c35ac-0c40-f906-a9cd-0d43386a2d5d w-inline-block"><div class="button_texts"><div class="button_text _1">Let&#x27;s Get Started</div><div class="button_text _2">Let&#x27;s Get Started</div></div><div class="button-line_space blue-dark-36"></div><div class="button-line_dot blue-dark-37"><div class="button_dot"></div><div class="button_dot-scale"></div></div></a></div></div></div><div class="padding-section-medium"></div><div class="interaction_visual_wrap"><div class="interaction_template"><div class="interaction_img_wrap"><img alt="" src="https://cdn.prod.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" class="interaction_img"/></div></div></div><div class="interaction_cms_wrap"><div class="interaction_cms_list"><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84d_Smartwatch%20Close-Up%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84e_001_copy_3-1170x780%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84f_Dynamic%20Motion%20Blur.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc850_Presentation_Hall_Mockup-1170x780.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc851_Image002-1170x780.webp" class="interaction_cms-img_img"/></div></div></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6828" class="cta_note"><div class="note-marquee_component"><div class="note-marquee_in"><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div></div></div></div></div></div></section></main><footer class="footer">
+      </nav><div STYLE="--blur: 1rem; --ratio: 2;" class="progressive-blur_wrap"><div STYLE="--i: 6;" class="progressive-blur_panel is-1"></div><div STYLE="--i: 5;" class="progressive-blur_panel is-2"></div><div STYLE="--i: 4;" class="progressive-blur_panel is-3"></div><div STYLE="--i: 3;" class="progressive-blur_panel is-4"></div><div STYLE="--i: 2;" class="progressive-blur_panel is-5"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-6"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-7"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-8"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-9"></div><div STYLE="--i: 1;" class="progressive-blur_panel is-10"></div></div><main class="main-wrapper"><section class="section_work-list"><div class="padding-global is-tiny"><div data-w-id="f8cd9a3a-3e01-4e7f-30db-ecd0dcc6e07a" class="line"></div></div><div class="padding-section-medium"></div><div class="padding-global"><div class="work-list_component"><div class="container-medium"><div class="work-list_head"><h1 data-w-id="cb3ed43d-4fec-c076-6ad9-ca979cbce945" class="heading-style-display">Work.</h1><div id="w-node-b6de4e29-e0e7-22f5-a3fb-f6f4ae8848d0-348fc759" class="work-list_head-texts"><div data-w-id="2d1acec6-4c9c-26ee-8926-bff6869d7e09" class="text-size-grey-400"><p class="text-size-small">Selected projects and case studies.</p></div></div></div></div><div class="spacer-huge"></div><div class="work-filter_bar"><button class="work-filter_pill is-active" data-filter="all">All Projects</button><button class="work-filter_pill" data-filter="case-study">Case Studies</button><button class="work-filter_pill" data-filter="product-design">Product Design</button><button class="work-filter_pill" data-filter="website">Websites</button><button class="work-filter_pill" data-filter="branding">Branding</button><button class="work-filter_pill" data-filter="design-dev">Design &amp; Dev</button></div><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f98" class="hover_wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f99" class="hover_pill"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9a" class="hover_text-wrap"><div data-w-id="df95053b-751c-33b6-14d2-a4763aca7f9b" class="hover_text">View work</div></div></div></div><div class="work-list_wrapper-v1 w-dyn-list"><div role="list" class="work-list_list w-dyn-items"><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div class="work-list_block"><a aria-label="link to work page" href="work-detail.html?slug=hatch" class="work-list_link"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69216eaec07c01a5612f05da_Cover%20Image.png" alt="Hatch" class="work-list_img"/><div class="work-list_info"><div class="work-list_info-title">Hatch</div><div class="work-list_info-sub">Product Design</div></div><span class="work-list_info-arrow">View Project &rarr;</span></a><div class="work-list_name"><h2 class="work-list_title">Hatch</h2><p class="work-list_subtitle">Product Design</p></div></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="branding website design-dev"><div class="work-list_block"><a aria-label="link to work page" href="work-detail.html?slug=plutohive" class="work-list_link"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/69325b16f1e37b182930332c_Plutohive.png" alt="Plutohive" class="work-list_img"/><div class="work-list_info"><div class="work-list_info-title">Plutohive</div><div class="work-list_info-sub">Branding &amp; Development</div></div><span class="work-list_info-arrow">View Project &rarr;</span></a><div class="work-list_name"><h2 class="work-list_title">Plutohive</h2><p class="work-list_subtitle">Branding &amp; Development</p></div></div></div><div role="listitem" class="work-list_item w-dyn-item" data-categories="product-design case-study"><div class="work-list_block"><a aria-label="link to work page" href="work-detail.html?slug=cosmikit" class="work-list_link"><img loading="eager" src="https://cdn.prod.website-files.com/6913f153f7d49d3e348fc77e/692c524cdd7c8c67057f69ed_100_2x.webp" alt="CosmiKit" class="work-list_img"/><div class="work-list_info"><div class="work-list_info-title">CosmiKit</div><div class="work-list_info-sub">Product Design</div></div><span class="work-list_info-arrow">View Project &rarr;</span></a><div class="work-list_name"><h2 class="work-list_title">CosmiKit</h2><p class="work-list_subtitle">Product Design</p></div></div></div></div></div><div class="work-filter_empty">No projects in this category yet — more coming soon.</div></div></div><div class="padding-section-medium"></div></section><section class="section_cta"><div class="padding-global is-tiny"><div class="cta_component"><div class="padding-section-medium"></div><div class="padding-global"><div class="cta_content"><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a680f" class="text-align-center"><div class="text-color-white"><h2 class="heading-style-h1 font-weight-medium">From brand to product <br/>to growth</h2></div></div><div class="spacer-large"></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6814" class="fade-in"><a href="pricing/plans.html" data-wf--button--variant="white" data-w-id="059e00b0-f64e-1901-eae8-f1971aea4566" class="button-secondary w-variant-084c35ac-0c40-f906-a9cd-0d43386a2d5d w-inline-block"><div class="button_texts"><div class="button_text _1">Let&#x27;s Get Started</div><div class="button_text _2">Let&#x27;s Get Started</div></div><div class="button-line_space blue-dark-36"></div><div class="button-line_dot blue-dark-37"><div class="button_dot"></div><div class="button_dot-scale"></div></div></a></div></div></div><div class="padding-section-medium"></div><div class="interaction_visual_wrap"><div class="interaction_template"><div class="interaction_img_wrap"><img alt="" src="https://cdn.prod.website-files.com/plugins/Basic/assets/placeholder.60f9b1840c.svg" class="interaction_img"/></div></div></div><div class="interaction_cms_wrap"><div class="interaction_cms_list"><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84d_Smartwatch%20Close-Up%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84e_001_copy_3-1170x780%20(1).webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc84f_Dynamic%20Motion%20Blur.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc850_Presentation_Hall_Mockup-1170x780.webp" class="interaction_cms-img_img"/></div><div class="interaction_cms_item"><img alt="" src="https://cdn.prod.website-files.com/6913f152f7d49d3e348fc705/6913f153f7d49d3e348fc851_Image002-1170x780.webp" class="interaction_cms-img_img"/></div></div></div><div data-w-id="a96576e7-0ca7-fa5e-89ee-4643797a6828" class="cta_note"><div class="note-marquee_component"><div class="note-marquee_in"><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div><div class="note-marquee_text">Move your mouse —</div></div></div></div></div></div></section></main><footer class="footer">
         <div class="padding-global is-tiny">
           <div class="footer_wrap">
             <div class="footer_component">
@@ -727,51 +897,50 @@ requestAnimationFrame(raf);
 <script>
 /* ═══ Work Filter Logic ═══ */
 (function() {
-  var pills = document.querySelectorAll('.work-filter_pill');
-  var items = document.querySelectorAll('.work-list_item');
-  var emptyEl = document.querySelector('.work-filter_empty');
+  function runFilter() {
+    var pills = document.querySelectorAll('.work-filter_pill');
+    var items = document.querySelectorAll('.work-list_item');
+    var emptyEl = document.querySelector('.work-filter_empty');
 
-  if (!pills.length || !items.length) return;
+    if (!pills.length || !items.length) return;
 
-  pills.forEach(function(pill) {
-    pill.addEventListener('click', function() {
-      var filter = this.getAttribute('data-filter');
+    pills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        var filter = this.getAttribute('data-filter');
 
-      // Update active pill
-      pills.forEach(function(p) { p.classList.remove('is-active'); });
-      this.classList.add('is-active');
+        // Update active pill
+        pills.forEach(function(p) { p.classList.remove('is-active'); });
+        this.classList.add('is-active');
 
-      var visibleCount = 0;
+        var visibleCount = 0;
 
-      items.forEach(function(item) {
-        var cats = (item.getAttribute('data-categories') || '').split(' ');
-        var show = (filter === 'all') || cats.indexOf(filter) !== -1;
+        // Re-query items to include dynamically added ones
+        var allItems = document.querySelectorAll('.work-list_item');
 
-        if (show) {
-          item.classList.remove('is-filtered-out');
-          item.style.display = '';
-          visibleCount++;
-        } else {
-          item.classList.add('is-filtered-out');
-          // Delay display:none so the CSS transition plays
-          setTimeout(function() {
-            if (item.classList.contains('is-filtered-out')) {
-              item.style.display = 'none';
-            }
-          }, 400);
+        allItems.forEach(function(item) {
+          var cats = (item.getAttribute('data-categories') || '').split(' ');
+          var show = (filter === 'all') || cats.indexOf(filter) !== -1;
+
+          if (show) {
+            item.classList.remove('is-filtered-out');
+            visibleCount++;
+          } else {
+            item.classList.add('is-filtered-out');
+          }
+        });
+
+        // Toggle empty state
+        if (emptyEl) {
+          if (visibleCount === 0) {
+            emptyEl.classList.add('is-visible');
+          } else {
+            emptyEl.classList.remove('is-visible');
+          }
         }
       });
-
-      // Toggle empty state
-      if (emptyEl) {
-        if (visibleCount === 0) {
-          emptyEl.classList.add('is-visible');
-        } else {
-          emptyEl.classList.remove('is-visible');
-        }
-      }
     });
-  });
+  }
+  runFilter();
 })();
 </script>
 <script src="js/form-handler.js"></script>
@@ -792,6 +961,13 @@ requestAnimationFrame(raf);
     design_dev: 'Design & Dev'
   };
 
+  function escapeHtml(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
   var list = document.querySelector('.work-list_list');
   if (!list) return;
 
@@ -807,6 +983,7 @@ requestAnimationFrame(raf);
         // Skip items that are already in the static HTML
         if (STATIC_SLUGS.indexOf(item.slug) !== -1) return;
         var filterValue = item.category ? (CATEGORY_MAP[item.category] || '') : '';
+        var categoryLabel = CATEGORY_LABELS[item.category] || item.category || '';
         var href = 'work-detail.html?slug=' + encodeURIComponent(item.slug);
 
         var wrapper = document.createElement('div');
@@ -822,7 +999,7 @@ requestAnimationFrame(raf);
         var link = document.createElement('a');
         link.setAttribute('aria-label', 'link to work page');
         link.href = href;
-        link.className = 'work-list_link w-inline-block';
+        link.className = 'work-list_link';
 
         var img = document.createElement('img');
         img.loading = 'lazy';
@@ -830,11 +1007,23 @@ requestAnimationFrame(raf);
         img.alt = item.name || '';
         img.className = 'work-list_img';
 
+        // Hover info overlay inside the link
+        var info = document.createElement('div');
+        info.className = 'work-list_info';
+        info.innerHTML = '<div class="work-list_info-title">' + escapeHtml(item.name) + '</div>'
+          + '<div class="work-list_info-sub">' + escapeHtml(categoryLabel) + '</div>';
+
+        var arrow = document.createElement('span');
+        arrow.className = 'work-list_info-arrow';
+        arrow.innerHTML = 'View Project &rarr;';
+
+        link.appendChild(img);
+        link.appendChild(info);
+        link.appendChild(arrow);
+
+        // Static name below card
         var nameDiv = document.createElement('div');
         nameDiv.className = 'work-list_name';
-
-        var dot = document.createElement('div');
-        dot.className = 'work-list_dot';
 
         var title = document.createElement('h2');
         title.className = 'work-list_title';
@@ -842,19 +1031,17 @@ requestAnimationFrame(raf);
 
         var subtitle = document.createElement('p');
         subtitle.className = 'work-list_subtitle';
-        subtitle.textContent = CATEGORY_LABELS[item.category] || item.category || '';
+        subtitle.textContent = categoryLabel;
 
         nameDiv.appendChild(title);
         nameDiv.appendChild(subtitle);
-        link.appendChild(img);
-        link.appendChild(nameDiv);
         block.appendChild(link);
+        block.appendChild(nameDiv);
         wrapper.appendChild(block);
         list.appendChild(wrapper);
       });
 
       // Re-query items so the filter system picks up the new cards
-      var pills = document.querySelectorAll('.work-filter_pill');
       var activePill = document.querySelector('.work-filter_pill.is-active');
       if (activePill) {
         activePill.click();
