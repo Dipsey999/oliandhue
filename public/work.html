@@ -22,14 +22,15 @@
   background: #fff;
 }
 
-/* Hide old Webflow structural elements */
+/* Reset all Webflow structural containers */
 .work-list_head { display: none !important; }
 .spacer-huge { display: none !important; }
 .section_work-list .padding-section-medium { padding: 0 !important; }
-.section_work-list .padding-global { padding: 0 !important; }
-.work-list_component { max-width: none; padding: 0; }
-.container-medium { max-width: none; padding: 0; }
+.section_work-list .padding-global { padding: 0 !important; width: 100% !important; max-width: none !important; }
+.work-list_component { max-width: none !important; padding: 0 !important; width: 100% !important; }
+.section_work-list .container-medium { max-width: none !important; padding: 0 !important; width: 100% !important; }
 .hover_wrap { display: none !important; }
+.work-list_wrapper-v1 { max-width: none !important; padding: 0 !important; width: 100% !important; }
 
 /* ═══ Page Header ═══ */
 .work-page-header {
@@ -114,23 +115,20 @@
 }
 
 .work-section {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 12px;
+  padding: 0;
 }
 
 .work-section-line {
   height: 1px;
   background: #e0e0e0;
-  margin-bottom: 2.5rem;
+  margin: 0 12px 2rem;
 }
 
 .work-section-content {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 3rem;
+  grid-template-columns: 38% 1fr;
+  gap: 0;
   align-items: stretch;
-  padding-bottom: 3rem;
   min-height: 480px;
 }
 
@@ -138,7 +136,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.5rem 0 1rem;
+  padding: 0.5rem 2rem 2rem 12px;
 }
 
 .work-section-top {}
@@ -226,8 +224,8 @@
   .work-filter_pill {
     font-size: 0.8rem;
   }
-  .work-section {
-    padding: 0 12px;
+  .work-section-text {
+    padding: 0 1rem 1.5rem 12px;
   }
   .work-section-content {
     grid-template-columns: 1fr;
