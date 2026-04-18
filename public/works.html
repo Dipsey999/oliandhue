@@ -135,7 +135,7 @@
 
 /* Text — below image */
 .works-card__text {
-  padding: 1.25rem 0.25rem 0;
+  padding: 1.125rem 0 0;
   display: flex;
   flex-direction: column;
 }
@@ -144,9 +144,9 @@
   font-size: clamp(1.3rem, 2vw, 1.75rem);
   font-weight: 600;
   color: #0d0d0d;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.01em;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.625rem;
   font-style: normal;
   font-family: inherit;
   transition: color 0.3s ease;
@@ -154,18 +154,19 @@
 .works-card__category {
   font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #aaa;
-  font-weight: 400;
-  margin: 0 0 0.75rem;
+  letter-spacing: 0.12em;
+  color: #999;
+  font-weight: 500;
+  margin: 0 0 0.5rem;
   order: -1;
+  line-height: 1;
 }
 .works-card__desc {
   font-size: 0.9rem;
-  color: #777;
+  color: #6b6b6b;
   line-height: 1.55;
   margin: 0;
-  max-width: none;
+  max-width: 42ch;
 }
 .works-card__bottom { display: none; }
 
@@ -205,7 +206,10 @@
     padding: 0 var(--pad) 3rem;
   }
   .works-card__image { border-radius: 10px; }
-  .works-card__name { font-size: 1.25rem; }
+  .works-card__text { padding-top: 0.875rem; }
+  .works-card__name { font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .works-card__category { margin-bottom: 0.4375rem; }
+  .works-card__desc { max-width: none; font-size: 0.875rem; }
 }
 </style>
 </head><body><div class="page-wrapper"><nav class="navbar">

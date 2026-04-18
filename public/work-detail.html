@@ -27,6 +27,58 @@
 <link href="css/navbar-custom.css" rel="stylesheet" type="text/css"/>
 <link href="css/bumblebee.css" rel="stylesheet" type="text/css"/>
 <link href="css/footer-custom.css" rel="stylesheet" type="text/css"/>
+<style>
+  /* ── Work detail spacing + color fixes (cream bg) ── */
+  /* Tighten Webflow section spacers that stack into voids */
+  .section-work-content > .padding-section-large,
+  .section-work-content > .padding-section-large.is-tablet-small {
+    padding-top: 4rem !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+  }
+  .section-work-content > .padding-section-small {
+    padding-top: 2.5rem !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+  }
+  .section_work-related > .padding-section-medium {
+    padding-top: 3rem !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+  }
+  /* The closing spacer after "Back to Work" — keep modest bottom breathing room */
+  #work-back-section > .padding-section-medium:last-child {
+    padding-top: 3rem !important;
+  }
+
+  /* Results + Overview blocks — reduce oversized flex gap between heading + body */
+  #work-results-section .work-content_content,
+  #work-overview-section .work-content_content { gap: 1.5rem !important; }
+  #work-results-section .work-content_head,
+  #work-overview-section .work-content_head { gap: 0.75rem !important; }
+
+  /* Body-text colors on cream background (both Results + Overview) */
+  #work-results-text,
+  #work-overview-text { color: #3a3a3a !important; }
+  #work-results-section .text-style-label,
+  #work-overview-section .text-style-label { color: #888 !important; }
+  #work-results-heading,
+  #work-overview-heading { color: #0d0d0d !important; }
+
+  /* Next Project card on cream */
+  #work-next-link {
+    border-color: rgba(13,13,13,0.12) !important;
+    background: rgba(255,255,255,0.6);
+  }
+  #work-next-link:hover { border-color: rgba(13,13,13,0.35) !important; }
+  #work-next-link > div > div:first-child { color: #888 !important; }  /* label */
+  #work-next-name { color: #0d0d0d !important; }
+  #work-next-link svg { stroke: rgba(13,13,13,0.5) !important; }
+
+  /* Back to Work link */
+  #work-back-section a { color: #555 !important; }
+  #work-back-section a:hover { color: #0d0d0d !important; }
+</style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -398,15 +450,15 @@
     </section>
 
     <!-- Loading state -->
-    <div id="work-loading" style="text-align:center;padding:8rem 2rem;color:rgba(255,255,255,0.4);">
+    <div id="work-loading" style="text-align:center;padding:8rem 2rem;color:rgba(13,13,13,0.4);">
       Loading...
     </div>
 
     <!-- Error state -->
     <div id="work-error" style="display:none;text-align:center;padding:8rem 2rem;">
-      <h2 style="color:#fff;font-size:1.5rem;margin-bottom:0.5rem;">Project not found</h2>
-      <p style="color:rgba(255,255,255,0.4);margin-bottom:2rem;">This project doesn't exist or has been removed.</p>
-      <a href="works.html" style="color:#fff;text-decoration:underline;">Back to Work</a>
+      <h2 style="color:#0d0d0d;font-size:1.5rem;margin-bottom:0.5rem;">Project not found</h2>
+      <p style="color:rgba(13,13,13,0.5);margin-bottom:2rem;">This project doesn't exist or has been removed.</p>
+      <a href="works.html" style="color:#0d0d0d;text-decoration:underline;">Back to Work</a>
     </div>
   </main>
 
