@@ -756,12 +756,27 @@ requestAnimationFrame(raf);
 <!-- ═══ Works Filter Logic ═══ -->
 <script>
 (function() {
-  function runFilter() {
+  // --- Defensive initial state reset (runs regardless of nav source / cache state) ---
+  function resetInitialState() {
     var pills = document.querySelectorAll('.works-filter__pill');
-    var items = document.querySelectorAll('.works-card');
+    var cards = document.querySelectorAll('.works-card');
     var emptyEl = document.querySelector('.works-filter__empty');
 
-    if (!pills.length || !items.length) return;
+    // Clear any lingering filter state — ensure "All Projects" is active and all cards are visible
+    pills.forEach(function(p) { p.classList.remove('is-active'); });
+    var allPill = document.querySelector('.works-filter__pill[data-filter="all"]');
+    if (allPill) allPill.classList.add('is-active');
+
+    cards.forEach(function(c) { c.classList.remove('is-filtered-out'); });
+
+    if (emptyEl) emptyEl.classList.remove('is-visible');
+  }
+
+  function runFilter() {
+    var pills = document.querySelectorAll('.works-filter__pill');
+    var emptyEl = document.querySelector('.works-filter__empty');
+
+    if (!pills.length) return;
 
     pills.forEach(function(pill) {
       pill.addEventListener('click', function() {
@@ -799,7 +814,19 @@ requestAnimationFrame(raf);
       });
     });
   }
-  runFilter();
+
+  // Run on DOM ready regardless of navigation source
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { resetInitialState(); runFilter(); });
+  } else {
+    resetInitialState();
+    runFilter();
+  }
+
+  // Also handle back/forward cache (bfcache) restores
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) resetInitialState();
+  });
 })();
 </script>
 
